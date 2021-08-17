@@ -42,29 +42,29 @@ class User(db.Model):
 #     def __repr__(self):
 #         return f"<usercomments_id={self.usercomments_id}>"
 #  CONSIDER LEAVING FOR NICE TO HAVE!!
-
-association = db.Table('association',
-    db.column('rover_id', db.Integer, db.ForeignKey('rovers.rover_id')),
-    db.column('missionposts', db.Integer, db.ForeignKey('missionposts.missionpost_id')),
-    db.column('photos', db.Integer, db.ForeignKey('photos.photo_id'))
-   )
-
+class Photo_Mission(db.Model):
+    __tablename__ = 'photo_missions'
+ 
+    photo_mission_id = (db.Integer, primary_key = True)
+    missionpost_id = db.column(db.ForeignKey('missionposts.missionpost_id')),
+    photo_id = db.column(db.ForeignKey('photos.photo_id'))
+   
 
 class Rover(db.Model):
     """EachRover's Identity outlined"""
 
     __tablename__ = 'rovers'
 
-    rover_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    rover_id = db.Column(db.Integer, 
+                         autoincrement=True, 
+                         primary_key=True)
     rovername = db.Column(db.String(50), unique=True)
-    missionpost_id = db.Column(db.Integer, db.ForeignKey('missionposts.missionpost_id')) #looks at table in db
+    # missionpost_id = db.Column(db.Integer, db.ForeignKey('missionposts.missionpost_id')) #looks at table in db
 
     missionpost = db.relationship('MissionPost', backref = 'rovers') #looks at class and refers to rovers table
-   #goes back to MissionPost and Photo)
+   #goes back to MissionPost; one-to-many)
 
-   #to create in db; rover = Rover(rovername='Spirit', missionposts (backref from MissionPost) = (missionpost name?/detail?))
-#rover = Rover (rovername ='Spirit', missionposts=title)
- 
+     
 
     def __repr__(self):
         return f"<rovername_id={self.rovername_id}>"
@@ -78,14 +78,14 @@ class MissionPost(db.Model):
 
     missionpost_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     rovername = db.Column(db.String(50), unique=True)
-    rover_id = db.Column(db.Integer, db.ForeignKey('rovers.rover_id'))
-    photo_id = db.Column(db.Integer, db.ForeignKey('photos.photo_id'))
-    title = db.Column(db.String(50))
+    rover_id = db.Column(db.Integer, db.ForeignKey('rovers.rover_id')) #unclear if this will stay because of the association table?
+    #kept it here because rover-MissionPost = one-to-many
+    # photo_id = db.Column(db.Integer, db.ForeignKey('photos.photo_id')) #took out photo: missionpost = many-to-many
+    title = db.Column(db.String(60))
     text = db.Column(db.Text)
 
-    rover = db.relationship('Rover', backref = 'missionposts')
-    photo = db.relationship('Photo', 
-                             secondary = 'association', 
+    rover = db.relationship('Rover', backref = 'missionposts') #rover&missionpost = one-to-many
+    photo = db.relationship('Photo', secondary = 'association', #many-to-many
                              backref = 'missionposts')
    
 
@@ -100,8 +100,8 @@ class Photo(db.Model):
 
     photo_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     photoname = db.Column(db.String(50), unique=True)
-    missionposts_id = db.Column(db.Integer, db.ForeignKey('missionposts.missionpost_id'))
-    rover_id = db.Column(db.Integer, db.ForeignKey('rovers.rover_id'))
+    # missionposts_id = db.Column(db.Integer, db.ForeignKey('missionposts.missionpost_id'))
+    # rover_id = db.Column(db.Integer, db.ForeignKey('rovers.rover_id'))
     photo_path = db.Column(db.String)
 
     rover = db.relationship('Rover', backref = 'photos')
@@ -121,4 +121,4 @@ if __name__ == "__main__":
     connect_to_db(app) #should i connect to missiontest db?
     db.create_all()
 
-    #for crud from model.py import User, Rover, MissionPost, Photo
+    #for crud from model.py import User, Rover, MissionPost, Photo, association

@@ -19,7 +19,9 @@ class User(db.Model):
 
     __tablename__ = 'users'
 
-    user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    user_id = db.Column(db.Integer, 
+                        autoincrement=True, 
+                        primary_key=True)
     # username = db.Column(db.String(50), unique=True)
     email = db.Column(db.String, unique=True)
     password = db.Column(db.String(25))
@@ -42,12 +44,6 @@ class User(db.Model):
 #     def __repr__(self):
 #         return f"<usercomments_id={self.usercomments_id}>"
 #  CONSIDER LEAVING FOR NICE TO HAVE!!
-class Photo_Mission(db.Model):
-    __tablename__ = 'photo_missions'
- 
-    photo_mission_id = (db.Integer, primary_key = True)
-    missionpost_id = db.column(db.ForeignKey('missionposts.missionpost_id')),
-    photo_id = db.column(db.ForeignKey('photos.photo_id'))
    
 
 class Rover(db.Model):
@@ -58,16 +54,15 @@ class Rover(db.Model):
     rover_id = db.Column(db.Integer, 
                          autoincrement=True, 
                          primary_key=True)
-    rovername = db.Column(db.String(50), unique=True)
+    rover_name = db.Column(db.String(50), unique=True)
     # missionpost_id = db.Column(db.Integer, db.ForeignKey('missionposts.missionpost_id')) #looks at table in db
 
-    missionpost = db.relationship('MissionPost', backref = 'rovers') #looks at class and refers to rovers table
-   #goes back to MissionPost; one-to-many)
-
-     
+    # missionpost = db.relationship('MissionPost', backref = 'rovers') #*************!!CHECKING11X*****
+    #  #looks at class and refers to rovers table
+   #goes back to MissionPost; one-to-many - one rover has  many posts)
 
     def __repr__(self):
-        return f"<rovername_id={self.rovername_id}>"
+        return f"<rover_name_id={self.rover_name_id}>"
 
 
 
@@ -77,16 +72,16 @@ class MissionPost(db.Model):
     __tablename__ = "missionposts"
 
     missionpost_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    rovername = db.Column(db.String(50), unique=True)
+    # rover_name = db.Column(db.String(50), unique=True)
     rover_id = db.Column(db.Integer, db.ForeignKey('rovers.rover_id')) #unclear if this will stay because of the association table?
-    #kept it here because rover-MissionPost = one-to-many
-    # photo_id = db.Column(db.Integer, db.ForeignKey('photos.photo_id')) #took out photo: missionpost = many-to-many
+    #kept it here because rover-MissionPost = one-to-many - ForeignKey stays?errors keeps showing - but when include
+    #error persists
     title = db.Column(db.String(60))
     text = db.Column(db.Text)
 
     rover = db.relationship('Rover', backref = 'missionposts') #rover&missionpost = one-to-many
-    photo = db.relationship('Photo', secondary = 'association', #many-to-many
-                             backref = 'missionposts')
+    photo = db.relationship('Photo', secondary = 'photo_missions', #many-to-many
+                             backref = 'missionposts') #backref to missionposts
    
 
     def __repr__(self):
@@ -99,17 +94,26 @@ class Photo(db.Model):
     __tablename__ = "photos"
 
     photo_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    photoname = db.Column(db.String(50), unique=True)
-    # missionposts_id = db.Column(db.Integer, db.ForeignKey('missionposts.missionpost_id'))
-    # rover_id = db.Column(db.Integer, db.ForeignKey('rovers.rover_id'))
-    photo_path = db.Column(db.String)
+    photo_name = db.Column(db.String(50), unique=True)
+    photo_path = db.Column(db.String) #URL
 
-    rover = db.relationship('Rover', backref = 'photos')
-    missionpost = db.relationship('MissionPost', 
-                                   secondary = 'association', 
-                                   backref = 'photos')
+    rover = db.relationship('Rover', backref = 'photos') #one rover has many photos. one to many
+    # missionpost = db.relationship('MissionPost', 
+    #                                secondary = 'photo_missions', 
+    #                                backref = 'photos') #DON"T NEED THIS? IT"S LINKED/DEFINED IN PHOTOS?
+    #in lecture demo on modelling the second class didn't show the many to many - only the first
 
-   
+class Photo_Mission(db.Model):
+    """Association table for many-to-many"""
+    __tablename__ = 'photo_missions'
+ 
+    photo_mission_id = db.Column(db.Integer, primary_key = True)
+    missionpost_id = db.Column(db.Integer,
+                               db.ForeignKey('missionposts.missionpost_id'),
+                               nullable = False)
+    photo_id = db.Column(db.Integer,
+                         db.ForeignKey('photos.photo_id'),
+                         nullable = False)  
 
     def __repr__(self):
         return f"<photoname_id={self.photoname_id}>"
@@ -120,5 +124,12 @@ if __name__ == "__main__":
 
     connect_to_db(app) #should i connect to missiontest db?
     db.create_all()
+
+
+    #dbmissiontest - name of db
+    #git put to 'first' not 'origin' - 'git push -u first main'
+
+    #making tables:
+    #rover_first = Rover(rover_name = 'Spirit')
 
     #for crud from model.py import User, Rover, MissionPost, Photo, association

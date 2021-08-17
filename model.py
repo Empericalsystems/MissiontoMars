@@ -1,4 +1,4 @@
-"""Models for movie ratings app."""
+"""Models for Mars Mission app."""
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -15,12 +15,12 @@ def connect_to_db(flask_app, db_uri="postgresql:///ratings", echo=True):
     print("Connected todb")
 
 class User(db.Model):
-    """A user."""
+    """the user."""
 
     __tablename__ = "users"
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    username = db.Column(db.String(50), unique=True)
+    # username = db.Column(db.String(50), unique=True)
     email = db.Column(db.String, unique=True)
     password = db.Column(db.String(25))
 
@@ -45,7 +45,7 @@ class User(db.Model):
 
 
 class Rover(db.Model):
-    """UserComments/Likes"""
+    """EachRover's Identity outlined"""
 
     __tablename__ = "rovers"
 
@@ -59,7 +59,7 @@ class Rover(db.Model):
 
 
 class MissionPost(db.Model):
-    """UserComments/Likes"""
+    """EachRover'sMissionLog"""
 
     __tablename__ = "missionposts"
 
@@ -75,13 +75,23 @@ class MissionPost(db.Model):
         return f"<missionpost_id={self.missionpost_id}>"
 
 
+class Photo(db.Model):
+    """Photos from RoverCameras"""
+
+    __tablename__ = "photos"
+
+    photo_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    photoname = db.Column(db.String(50), unique=True)
+    missionposts_id = db.Column(db.Integer, db.ForeignKey("missionposts.missionpost_id"))
+    rover_id = db.Column(db.Integer, db.ForeignKey("missionposts.missionpost_id"))
+   
+
+    def __repr__(self):
+        return f"<photoname_id={self.photoname_id}>"
 
 if __name__ == "__main__":
     from server import app
 
-    # Call connect_to_db(app, echo=False) if your program output gets
-    # too annoying; this will tell SQLAlchemy not to print out every
-    # query it executes.
 
     connect_to_db(app)
     db.create_all()

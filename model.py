@@ -64,9 +64,7 @@ class Rover(db.Model):
 
    #to create in db; rover = Rover(rovername='Spirit', missionposts (backref from MissionPost) = (missionpost name?/detail?))
 #rover = Rover (rovername ='Spirit', missionposts=title)
-# Traceback (most recent call last):
-#   File "<stdin>", line 1, in <module>
-# NameError: name 'title' is not defined
+ 
 
     def __repr__(self):
         return f"<rovername_id={self.rovername_id}>"
@@ -86,7 +84,9 @@ class MissionPost(db.Model):
     text = db.Column(db.Text)
 
     rover = db.relationship('Rover', backref = 'missionposts')
-    photo = db.relationship('Photo', backref = 'missionposts')
+    photo = db.relationship('Photo', 
+                             secondary = 'association', 
+                             backref = 'missionposts')
    
 
     def __repr__(self):
@@ -105,7 +105,9 @@ class Photo(db.Model):
     photo_path = db.Column(db.String)
 
     rover = db.relationship('Rover', backref = 'photos')
-    missionpost = db.relationship('MissionPost', backref = 'photos')
+    missionpost = db.relationship('MissionPost', 
+                                   secondary = 'association', 
+                                   backref = 'photos')
 
    
 

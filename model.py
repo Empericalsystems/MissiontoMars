@@ -12,12 +12,12 @@ def connect_to_db(flask_app, db_uri="postgresql:///ratings", echo=True):
     db.app = flask_app
     db.init_app(flask_app) 
 
-    print("Connected todb")
+    print('Testing it works')
 
 class User(db.Model):
     """the user."""
 
-    __tablename__ = "users"
+    __tablename__ = 'users'
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     # username = db.Column(db.String(50), unique=True)
@@ -25,7 +25,7 @@ class User(db.Model):
     password = db.Column(db.String(25))
 
     def __repr__(self):
-        return
+        return f'<User user_id = {self.user_id} email = {self.email} password = {self.password}'
 
 # class Comments_Likes(db.Model):
 #     """UserComments/Likes"""
@@ -43,19 +43,34 @@ class User(db.Model):
 #         return f"<usercomments_id={self.usercomments_id}>"
 #  CONSIDER LEAVING FOR NICE TO HAVE!!
 
+association = db.Table('association',
+    db.column('rover_id', db.Integer, db.ForeignKey('rovers.rover_id')),
+    db.column('missionposts', db.Integer, db.ForeignKey('missionposts.missionpost_id')),
+    db.column('photos', db.Integer, db.ForeignKey('photos.photo_id'))
+   )
+
 
 class Rover(db.Model):
     """EachRover's Identity outlined"""
 
-    __tablename__ = "rovers"
+    __tablename__ = 'rovers'
 
     rover_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     rovername = db.Column(db.String(50), unique=True)
-    missionposts_id = db.Column(db.Integer, db.ForeignKey("missionposts.missionpost_id"))
-   
+    missionpost_id = db.Column(db.Integer, db.ForeignKey('missionposts.missionpost_id')) #looks at table in db
+
+    missionpost = db.relationship('MissionPost', backref = 'rovers') #looks at class and refers to rovers table
+   #goes back to MissionPost and Photo)
+
+   #to create in db; rover = Rover(rovername='Spirit', missionposts (backref from MissionPost) = (missionpost name?/detail?))
+#rover = Rover (rovername ='Spirit', missionposts=title)
+# Traceback (most recent call last):
+#   File "<stdin>", line 1, in <module>
+# NameError: name 'title' is not defined
 
     def __repr__(self):
         return f"<rovername_id={self.rovername_id}>"
+
 
 
 class MissionPost(db.Model):
@@ -65,10 +80,13 @@ class MissionPost(db.Model):
 
     missionpost_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     rovername = db.Column(db.String(50), unique=True)
-    rover_id = db.Column(db.Integer, db.ForeignKey("missionposts.missionpost_id"))
-    photo_id = db.Column(db.Integer, db.ForeignKey("photos.photo_id"))
+    rover_id = db.Column(db.Integer, db.ForeignKey('rovers.rover_id'))
+    photo_id = db.Column(db.Integer, db.ForeignKey('photos.photo_id'))
     title = db.Column(db.String(50))
     text = db.Column(db.Text)
+
+    rover = db.relationship('Rover', backref = 'missionposts')
+    photo = db.relationship('Photo', backref = 'missionposts')
    
 
     def __repr__(self):
@@ -82,8 +100,13 @@ class Photo(db.Model):
 
     photo_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     photoname = db.Column(db.String(50), unique=True)
-    missionposts_id = db.Column(db.Integer, db.ForeignKey("missionposts.missionpost_id"))
-    rover_id = db.Column(db.Integer, db.ForeignKey("missionposts.missionpost_id"))
+    missionposts_id = db.Column(db.Integer, db.ForeignKey('missionposts.missionpost_id'))
+    rover_id = db.Column(db.Integer, db.ForeignKey('rovers.rover_id'))
+    photo_path = db.Column(db.String)
+
+    rover = db.relationship('Rover', backref = 'photos')
+    missionpost = db.relationship('MissionPost', backref = 'photos')
+
    
 
     def __repr__(self):
@@ -93,5 +116,7 @@ if __name__ == "__main__":
     from server import app
 
 
-    connect_to_db(app)
+    connect_to_db(app) #should i connect to missiontest db?
     db.create_all()
+
+    #for crud from model.py import User, Rover, MissionPost, Photo

@@ -1,4 +1,4 @@
-from model import db, User, Rover, MissionPost, Photo connect_to_db
+from model import db, User, Rover, MissionPost, Photo, connect_to_db
 
 
 def create_user(email, password):
@@ -11,7 +11,7 @@ def create_user(email, password):
 
     return user
 
-
+    # create_user('e@t', 'dust')
 
 def get_users():
     """Get a list all users."""
@@ -31,14 +31,42 @@ def get_user_by_email(email):
     return User.query.filter(User.email == email).first()
 
 
-def create_rovers()
+def create_rover(rovername):
+    """Create and return a new rover."""
+    add_rovers = Rover(rovername = rovername)
+    db.session.add(add_rovers)
+    db.session.commit()
+
+    return add_rovers
+
+def get_rovers():
+    """Get a list all rovers."""
+
+    return Rover.query.all()
+
+def get_rover_by_id(rover_id):
+    """Find a rover by rover_id."""
+
+    return Rover.query.get(rover_id)
+
+def create_photos(photo_name, photo_path, missionpost_id):
+    """ Create and return new pics"""
+
+    add_photos = Photo (
+        photo_name = photo_name,
+        photo_path = photo_path,
+        missionpost_id = missionpost_id
+    )
+    db.session.add(add_photos)
+    db.session.commit()
+    return add_photos
 
 def create_missionpost(rovername, title, text, photo_id):
-    """Create and return a new movie."""
+    """Create and return a new missionpost."""
 
     missionlog = MissionPost(
         rovername = rovername,
-        photo_id = photo_id,
+        rover_id = rover_id,
         title = title,
         text = text,
     )

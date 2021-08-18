@@ -1,10 +1,11 @@
 """Models for Mars Mission app."""
 
 from flask_sqlalchemy import SQLAlchemy
+ 
 
 db = SQLAlchemy()
 
-def connect_to_db(flask_app, db_uri="postgresql:///ratings", echo=True):
+def connect_to_db(flask_app, db_uri="postgresql:///missiontest", echo=True):
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
     flask_app.config["SQLALCHEMY_ECHO"] = echo
     flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -14,6 +15,8 @@ def connect_to_db(flask_app, db_uri="postgresql:///ratings", echo=True):
 
     print('Testing it works')
 
+
+
 class User(db.Model):
     """the user."""
 
@@ -22,29 +25,12 @@ class User(db.Model):
     user_id = db.Column(db.Integer, 
                         autoincrement=True, 
                         primary_key=True)
-    # username = db.Column(db.String(50), unique=True)
     email = db.Column(db.String, unique=True)
     password = db.Column(db.String(25))
 
     def __repr__(self):
-        return f'<User user_id = {self.user_id} email = {self.email} password = {self.password}'
+        return f'<User user_id = {self.user_id} email = {self.email} password = {self.password}>'
 
-# class Comments_Likes(db.Model):
-#     """UserComments/Likes"""
-
-#     __tablename__ = "comments"
-
-#     usercomments_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-#     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
-#     missionposts_id = db.Column(db.Integer, db.ForeignKey("missionposts.missionpost_id"))
-#     comments = db.Column(db.Text)
-    
-
-
-#     def __repr__(self):
-#         return f"<usercomments_id={self.usercomments_id}>"
-#  CONSIDER LEAVING FOR NICE TO HAVE!!
-   
 
 class Rover(db.Model):
     """EachRover's Identity outlined"""
@@ -54,38 +40,11 @@ class Rover(db.Model):
     rover_id = db.Column(db.Integer, 
                          autoincrement=True, 
                          primary_key=True)
-    rover_name = db.Column(db.String(50), unique=True)
-    # missionpost_id = db.Column(db.Integer, db.ForeignKey('missionposts.missionpost_id')) #looks at table in db
-
-    # missionpost = db.relationship('MissionPost', backref = 'rovers') #*************!!CHECKING11X*****
-    #  #looks at class and refers to rovers table
-   #goes back to MissionPost; one-to-many - one rover has  many posts)
-
-    def __repr__(self):
-        return f"<rover_name_id={self.rover_name_id}>"
-
-
-
-class MissionPost(db.Model):
-    """EachRover'sMissionLog"""
-
-    __tablename__ = "missionposts"
-
-    missionpost_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    # rover_name = db.Column(db.String(50), unique=True)
-    rover_id = db.Column(db.Integer, db.ForeignKey('rovers.rover_id')) #unclear if this will stay because of the association table?
-    #kept it here because rover-MissionPost = one-to-many - ForeignKey stays?errors keeps showing - but when include
-    #error persists
-    title = db.Column(db.String(60))
-    text = db.Column(db.Text)
-
-    rover = db.relationship('Rover', backref = 'missionposts') #rover&missionpost = one-to-many
-    photo = db.relationship('Photo', secondary = 'photo_missions', #many-to-many
-                             backref = 'missionposts') #backref to missionposts
+    rovername = db.Column(db.String(50), unique=True)
    
-
     def __repr__(self):
-        return f"<missionpost_id={self.missionpost_id}>"
+        return f'<rovername={self.rovername}>'
+
 
 
 class Photo(db.Model):
@@ -93,30 +52,45 @@ class Photo(db.Model):
 
     __tablename__ = "photos"
 
-    photo_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    photo_id = db.Column(db.Integer, 
+                         autoincrement=True, 
+                         primary_key=True)
     photo_name = db.Column(db.String(50), unique=True)
     photo_path = db.Column(db.String) #URL
-
-    rover = db.relationship('Rover', backref = 'photos') #one rover has many photos. one to many
-    # missionpost = db.relationship('MissionPost', 
-    #                                secondary = 'photo_missions', 
-    #                                backref = 'photos') #DON"T NEED THIS? IT"S LINKED/DEFINED IN PHOTOS?
-    #in lecture demo on modelling the second class didn't show the many to many - only the first
-
-class Photo_Mission(db.Model):
-    """Association table for many-to-many"""
-    __tablename__ = 'photo_missions'
- 
-    photo_mission_id = db.Column(db.Integer, primary_key = True)
-    missionpost_id = db.Column(db.Integer,
-                               db.ForeignKey('missionposts.missionpost_id'),
-                               nullable = False)
-    photo_id = db.Column(db.Integer,
-                         db.ForeignKey('photos.photo_id'),
-                         nullable = False)  
+    missionpost_id = db.Column(db.Integer, 
+                               db.ForeignKey('missionposts.missionpost_id'))
+    
+    missionpost = db.relationship('MissionPost', backref = 'photo')
 
     def __repr__(self):
-        return f"<photoname_id={self.photoname_id}>"
+        return f'<photo_name={self.photo_name}>'
+
+ 
+
+
+class MissionPost(db.Model):
+
+    """EachRover's Missionlog """
+
+    __tablename__ = "missionposts"
+
+    missionpost_id = db.Column(db.Integer, 
+                               autoincrement=True, 
+                               primary_key=True)
+    
+    title = db.Column(db.String(60))
+    text = db.Column(db.Text)
+    date = db.Column (db.DateTime)
+    rover_id = db.Column(db.Integer,
+                         db.ForeignKey ('rovers.rover_id'),
+                         nullable=False)
+ 
+    rover = db.relationship('Rover', backref = 'missionposts') #rover&missionpost = one-to-many
+
+
+    def __repr__(self):
+        return f"<missionpost_id={self.missionpost_id}>"
+
 
 if __name__ == "__main__":
     from server import app
@@ -130,6 +104,38 @@ if __name__ == "__main__":
     #git put to 'first' not 'origin' - 'git push -u first main'
 
     #making tables:
-    #rover_first = Rover(rover_name = 'Spirit')
+# ethan = User(email = 'ethan@mars.base', password = 'kerbals')
+# >>> db.session.add(ethan)
+# >>> db.session.commit
 
-    #for crud from model.py import User, Rover, MissionPost, Photo, association
+# jeb = User (email = 'jeb@kerbals.space' , password = 'planet_elu')
+# >>> db.session.add(jeb)
+# >>> db.session.commit()
+
+# bob = User(email = 'bob@kerbals.space', password = 'I_love_Rockets')
+# >>> db.session.add(bob)
+# >>> db.session.commit()
+
+# spirit = Rover(rovername = 'Spirit')
+# >>> db.session.add(spirit)
+# >>> db.session.commit()
+
+#  opportunity = Rover (rovername = 'Opportunity')
+# >>> db.session.add(opportunity)
+# >>> db.session.commit()
+
+# mars1 = Photo(photo_name = 'edr_rcam', photo_path = 'https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01004/opgs/edr/rcam/RLB_486615482EDR_F0481570RHAZ00323M_.JPG')
+# >>> db.session.add(mars1)
+# >>> db.session.commit()
+
+# day1 = MissionPost (title = 'The endless night', text = 'The planet Mars is a hostile place...', date='2021-08-19', rover_id = 2)
+# >>> db.session.add(day1)>>> db.session.commit()
+
+#  day590 = MissionPost(title='The dust storm', text='It wiped out our connection to earth...', date='2045-09-29', rover_id=3)
+# >>> db.session.add(day590)>>> db.session.commit()
+
+# photo1 = Photo (photo_name = 'A good start', photo_path = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key= HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE', missionpost_id = 1)
+# >>> db.session.add(photo1)
+# >>> db.session.commit()sers.password
+
+    #for crud from modelpy import User, Rover, MissionPost, Photo, association

@@ -3,7 +3,7 @@ from flask import Flask, render_template, request
 
 
 import os
-import requests
+# import requests
 
 # res = requests.get('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key=HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE')
 

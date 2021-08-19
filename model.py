@@ -106,7 +106,7 @@ if __name__ == "__main__":
     #making tables:
 # ethan = User(email = 'ethan@mars.base', password = 'kerbals')
 # >>> db.session.add(ethan)
-# >>> db.session.commit
+# >>> db.session.commit()
 
 # jeb = User (email = 'jeb@kerbals.space' , password = 'planet_elu')
 # >>> db.session.add(jeb)
@@ -136,6 +136,7 @@ if __name__ == "__main__":
 
 # photo1 = Photo (photo_name = 'A good start', photo_path = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key= HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE', missionpost_id = 1)
 # >>> db.session.add(photo1)
-# >>> db.session.commit()sers.password
+# >>> db.session.commit()
+# sers.password
 
     #for crud from modelpy import User, Rover, MissionPost, Photo, association

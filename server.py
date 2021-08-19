@@ -1,5 +1,10 @@
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash, session, redirect
+from model import connect_to_db
+import crud
+
+from jinja2 import StrictUndefined
+
 
 
 import os
@@ -12,14 +17,16 @@ import os
 
 app = Flask(__name__)
 app.secret_key = 'nosecret'
-
+app.jinja_env.undefined = StrictUndefined
 
 
 @app.route('/')
 def homepage():
     """LandingPage - mission details."""
 
-    return render_template('homepage.html')
+    return "<h1> Hello Mars!</h1>"
+
+    # return render_template('homepage.html')
 
 
 @app.route('/curiosity')
@@ -31,7 +38,7 @@ def log_Curiosity():
 
 @app.route('/spirit')
 def log_Spirit():
-    """Spirit's phMission log"""
+    """Spirit's Mission log"""
 
     
 

@@ -1,20 +1,21 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>
-      {% block title %}{% endblock %}
-    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mission to Mars</title>
+
+    <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/index.css">
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.js">
+    </script>
 
     {% block head %}{% endblock %}
   </head>
   <body>
-    {% block body %}{% endblock %}
-    <script>
-      const spirit_api = 'https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?sol=1000&camera=pancam&api_key=HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE'
-
-    </script>
-    {% block after_body %}{% endblock %}
+    {% block body %}
+    {% endblock %}
   </body>
 </html>

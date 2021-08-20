@@ -1,0 +1,488 @@
+
+ 
+
+# res = requests.get('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key=HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE')
+
+# photos = res.json()
+
+
+
+{
+    "photos": [
+        {
+            "id": 283471,
+            "sol": 592,
+            "camera": {
+                "id": 27,
+                "name": "FHAZ",
+                "rover_id": 7,
+                "full_name": "Front Hazard Avoidance Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/f/592/2F178922879EFFAEDJP1201L0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 283472,
+            "sol": 592,
+            "camera": {
+                "id": 27,
+                "name": "FHAZ",
+                "rover_id": 7,
+                "full_name": "Front Hazard Avoidance Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/f/592/2F178922879EFFAEDJP1201R0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 283473,
+            "sol": 592,
+            "camera": {
+                "id": 27,
+                "name": "FHAZ",
+                "rover_id": 7,
+                "full_name": "Front Hazard Avoidance Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/f/592/2F178923362EFFAEDNP1212L0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 283474,
+            "sol": 592,
+            "camera": {
+                "id": 27,
+                "name": "FHAZ",
+                "rover_id": 7,
+                "full_name": "Front Hazard Avoidance Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/f/592/2F178923362EFFAEDNP1212R0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 283475,
+            "sol": 592,
+            "camera": {
+                "id": 27,
+                "name": "FHAZ",
+                "rover_id": 7,
+                "full_name": "Front Hazard Avoidance Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/f/592/2F178923362ETHAEDNP1212L0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 283476,
+            "sol": 592,
+            "camera": {
+                "id": 27,
+                "name": "FHAZ",
+                "rover_id": 7,
+                "full_name": "Front Hazard Avoidance Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/f/592/2F178923362ETHAEDNP1212R0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 289362,
+            "sol": 592,
+            "camera": {
+                "id": 28,
+                "name": "RHAZ",
+                "rover_id": 7,
+                "full_name": "Rear Hazard Avoidance Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/r/592/2R178922944EFFAEDJP1301L0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 289363,
+            "sol": 592,
+            "camera": {
+                "id": 28,
+                "name": "RHAZ",
+                "rover_id": 7,
+                "full_name": "Rear Hazard Avoidance Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/r/592/2R178922944EFFAEDJP1301R0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 289364,
+            "sol": 592,
+            "camera": {
+                "id": 28,
+                "name": "RHAZ",
+                "rover_id": 7,
+                "full_name": "Rear Hazard Avoidance Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/r/592/2R178923326EFFAEDNP1311L0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 289365,
+            "sol": 592,
+            "camera": {
+                "id": 28,
+                "name": "RHAZ",
+                "rover_id": 7,
+                "full_name": "Rear Hazard Avoidance Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/r/592/2R178923326EFFAEDNP1311R0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 289366,
+            "sol": 592,
+            "camera": {
+                "id": 28,
+                "name": "RHAZ",
+                "rover_id": 7,
+                "full_name": "Rear Hazard Avoidance Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/r/592/2R178923326ETHAEDNP1311L0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 289367,
+            "sol": 592,
+            "camera": {
+                "id": 28,
+                "name": "RHAZ",
+                "rover_id": 7,
+                "full_name": "Rear Hazard Avoidance Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/r/592/2R178923326ETHAEDNP1311R0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 306629,
+            "sol": 592,
+            "camera": {
+                "id": 29,
+                "name": "NAVCAM",
+                "rover_id": 7,
+                "full_name": "Navigation Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/n/592/2N178923428EFFAEDNP0630L0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 306630,
+            "sol": 592,
+            "camera": {
+                "id": 29,
+                "name": "NAVCAM",
+                "rover_id": 7,
+                "full_name": "Navigation Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/n/592/2N178923428EFFAEDNP0630R0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 306631,
+            "sol": 592,
+            "camera": {
+                "id": 29,
+                "name": "NAVCAM",
+                "rover_id": 7,
+                "full_name": "Navigation Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/n/592/2N178923479EFFAEDNP0630L0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 306632,
+            "sol": 592,
+            "camera": {
+                "id": 29,
+                "name": "NAVCAM",
+                "rover_id": 7,
+                "full_name": "Navigation Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/n/592/2N178923479EFFAEDNP0630R0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 306633,
+            "sol": 592,
+            "camera": {
+                "id": 29,
+                "name": "NAVCAM",
+                "rover_id": 7,
+                "full_name": "Navigation Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/n/592/2N178923530EFFAEDNP0630L0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 306634,
+            "sol": 592,
+            "camera": {
+                "id": 29,
+                "name": "NAVCAM",
+                "rover_id": 7,
+                "full_name": "Navigation Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/n/592/2N178923530EFFAEDNP0630R0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 306635,
+            "sol": 592,
+            "camera": {
+                "id": 29,
+                "name": "NAVCAM",
+                "rover_id": 7,
+                "full_name": "Navigation Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/n/592/2N178923566EFFAEDNP0630L0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 306636,
+            "sol": 592,
+            "camera": {
+                "id": 29,
+                "name": "NAVCAM",
+                "rover_id": 7,
+                "full_name": "Navigation Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/n/592/2N178923566EFFAEDNP0630R0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 306637,
+            "sol": 592,
+            "camera": {
+                "id": 29,
+                "name": "NAVCAM",
+                "rover_id": 7,
+                "full_name": "Navigation Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/n/592/2N178923614EFFAEDNP0630L0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 306638,
+            "sol": 592,
+            "camera": {
+                "id": 29,
+                "name": "NAVCAM",
+                "rover_id": 7,
+                "full_name": "Navigation Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/n/592/2N178923614EFFAEDNP0630R0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 306639,
+            "sol": 592,
+            "camera": {
+                "id": 29,
+                "name": "NAVCAM",
+                "rover_id": 7,
+                "full_name": "Navigation Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/n/592/2N178923776EFFAEDNP0630L0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 306640,
+            "sol": 592,
+            "camera": {
+                "id": 29,
+                "name": "NAVCAM",
+                "rover_id": 7,
+                "full_name": "Navigation Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/n/592/2N178923776EFFAEDNP0630R0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        },
+        {
+            "id": 306641,
+            "sol": 592,
+            "camera": {
+                "id": 29,
+                "name": "NAVCAM",
+                "rover_id": 7,
+                "full_name": "Navigation Camera"
+            },
+            "img_src": "http://mars.nasa.gov/mer/gallery/all/2/n/592/2N178923898EFFAEDNP0630L0M1-BR.JPG",
+            "earth_date": "2005-09-03",
+            "rover": {
+                "id": 7,
+                "name": "Spirit",
+                "landing_date": "2004-01-04",
+                "launch_date": "2003-06-10",
+                "status": "complete"
+            }
+        }
+    ]
+}

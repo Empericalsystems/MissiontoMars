@@ -5,14 +5,9 @@ import crud
 
 from jinja2 import StrictUndefined
 
-
-
 import os
-# import requests
+import requests
 
-# res = requests.get('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key=HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE')
-
-# photos = res.json()
 
 
 app = Flask(__name__)
@@ -24,17 +19,15 @@ app.jinja_env.undefined = StrictUndefined
 def homepage():
     """LandingPage - mission details."""
 
-    return "<h1> Hello Mars!</h1>"
+    
 
-    # return render_template('homepage.html')
+    return render_template('homepage.html')
 
 
 @app.route('/curiosity')
 def log_Curiosity():
     """Curiosity's Mission log"""
-
-    return render_template('curiosity.html')
-
+   
 
 @app.route('/spirit')
 def log_Spirit():

@@ -12,7 +12,6 @@ import requests
 
 app = Flask(__name__)
 app.secret_key = 'nosecret'
-app.jinja_env.undefined = StrictUndefined
 
 
 @app.route('/')
@@ -76,5 +75,5 @@ def log_opportunity():
 
 
 if __name__ == '__main__':
-    app.debug = True
-    app.run(host='0.0.0.0')
+    # app.debug = True
+    app.run(debug = True) #host='0.0.0.0')

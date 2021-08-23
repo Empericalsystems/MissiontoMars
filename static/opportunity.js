@@ -1,22 +1,20 @@
 "use strict";
 
-// const imp_express = require('express');
-// const https = require('https');   //https://nodejs.org/api/https.html
-// const cur_app = express();
+ 
 
+const url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?api_key=HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE&earth_date=2015-9-3' 
+    
+ 
 
-// cur_app.get('/curiosity')
+async function sendOppAPI(){
+    let response = await fetch (url)
+    let data = await response.json()
+    console.log(data)
+    filterOppAPI(data)
+}
 
-// $.getJSON('https://api.nasa.gov/planetary/apod'
-// , function(data){
-//     console.log(data);
+function filterOppAPI(data){
+    document.querySelector("#content").innerHTML += '<img src="' + data.photos[0].img_src + '" />'
+}
 
-// });
-
-
-$.ajax({
-    dataType: "json",
-    url: 'https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/latest_photos?api_key=HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE',
-    data: data,
-    success: success
-  });
+sendOppAPI();

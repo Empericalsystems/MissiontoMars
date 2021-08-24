@@ -2,6 +2,8 @@
 from flask import Flask, render_template, request, flash, session, redirect
 from model import connect_to_db
 import crud
+import regex_spirit
+
 
 from jinja2 import StrictUndefined
 
@@ -45,7 +47,6 @@ def log_Curiosity():
                            data=data,
                            img_src=img_src)
 
-
 @app.route('/spirit' , methods = ['GET','POST'])
 def log_Spirit():
     """Spirit's Mission log"""
@@ -59,14 +60,24 @@ def log_Spirit():
       'earth_date': '2005-8-3'
     }
 
+# list of dates - run in a random loop for the day - predfine 10 dates and then random choice
+
     res = requests.get(url, params = payload)
 
     data = res.json() 
     pic = data['photos'][0]['img_src']
 
+
+    text = regex_spirit.twain_to_Mars()
+
+
     return render_template('spirit.html',
                            data=data,
-                           img_src=img_src)
+                           img_src=img_src,
+                           text=text)
+
+
+
 
 
 @app.route('/opportunity')
@@ -91,14 +102,22 @@ def log_opportunity():
                            data=data,
                            img_src=img_src)
 
+
 @app.route('/register', methods = ['GET','POST'])
 def register():
     if request.method == 'POST':
-        # need to check here how to verify email addresses
+        # email = request.get('email') #check where this is going to be accessed?
+        # a form on the HTML?
         pass
 
 
     return '<p>please register</p>'     
+
+@app.route('/archive')
+def log_archive():
+    
+    return render_template ('archive.html')
+
 
 @app.route('/login')
 def login():

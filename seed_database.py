@@ -27,5 +27,4 @@ def get_data():
     res = requests.get(
         'https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos', data=payload)
 
-    for data in res.json()['items']:
-        print(data['img_src'])
+ 

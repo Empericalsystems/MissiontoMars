@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block head %}
-</script>
-<script src = "/static/curiosity.js" defer></script>
+<!-- </script>
+<script src = "/static/curiosity.js" defer></script> -->
 
   {{ super() }}
 {% endblock %}
@@ -11,8 +11,16 @@
 <h1>
   Curiosity: Last Rover Standing
 </h1>
- 
+<form class ='' action = '/curiosity' method = 'POST'>
+
+
+  <input type ='date' name = 'photo_date' id = 'photo_opp'>
+  <button type = 'submit' name='pic_date' id = 'date_of_pic'> submit</button>
+
+  
+</form> 
 <div id = 'cur_pic'>
+  <img src="{{data['photos'][0]['img_src']}}">
 
 </div>
 

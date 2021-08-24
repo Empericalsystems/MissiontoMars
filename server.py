@@ -7,6 +7,7 @@ from jinja2 import StrictUndefined
 
 import os
 import requests
+import pprint
 
 
 app = Flask (__name__)
@@ -20,29 +21,95 @@ def homepage():
 
     
 
-@app.route('/curiosity')
+@app.route('/curiosity', methods = ['GET','POST'])
 def log_Curiosity():
     """Curiosity's Mission log"""
-  
 
-    return render_template('curiosity.html')
 
-@app.route('/spirit')
+    earth_date = request.args.get('earth_date', '')
+    img_src = request.args.get('img_src', '')
+    
+
+    url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?'
+    payload = {
+      'api_key' : 'HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE',
+      'earth_date': '2019-08-12'
+    }
+
+    res = requests.get(url, params = payload)
+
+    data = res.json() 
+    pic = data['photos'][0]['img_src']
+
+    return render_template('curiosity.html',
+                           data=data,
+                           img_src=img_src)
+
+
+@app.route('/spirit' , methods = ['GET','POST'])
 def log_Spirit():
     """Spirit's Mission log"""
 
-    
+    earth_date = request.args.get('earth_date', '')
+    img_src = request.args.get('img_src', '')
 
-    return render_template('spirit.html')
+    url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?'
+    payload = {
+      'api_key' : 'HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE',
+      'earth_date': '2005-8-3'
+    }
+
+    res = requests.get(url, params = payload)
+
+    data = res.json() 
+    pic = data['photos'][0]['img_src']
+
+    return render_template('spirit.html',
+                           data=data,
+                           img_src=img_src)
 
 
 @app.route('/opportunity')
 def log_opportunity():
     """Opportunity's Mission log"""
 
-    return render_template('opportunity.html')
+    earth_date = request.args.get('earth_date', '')
+    img_src = request.args.get('img_src', '')
 
- 
+    url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?'
+    payload = {
+      'api_key' : 'HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE',
+      'earth_date': '2015-9-3'
+    }
+
+    res = requests.get(url, params = payload)
+
+    data = res.json() 
+    pic = data['photos'][2]['img_src']
+
+    return render_template('opportunity.html',
+                           data=data,
+                           img_src=img_src)
+
+@app.route('/register', methods = ['GET','POST'])
+def register():
+    if request.method == 'POST':
+        # need to check here how to verify email addresses
+        pass
+
+
+    return '<p>please register</p>'     
+
+@app.route('/login')
+def login():
+    return '<p>login</p>'
+
+@app.route('/logout')
+def logout():
+    return '<p>logout</p>'
+
+
+
 
 if __name__ == '__main__':
     app.debug = True

@@ -4,7 +4,7 @@
 {% block head %}
   <!-- <link rel="stylesheet" href="/static/css/maps.css"> -->
 
-  <script src="/static/spirit.js"></script>
+  <!-- <script src="/static/spirit.js"></script> -->
    
 {% endblock %}
 
@@ -16,9 +16,21 @@
   <main>
     <body>
       <h1>Spirit Page</h1>
+
+      <form>
+
+        <input type = button />
+  
+        <input type ='date' name = 'photo_date' id = 'photo_opp'>
+  
+        
+  
+  
+      </form>
   
     
     <div id = "display">
+      <img src="{{data['photos'][0]['img_src']}}">
   
     </div>
 

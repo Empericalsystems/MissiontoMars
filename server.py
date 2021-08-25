@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, flash, session, redirect
 from model import connect_to_db
 import crud
 import regex_spirit
+import regex_curiosity
 
 
 from jinja2 import StrictUndefined
@@ -43,9 +44,12 @@ def log_Curiosity():
     data = res.json() 
     pic = data['photos'][0]['img_src']
 
+    text = regex_curiosity.twain_to_space()
+
     return render_template('curiosity.html',
                            data=data,
-                           img_src=img_src)
+                           img_src=img_src,
+                           text = text)
 
 @app.route('/spirit' , methods = ['GET','POST'])
 def log_Spirit():
@@ -78,8 +82,6 @@ def log_Spirit():
 
 
 
-
-
 @app.route('/opportunity')
 def log_opportunity():
     """Opportunity's Mission log"""
@@ -90,7 +92,7 @@ def log_opportunity():
     url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?'
     payload = {
       'api_key' : 'HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE',
-      'earth_date': '2015-9-3'
+      'earth_date': '2015-9-3' #rANDOM DATE GENERATOR  https://www.kite.com/python/answers/how-to-generate-a-random-date-between-two-dates-in-python
     }
 
     res = requests.get(url, params = payload)

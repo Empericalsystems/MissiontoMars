@@ -12,9 +12,10 @@ def twain_to_Mars():
 
 
     new = re.sub(r'Europe', 'Mars', file)
-    # new += re.sub(r'Holy Land', 'space', file),
-    # new += re.sub(r'Pleasure Excursion', 'rocket launch', file),
-    # new += re.sub(r'America', 'world', file),
+
+    ee = re.sub(r'Holy Land', 'space', file)
+    # abc = re.sub(r'Pleasure Excursion', 'rocket launch', file)
+
     # new += re.sub(r'Excursions', 'space exploration', file),
     # new += re.sub(r'picnic', 'space mission', file),
     # new += re.sub(r'participants', 'astronauts', file),
@@ -28,5 +29,5 @@ def twain_to_Mars():
 
     # mars.close()
 
-    return new
+    return new, ee
 

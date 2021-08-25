@@ -4,49 +4,56 @@
         "text": "Rover will search for signs of ancient microbial life, which will advance NASA's quest to explore the past habitability of Mars. The rover has a drill to collect core samples of Martian rock and soil, then store them in sealed tubes for pickup by a future mission that would ferry them back to Earth for detailed analysis. Perseverance will also test technologies to help pave the way for future human exploration of Mars.",
         "photo_path": "https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/02494/opgs/edr/fcam/FLB_618899920EDR_F0763002FHAZ00341M_.JPG",
         "date": "2019-08-12",
-        "title": "The Red Planet"
+        "title": "The Orange Planet",
+        "rover_id": 1
        
     },
     {
         "text": "There are several ways that the mission helps pave the way for future human expeditions to Mars and demonstrates technologies that may be used in those endeavors.",
         "photo_path": "https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/02494/opgs/edr/fcam/FLB_618899920EDR_F0763002FHAZ00341M_.JPG",
         "date": "2019-08-12",
-        "title": "The Red Planet"
+        "title": "The Red Planet",
+        "rover_id": 1
         
     },
     {
         "text": "Collect core rock and soil samples and store them on the Martian surface.",
         "photo_path": "https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/02494/opgs/edr/fcam/FLB_618899920EDR_F0763002FHAZ00341M_.JPG",
         "date": "2019-08-12",
-        "title": "The Red Planet"
+        "title": "The Blue Planet",
+        "rover_id": 2
         
     },
     {
         "text": "There are several ways that the mission helps pave the way for future human expeditions to Mars and demonstrates technologies that may be used in those endeavors.",
         "photo_path": "https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/02494/opgs/edr/fcam/FLB_618899920EDR_F0763002FHAZ00341M_.JPG",
         "date": "2019-08-12",
-        "title": "The Red Planet"
+        "title": "The Green Planet",
+        "rover_id": 2
     
     },
     {
         "text": "There are several ways that the mission helps pave the way for future human expeditions to Mars and demonstrates technologies that may be used in those endeavors.",
         "photo_path": "https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/02494/opgs/edr/fcam/FLB_618899920EDR_F0763002FHAZ00341M_.JPG",
         "date": "2019-08-12",
-        "title": "The Red Planet"
+        "title": "The Yello Planet",
+        "rover_id": 3
         
     },
     {
         "text": "There are several ways that the mission helps pave the way for future human expeditions to Mars and demonstrates technologies that may be used in those endeavors.",
         "photo_path": "https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/02494/opgs/edr/fcam/FLB_618899920EDR_F0763002FHAZ00341M_.JPG",
         "date": "2019-08-12",
-        "title": "The Red Planet"
+        "title": "The Purple Planet",
+        "rover_id": 3
        
     },
     {
         "text": "There are several ways that the mission helps pave the way for future human expeditions to Mars and demonstrates technologies that may be used in those endeavors.",
         "photo_path": "https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/02494/opgs/edr/fcam/FLB_618899920EDR_F0763002FHAZ00341M_.JPG",
         "date": "2019-08-12",
-        "title": "The Red Planet"
+        "title": "The Pink Planet",
+        "rover_id": 2
          
     }
     

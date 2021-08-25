@@ -1,4 +1,5 @@
 from model import db, User, Rover, MissionPost, Photo, connect_to_db
+import random 
 
 
 def create_user(email, password):
@@ -80,11 +81,11 @@ def delete_rover(rover_id):
     return rover_delete
 #working     
 
-def create_photos(photo_name, photo_path, missionpost_id):
+def create_photos(photo_path, missionpost_id):
     """ Create and return new pics"""
 
     add_photos = Photo (
-        photo_name = photo_name,
+        # photo_name = photo_name,
         photo_path = photo_path,
         missionpost_id = missionpost_id
     )
@@ -146,6 +147,10 @@ def create_missionpost(rover_id, title, text, date):
     return missionlog
 # working!
 
+def get_random_missionpost_id():
+    """create random"""
+    return random.choice(MissionPost.query.filter(MissionPost.rover_id == random.randint(1, 3)).all()).missionpost_id
+#getint ghte mission post id
 
 def get_post_by_id(missionpost_id):
     """Find a post by missionpost_id."""
@@ -153,10 +158,10 @@ def get_post_by_id(missionpost_id):
     return MissionPost.query.get(missionpost_id)
 #working
 
-def get_missionpost():
-    """Get a list all missionposts."""
+# def get_missionpost():
+#     """Get a list all missionposts."""
 
-    return MissionPost.query.all()
+#     return MissionPost.query.all()
  
 
 def get_posts_by_title(title):

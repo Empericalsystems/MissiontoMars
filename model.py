@@ -75,7 +75,7 @@ class Photo(db.Model):
     photo_name = db.Column(db.String(50), unique=True)
     photo_path = db.Column(db.String) #URL
     missionpost_id = db.Column(db.Integer, 
-                               db.ForeignKey('missionposts.missionpost_id'), nullable = False)
+                               db.ForeignKey('missionposts.missionpost_id'))
     
     missionpost = db.relationship('MissionPost', backref = 'photos')
 

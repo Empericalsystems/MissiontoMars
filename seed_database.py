@@ -5,6 +5,9 @@ import os
 import json
 from random import choice, randint
 from datetime import datetime
+import regex_curiosity
+import regex_spirit
+import regext_opportunity
 
 import crud
 import model
@@ -36,20 +39,6 @@ for n in range(10):
 
     user = crud.create_user(email, password)
 
-with open ('data/photo.json') as f:
-    photo_data = json.loads(f.read())
-
-
-photo_in_db = []
-for photo in photo_data:
-    photo_name, photo_path, missionpost_id = (
-        photo ["photo_name"],   
-        photo ["photo_path"],
-        photo ["missionpost_id"]
-    )
-
-    db_photo = crud.create_photos(photo_name, photo_path, missionpost_id)
-    photo_in_db.append(db_photo)
 
 
 with open ('data/missionpost.json') as f:
@@ -58,18 +47,48 @@ with open ('data/missionpost.json') as f:
 
 missionpost_in_db = []
 for missionpost in missionpost_data:
-    rover_id, title, text, date = (
-        missionpost["rover_id"],
-        missionpost["title"],
-        missionpost["text"],
-        missionpost["date"]
-    )
+    title = missionpost["title"]
+    # text = regex_curiosity.twain_to_space()
+    rover_id = missionpost["rover_id"]
+
+    if rover_id == 1:
+        text = regex_curiosity.twain_to_space()
+    elif rover_id == 2:
+        text = regex_spirit.twain_to_Mars()
+    else:
+        text = regext_opportunity.opportunity_to_Mars()
+
+    # , text = (
+    #     # missionpost["rover_id"],
+    #     missionpost["title"],
+    #     regex_curiosity.twain_to_space()
+    #     missionpost["date"] #fix this for more posts later.
+
     date = datetime.strptime(missionpost["date"], "%Y-%m-%d")
 
     db_missionpost = crud.create_missionpost(rover_id, title, text, date)
+
     missionpost_in_db.append(db_missionpost)
 
  
+with open ('data/photo.json') as f:
+    photo_data = json.loads(f.read())
 
+
+photo_in_db = []
+for photo in photo_data['photos']:
+    
+    print (photo)
+   
+    photo_path  = photo ["img_src"]
+    mission_id = crud.get_random_missionpost_id()
+        # photo ["photo_name"],   
+    
+        # photo ["missionpost_id"]
+    # print (photo_path, mission_id)
+    db_photo = crud.create_photos(photo_path, mission_id)
+    #the expression gets called first taking random mission post and getting hte mission id from it
+
+    photo_in_db.append(db_photo)
 
  

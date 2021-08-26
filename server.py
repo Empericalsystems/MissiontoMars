@@ -10,12 +10,12 @@ from jinja2 import StrictUndefined
 
 import os
 import requests
-import pprint
+import pprint 
 
 
 app = Flask (__name__)
 app.secret_key = 'nosecret'
-
+app.jinja_env.undefined = StrictUndefined
 
 @app.route('/')
 def homepage():
@@ -23,6 +23,21 @@ def homepage():
     return render_template('homepage.html')
 
     
+@app.route('/missionposts')
+def see_all_missionposts():
+    """See all mission posts"""
+
+    missions = crud.get_missionposts()
+    return render_template('all_missionposts.html', 
+                            missions = missions)
+
+def see_all_pics(photo_path, missionpost_id): 
+    post_pics = crud.create_photos(photo_path, missionpost_id)
+
+    return render_template('all_missionposts.html', 
+                            post_pics = post_pics)
+
+
 
 @app.route('/curiosity', methods = ['GET','POST'])
 def log_Curiosity():
@@ -105,25 +120,61 @@ def log_opportunity():
                            img_src=img_src)
 
 
-@app.route('/register', methods = ['GET','POST'])
-def register():
-    if request.method == 'POST':
-        # email = request.get('email') #check where this is going to be accessed?
-        # a form on the HTML?
-        pass
+# @app.route('/register', methods = ['GET','POST'])
+# def register():
+#     if request.method == 'POST':
+#         # email = request.get('email') #check where this is going to be accessed?
+#         # a form on the HTML?
+#         pass
 
 
-    return '<p>please register</p>'     
+#     return '<p>please register</p>'     
 
-@app.route('/archive')
-def log_archive():
+# @app.route('/archive')
+# def log_archive():
     
-    return render_template ('archive.html')
+#     return render_template ('archive.html')
+
+# @app.route("/users")
+# def all_users():
+#     """View all users."""
+
+#     users = crud.get_users()
+
+#     return render_template("users.html", users=users)
 
 
-@app.route('/login')
+@app.route('/users', methods = ['POST'])
+def register_new_user():
+    """Create a new user"""
+    email = request.form.get('email')
+    password = request.form.get('password')
+    
+    user = crud.get_user_by_email(email)
+    if user:
+        flash ('This email already exists. Please login')
+    else: 
+        crud.create_user(email, password)
+        flash('Your account has been created! Please login')
+
+    return redirect ('/')
+
+@app.route('/login', methods = ['POST'])
 def login():
-    return '<p>login</p>'
+    """Process user login."""
+    
+    email = request.form.get("email")
+    password = request.form.get("password")
+
+    user = crud.get_user_by_email(email)
+    if not user or user.password != password:
+        flash("The email or password you entered was incorrect.")
+    else:
+        # Log in user by storing the user's email in session
+        session["user_email"] = user.email
+        flash(f"Welcome back, {user.email}!")
+
+    return redirect("/")
 
 @app.route('/logout')
 def logout():
@@ -132,6 +183,10 @@ def logout():
 
 
 
+
 if __name__ == '__main__':
     app.debug = True
+    connect_to_db(app)
     app.run(host='0.0.0.0')
+
+

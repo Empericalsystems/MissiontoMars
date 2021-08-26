@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block head %}
   {{ super() }}
-{% endblock %}
-{% block body %}
+<!-- {% endblock %}
+{% block body %} -->
   <header>
     <h1>Mission to Mars: 3 Rovers, 1 Hostile Planet</h1>
   </header>
@@ -11,10 +11,40 @@
     <p><a href="/curiosity">Last Rover Standing: Curiosity</a></p>
     <p><a href="/spirit">Spirit's Log</a></p>
     <p><a href="/opportunity">Opportunity the Hero</a></p>
+    <p><a href="/missionposts">All Missions</a></p>
   </nav>
 
-  <main>
-   
-  </main>
+  <h2>New Account</h2>
+  <form action="/users" method = "POST">
+    <p>
+      Email <input type = 'text' name = 'email'>
+
+    </p>
+
+    <p>
+      Password <input type = 'password' name = 'password'>
+    </p>
+
+    <p>
+     <input type = 'submit'> 
+    </p>
+  </form>  
+
+  <h2>Log In</h2>
+  <form action = '/login' method = 'POST'>
+    <p>
+      Email <input type = 'text' name = 'email'>
+    </p>
+
+    <p>
+      Password <input type = 'password' name = 'password'>
+    </p>
+
+    <p>
+      <input type = 'submit'>
+    </p>
+  </form>
+
+ 
 {% endblock %}
 

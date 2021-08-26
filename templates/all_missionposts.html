@@ -1,0 +1,52 @@
+ 
+{% extends 'base.html' %}
+
+{% block head %}
+  <!-- <link rel="stylesheet" href="/static/css/maps.css"> -->
+
+  <!-- <script src="/static/opportunity.js"></script> -->
+   
+{% endblock %}
+
+{% block body %}
+  <header>
+   
+  </header>
+  <main>
+  <body>
+    <h1>
+       All Mission Posts
+    </h1>
+
+    {% for pic in post_pics%} 
+ 
+      
+        <p>
+            {{pic.photo_path}}</p>
+        <p>{{pic.missionpost_id}}</p>
+       
+
+    <p>{{post_pics}}</p> 
+    {%endfor%}
+
+   
+    {% for mission in missions%} 
+    <li>
+        <!-- <a href='/missions/{{mission.missionpost_id}}'>
+        {{mission.missionpost_id}}</a> -->
+        <p>
+            {{mission.title}}</p>
+        <p>{{mission.text}}</p>
+        <p> {{mission.rover_id}}</p>       
+    </li>
+
+
+    <p>{{missions}}</p> 
+    {%endfor%}
+
+
+     
+    </body>
+  </main>
+{% endblock %}  
+

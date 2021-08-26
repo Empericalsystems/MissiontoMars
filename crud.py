@@ -29,7 +29,7 @@ def get_user_by_id(user_id):
 def get_user_by_email(email):
     """Find a user by email address."""
 
-    return User.query.filter(User.email == email).one()
+    return User.query.filter(User.email == email).first()
     
 # get_user_by_email('e@t') working
 
@@ -158,10 +158,10 @@ def get_post_by_id(missionpost_id):
     return MissionPost.query.get(missionpost_id)
 #working
 
-# def get_missionpost():
-#     """Get a list all missionposts."""
+def get_missionposts():
+    """Get a list all missionposts."""
 
-#     return MissionPost.query.all()
+    return MissionPost.query.all()
  
 
 def get_posts_by_title(title):

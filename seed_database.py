@@ -58,11 +58,7 @@ for missionpost in missionpost_data:
     else:
         text = regext_opportunity.opportunity_to_Mars()
 
-    # , text = (
-    #     # missionpost["rover_id"],
-    #     missionpost["title"],
-    #     regex_curiosity.twain_to_space()
-    #     missionpost["date"] #fix this for more posts later.
+    # #fix this for more posts later.
 
     date = datetime.strptime(missionpost["date"], "%Y-%m-%d")
 

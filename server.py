@@ -23,11 +23,12 @@ def homepage():
     return render_template('homepage.html')
 
     
-@app.route('/missionposts')
+@app.route('/missionposts', methods = ['GET','POST'])
 def see_all_missionposts():
     """See all mission posts"""
 
-    missions = crud.get_missionposts()
+   
+    missions = crud.get_random_missionpost_id()
     return render_template('all_missionposts.html', 
                             missions = missions)
 
@@ -35,36 +36,30 @@ def see_all_pics(photo_path, missionpost_id):
     post_pics = crud.create_photos(photo_path, missionpost_id)
 
     return render_template('all_missionposts.html', 
+                             missions = missions,
                             post_pics = post_pics)
 
+@app.route('/rover/<rover_id>', methods = ['GET','POST'])
+def log_rover(rover_id):
+    """Curiosity's Mission log"""
+
+    rover_posts = crud.get_posts_by_rover(rover_id)
+
+
+    return render_template('rover_posts.html',
+                           rover_posts = rover_posts)
 
 
 @app.route('/curiosity', methods = ['GET','POST'])
 def log_Curiosity():
     """Curiosity's Mission log"""
 
+    rover_id = 1
 
-    earth_date = request.args.get('earth_date', '')
-    img_src = request.args.get('img_src', '')
-    
-
-    url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?'
-    payload = {
-      'api_key' : 'HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE',
-      'earth_date': '2019-08-12'
-    }
-
-    res = requests.get(url, params = payload)
-
-    data = res.json() 
-    pic = data['photos'][0]['img_src']
-
-    text = regex_curiosity.twain_to_space()
+    curiosity_post = crud.get_posts_by_rover(rover_id)
 
     return render_template('curiosity.html',
-                           data=data,
-                           img_src=img_src,
-                           text = text)
+                           curiosity_post = curiosity_post)
 
 @app.route('/spirit' , methods = ['GET','POST'])
 def log_Spirit():
@@ -120,28 +115,20 @@ def log_opportunity():
                            img_src=img_src)
 
 
-# @app.route('/register', methods = ['GET','POST'])
-# def register():
-#     if request.method == 'POST':
-#         # email = request.get('email') #check where this is going to be accessed?
-#         # a form on the HTML?
-#         pass
-
-
-#     return '<p>please register</p>'     
+   
 
 # @app.route('/archive')
 # def log_archive():
     
 #     return render_template ('archive.html')
 
-# @app.route("/users")
-# def all_users():
-#     """View all users."""
+@app.route("/users")
+def all_users():
+    """View all users."""
 
-#     users = crud.get_users()
+    users = crud.get_users()
 
-#     return render_template("users.html", users=users)
+    return render_template("users.html", users=users)
 
 
 @app.route('/users', methods = ['POST'])
@@ -189,4 +176,85 @@ if __name__ == '__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0')
 
+
+
+# @app.route('/curiosity', methods = ['GET','POST'])
+# def log_Curiosity():
+#     """Curiosity's Mission log"""
+
+
+#     earth_date = request.args.get('earth_date', '')
+#     img_src = request.args.get('img_src', '')
+    
+
+#     url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?'
+#     payload = {
+#       'api_key' : 'HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE',
+#       'earth_date': '2019-08-12'
+#     }
+
+#     res = requests.get(url, params = payload)
+
+#     data = res.json() 
+#     pic = data['photos'][0]['img_src']
+
+#     text = regex_curiosity.twain_to_space()
+
+#     return render_template('curiosity.html',
+#                            data=data,
+#                            img_src=img_src,
+#                            text = text)
+
+# @app.route('/spirit' , methods = ['GET','POST'])
+# def log_Spirit():
+#     """Spirit's Mission log"""
+
+#     earth_date = request.args.get('earth_date', '')
+#     img_src = request.args.get('img_src', '')
+
+#     url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?'
+#     payload = {
+#       'api_key' : 'HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE',
+#       'earth_date': '2005-8-3'
+#     }
+
+# # list of dates - run in a random loop for the day - predfine 10 dates and then random choice
+
+#     res = requests.get(url, params = payload)
+
+#     data = res.json() 
+#     pic = data['photos'][0]['img_src']
+
+
+#     text = regex_spirit.twain_to_Mars()
+
+
+#     return render_template('spirit.html',
+#                            data=data,
+#                            img_src=img_src,
+#                            text=text)
+
+
+
+# @app.route('/opportunity')
+# def log_opportunity():
+#     """Opportunity's Mission log"""
+
+#     earth_date = request.args.get('earth_date', '')
+#     img_src = request.args.get('img_src', '')
+
+#     url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?'
+#     payload = {
+#       'api_key' : 'HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE',
+#       'earth_date': '2015-9-3' #rANDOM DATE GENERATOR  https://www.kite.com/python/answers/how-to-generate-a-random-date-between-two-dates-in-python
+#     }
+
+#     res = requests.get(url, params = payload)
+
+#     data = res.json() 
+#     pic = data['photos'][2]['img_src']
+
+#     return render_template('opportunity.html',
+#                            data=data,
+#                            img_src=img_src)
 

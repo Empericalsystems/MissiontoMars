@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block head %}
+<!-- </script>
+<script src = "/static/curiosity.js" defer></script> -->
+
+  {{ super() }}
+{% endblock %}
+{% block body %}
+
+<body>
+<h1>
+  All rovers
+</h1>
+ 
+  
+</form> 
+ 
+
+<div id = 'cur_blog'>
+
+  {% for post in rover_posts%} 
+    <li>
+         
+        <p>
+          
+          <img src = "{{post.photos[0].photo_path}}">
+
+        </p>
+        <p>{{post.title}}</p>
+        <p>{{post.text}}</p>
+        <p> {{post.rover_id}}</p>       
+    </li>
+  {%endfor%}
+
+
+    
+  <p></p>
+  
+
+</div>
+
+</body>
+</html>
+
+{% endblock %}

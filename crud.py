@@ -178,7 +178,8 @@ def get_posts_by_date(date):
 def get_posts_by_rover(rover_id):
     """Find a missionpost by rover_id"""
 
-    return MissionPost.query.get(rover_id)
+    return MissionPost.query.filter(MissionPost.rover_id == rover_id).options(db.joinedload(MissionPost.photos)).all() #when have all missionpost objects can do .photos - 
+    #will preload the photos attribute
 #Not working? MIssionPost not defined??
 
 def delete_missionpost(missionpost_id):

@@ -55,8 +55,10 @@ for missionpost in missionpost_data:
         text = regex_curiosity.twain_to_space()
     elif rover_id == 2:
         text = regex_spirit.twain_to_Mars()
-    else:
+    elif rover_id == 3:
         text = regext_opportunity.opportunity_to_Mars()
+    else:
+        print('sorry please come back later')
 
     # #fix this for more posts later.
 

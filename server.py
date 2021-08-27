@@ -50,77 +50,6 @@ def log_rover(rover_id):
                            rover_posts = rover_posts)
 
 
-@app.route('/curiosity', methods = ['GET','POST'])
-def log_Curiosity():
-    """Curiosity's Mission log"""
-
-    rover_id = 1
-
-    curiosity_post = crud.get_posts_by_rover(rover_id)
-
-    return render_template('curiosity.html',
-                           curiosity_post = curiosity_post)
-
-@app.route('/spirit' , methods = ['GET','POST'])
-def log_Spirit():
-    """Spirit's Mission log"""
-
-    earth_date = request.args.get('earth_date', '')
-    img_src = request.args.get('img_src', '')
-
-    url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?'
-    payload = {
-      'api_key' : 'HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE',
-      'earth_date': '2005-8-3'
-    }
-
-# list of dates - run in a random loop for the day - predfine 10 dates and then random choice
-
-    res = requests.get(url, params = payload)
-
-    data = res.json() 
-    pic = data['photos'][0]['img_src']
-
-
-    text = regex_spirit.twain_to_Mars()
-
-
-    return render_template('spirit.html',
-                           data=data,
-                           img_src=img_src,
-                           text=text)
-
-
-
-@app.route('/opportunity')
-def log_opportunity():
-    """Opportunity's Mission log"""
-
-    earth_date = request.args.get('earth_date', '')
-    img_src = request.args.get('img_src', '')
-
-    url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?'
-    payload = {
-      'api_key' : 'HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE',
-      'earth_date': '2015-9-3' #rANDOM DATE GENERATOR  https://www.kite.com/python/answers/how-to-generate-a-random-date-between-two-dates-in-python
-    }
-
-    res = requests.get(url, params = payload)
-
-    data = res.json() 
-    pic = data['photos'][2]['img_src']
-
-    return render_template('opportunity.html',
-                           data=data,
-                           img_src=img_src)
-
-
-   
-
-# @app.route('/archive')
-# def log_archive():
-    
-#     return render_template ('archive.html')
 
 @app.route("/users")
 def all_users():
@@ -166,8 +95,6 @@ def login():
 @app.route('/logout')
 def logout():
     return '<p>logout</p>'
-
-
 
 
 

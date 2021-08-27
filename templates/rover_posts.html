@@ -9,27 +9,26 @@
 
 <body>
 <h1>
-  All rovers
+  Mission Log  
 </h1>
  
   
-</form> 
+ 
  
 
 <div id = 'cur_blog'>
 
   {% for post in rover_posts%} 
-    <li>
+     
          
         <p>
           
-          <img src = "{{post.photos[0].photo_path}}">
-
+          <img src = "{{post.photos[0].photo_path}}">  
         </p>
         <p>{{post.title}}</p>
         <p>{{post.text}}</p>
         <p> {{post.rover_id}}</p>       
-    </li>
+     
   {%endfor%}
 
 

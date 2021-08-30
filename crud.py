@@ -1,5 +1,6 @@
 from model import db, User, Rover, MissionPost, Photo, connect_to_db
 import random 
+from sqlalchemy import update
 
 
 def create_user(email, password):
@@ -33,8 +34,6 @@ def get_user_by_email(email):
     
 # get_user_by_email('e@t') working
 
-
-
 def delete_user(user_id):
     user_delete = User.query.get(user_id)
 
@@ -64,12 +63,18 @@ def get_rover_by_id(rover_id):
 
     return Rover.query.get(rover_id)
 
+def get_rover_name_by_id(rover_id):
+    """Find a rover by rover_id."""
+
+    return Rover.query.get(rover_id).rovername
+
+
 #working
 
 def get_rover_by_name(rovername):
     """Find a rover by its name"""
 
-    return Rover.query.filter(Rover.rovername == rovername).all()
+    return Rover.query.filter(Rover.rover_id == rovername).all()
 #working
 
 def delete_rover(rover_id):
@@ -131,14 +136,15 @@ def delete_photo(photo_id):
     # return photo_delete
  
 
-def create_missionpost(rover_id, title, text, date):
+def create_missionpost(rover_id, date, title, text):
     """Create and return a new missionpost."""
 
     missionlog = MissionPost(
         rover_id = rover_id,
+        date = date,
         title = title,
-        text = text,
-        date = date
+        text = text
+        
     )
 
     db.session.add(missionlog)
@@ -180,7 +186,6 @@ def get_posts_by_rover(rover_id):
 
     return MissionPost.query.filter(MissionPost.rover_id == rover_id).options(db.joinedload(MissionPost.photos)).all() #when have all missionpost objects can do .photos - 
     #will preload the photos attribute - wiill return the mission post objects - with the rover. 
-#Not working? MIssionPost not defined??
 
 def delete_missionpost(missionpost_id):
     posts_delete = MissionPost.query.all()

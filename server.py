@@ -27,11 +27,19 @@ def homepage():
 def log_rover(rover_id):
     """Each rover's Mission log"""
 
+
+
     rover_posts = crud.get_posts_by_rover(rover_id)
+    name_var = crud.get_rover_name_by_id(rover_id)
+
+    # print (rover_id)
 
 
     return render_template('rover_posts.html',
-                           rover_posts = rover_posts)
+                           rover_posts = rover_posts,
+                           r_name = name_var,
+                           r_id = rover_id,
+                           )
 
 
 
@@ -66,7 +74,7 @@ def show_user(user_id):
     user = crud.get_user_by_id(user_id)
     return render_template("user_details.html", user=user)
 
-@app.route('/login', methods = ['POST'])
+@app.route('/login', methods = ['GET', 'POST'])
 def login():
     """User login."""
     

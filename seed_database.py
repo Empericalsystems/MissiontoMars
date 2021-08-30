@@ -13,8 +13,8 @@ import crud
 import model
 import server
 
-os.system("dropdb missiontest")
-os.system("createdb missiontest")
+os.system("dropdb marstest")
+os.system("createdb marstest")
 
 model.connect_to_db(server.app)
 model.db.create_all()
@@ -64,7 +64,7 @@ for missionpost in missionpost_data:
 
     date = datetime.strptime(missionpost["date"], "%Y-%m-%d")
 
-    db_missionpost = crud.create_missionpost(rover_id, title, text, date)
+    db_missionpost = crud.create_missionpost(rover_id, date, title, text)
 
     missionpost_in_db.append(db_missionpost)
 

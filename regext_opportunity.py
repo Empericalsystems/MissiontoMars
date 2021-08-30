@@ -1,32 +1,19 @@
 import re
-
+import random
 
 
 def opportunity_to_Mars():
+
+
+    each_line = open('opportunity_log.txt').read().splitlines()
+    quote_line =random.choice(each_line)
+    print(quote_line)
+
+    mission_log = open('mission_log.txt').read().splitlines()
+    mission_line =random.choice(mission_log)
+    print(mission_line)
  
 
-    with open('opportunity_log.txt') as mars:
-        file = mars.read()
+    return quote_line + mission_line
 
-    # print (file)
-
-
-    new = re.sub(r'Europe', 'Mars', file)
-
-    ee = re.sub(r'Holy Land', 'space', file)
-    # abc = re.sub(r'Pleasure Excursion', 'rocket launch', file)
-
-    # new += re.sub(r'Excursions', 'space exploration', file),
-    # new += re.sub(r'picnic', 'space mission', file),
-    # new += re.sub(r'participants', 'astronauts', file),
-    # new += re.sub(r'steam ferry-boat', 'rocket ship', file),
-    # new +=re.sub (r'creek', 'planet', file),
-    # new += re.sub (r'grassy lawn', 'international space ship', file),
-    # new +=re.sub (r'steamship', 'rocket shop', file)
-
-
-    print (new)
-
-    # mars.close()
-
-    return new, ee
+     

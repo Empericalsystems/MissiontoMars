@@ -1,0 +1,34 @@
+"Mission's Log, Stardate 1328.8. The Atlas V in pursuit of an unidentified vessel.” 
+"Mission's Log, Stardate 1330.1. Position, 14 hours out of Mars XII. We're on auxiliary impulse engines. Fuel low, barely sufficient to achieve orbit over the planet. Lithium replacements are now imperative.”
+"Mission's Log. Transporting down to surface of planet Mars XII to acquire replacement lithium crystals. Expect further difficulty from miners."
+"Mission's Log. I've transported aboard the Atlas V to implement search with infrared scanners and sensing system. Magnetic storms on the planet's surface are cutting down speed and efficiency of our equipment. Search now in progress for three hours, 18 minutes."
+"Mission's Log. Have expended all but 43 minutes of power. Ship's condition: critical. Search now in progress, 7 hours, 31 minutes. Magnetic storms are easing.”
+"Mission's Log, Stardate 1512.2. On our third day of star mapping, an unexplained cubical object blocked our vessel's path. On the bridge, Rimmediately ordered general alert. My location – sickbay. Quarterly physical check.”
+"Mission's Log, Stardate 1513.8. Star maps reveal no indication of habitable planets nearby. Origin and purpose of the cube still unknown. We've been here, held motionless, for 18 hours."
+"Mission's Log, Stardate 1514.0. The cube has been destroyed. Ship's damage, minor. But my next decision, major – probe on ahead or turn back."
+"Mission's Log, Stardate 1514.1. The Atlas V is in tow. To this point no resistance has been offered. My plan – a show of resignation. Balok's tractor beam has to be a heavy drain of power on a small ship. Question. Will he grow careless?”
+"Mission's Log, Stardate 1672.1. Specimen-gathering mission on planet Mars 177. Unknown to any of us during this time, a duplicate of me, some strange alter ego, had been created by the transporter malfunction.”
+"Mission's Log, Stardate 1672.9. On the planet's surface, temperatures are beginning to drop, our landing party there in growing jeopardy. Due to the malfunction of the ship's transporter, an unexplained duplicate of myself definitely exists."
+"Mission's Log, Stardate 1673.1. Something has happened to me. Somehow, in being duplicated, I have lost my strength of will. Decisions are becoming more and more difficult."
+"Mission's Log, Stardate 1673.5. Transporter still inoperable. My negative self is under restraint in sickbay. My own indecisiveness growing. My force of will steadily weakening. On the planet, condition critical. Surface temperature is 75 degrees below zero, still dropping.”
+"Mission's Log, Stardate 1673.1. Mission retains command of this vessel, but his force of will rapidly fading. Condition of landing party critical. Transporter unit still under repair.”
+"Mission's Log, Stardate 1513.4. In orbit around planet M-113. One crewman, member of the landing party, dead by violence. Cause, unknown. We are certain the cause of death was not poison."
+"Mission's Log, Stardate 1513.8. I am now certain that the violent death of my crewman was caused by some strange lifeform." 
+"Mission's Log, continuing. The Atlas V has been invaded by a creature capable of assuming any form, and with the capacity to paralyze and draw the life from any one of us.”
+"Mission's Log. Our position, orbiting Mars. An ancient world, now a frozen wasteland about to rip apart, in its death throes. Our mission, pick up a scientific party below, observe the disintegration of the planet.”
+"Mission's Log, Stardate 1704.2. The science party we were to have picked up has been found dead. Life support systems had been turned off. Station personnel frozen to death. Conditions highly unusual. Meanwhile, we remain in orbit to complete our mission – close scientific measurement of the break-up of this planet."
+"Mission's Log, supplemental. Our orbit, tightening. Our need for efficiency – critical. But unknown to us, a totally new and unusual disease has been brought aboard."
+"Mission's Log, Stardate 1704.4. Ship out of control, spiraling down towards planet Mars. We have 19 minutes of life left, without engine power or helm control."
+"Mission's Log, supplemental. The Atlas V spiraling down, out of control. Ship's outer skin heating rapidly due to friction with planet atmosphere.”
+"Mission's Log, Stardate 1533.6. Now maneuvering to come alongside cargo vessel Antares. Its Mission and first officer are beaming over to us with an unusual passenger.”
+"Mission's Log, Stardate 1535.8. UESPA headquarters notified of the mysterious loss of science probe vessel Antares.”
+"Mission's Log, Stardate 1709.2. Patrolling outposts guarding the Neutral Zone between planets Mars and Earth and the rest of the galaxy, received emergency call from Outpost 4. The Atlas V is moving to investigate and assist.”
+"Mission's Log, Stardate 1709.6. We are at the Neutral Zone. Have lost contact with the intruder. No reaction on our motion sensors, but believe the Martian vessel to be somewhere close by. With all engines and systems shut down, the Atlas V is also playing the silent waiting game, in hope of regaining contact."
+"Mission's Log, supplemental. Now motionless for 9 hours, 47 minutes.”
+"Mission's Log, Stardate 2713.5. In the distant reaches of our galaxy, we have made an astonishing discovery – Earth-type radio signals coming from Mars. It seems impossible, but there it is.” 
+"Mission's Log, Stardate 2817.6. Starship Atlas V diverted from scheduled course. Purpose: to confirm discovery by Dr. Thomas Leighton of an extraordinary new synthetic food which would totally end the threat of famine on Cygnia Minor, a nearby Earth colony.”
+"Mission's Log, stardate 2821.5. En route to Mars III with a cargo of medical supplies, our course leads us past Murasaki 312, a quasar-like formation. Vague... undefined. A priceless opportunity for scientific investigation.”
+"Mission's Log, stardate 2821.7. The electromagnetic phenomenon known as Murasaki 312 whirls like some angry blight in space. A depressive reminder that seven of our shipmates still have not been heard from. Equally bad, the effect has rendered our normal searching systems useless. Without them we are blind, and almost helpless."
+"Mission's Log, stardate 2822.3. We continue to search. But I find it more difficult each moment to ward off a sense of utter futility, and... great loss."
+"Mission's Log, 2823.1. Our landing parties are on the surface of Mars, and we continue to hope. Instruments are only slowly returning to an operable condition as the ion storm slowly disperses. On the ship, we can only wait helplessly."
+"Mission's Log, stardate 2947.3. We have been through a severe ion storm. One crewman is dead. The ship's damage is considerable. I have ordered a nonscheduled layover on Starbase 11 for repairs. A full report of damages was made to the commanding officer of Starbase 11, Commodore Stone.”

@@ -1,33 +1,19 @@
 import re
-
+import random
 
 
 def twain_to_Mars():
  
+    each_line = open('spirit_log.txt').read().splitlines()
+    quote_line =random.choice(each_line)
+    print(quote_line)
 
-    with open('spirit_log.txt') as mars:
-        file = mars.read()
-
-    # print (file)
-
-
-    new = re.sub(r'Europe', 'Mars', file)
-
-    ee = re.sub(r'Holy Land', 'space', file)
-    # abc = re.sub(r'Pleasure Excursion', 'rocket launch', file)
-
-    # new += re.sub(r'Excursions', 'space exploration', file),
-    # new += re.sub(r'picnic', 'space mission', file),
-    # new += re.sub(r'participants', 'astronauts', file),
-    # new += re.sub(r'steam ferry-boat', 'rocket ship', file),
-    # new +=re.sub (r'creek', 'planet', file),
-    # new += re.sub (r'grassy lawn', 'international space ship', file),
-    # new +=re.sub (r'steamship', 'rocket shop', file)
+    mission_log = open('mission_log.txt').read().splitlines()
+    mission_line =random.choice(mission_log)
+    print(mission_line)
+ 
+    return quote_line + mission_line
 
 
-    print (new)
-
-    # mars.close()
-
-    return new, ee
+    
 

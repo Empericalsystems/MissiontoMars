@@ -27,17 +27,27 @@ def homepage():
 def log_rover(rover_id):
     """Each rover's Mission log"""
 
-    rover_date = request.form.get('date')
-
-    print ("THIS IS A TEST*************") 
-    print (rover_date)
-
-
-
     rover_posts = crud.get_posts_by_rover(rover_id)
     name_var = crud.get_rover_name_by_id(rover_id)
 
-    url = f'https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?'
+    if request.method == 'POST':
+        rover_date = request.form.get('date')
+    else:
+        if rover_id == '1':
+            rover_date = '2013-09-23'
+        elif rover_id == '2':
+            rover_date = '2005-08-03'
+        else:
+            rover_date = '2006-09-03'
+
+
+    print ("THIS IS A TEST*************") 
+    print (rover_date)
+    print (name_var)
+    print (request.method)
+    
+
+    url = f'https://api.nasa.gov/mars-photos/api/v1/rovers/{name_var.lower()}/photos?'
     payload = {
       'api_key' : 'HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE',
       'earth_date': rover_date
@@ -48,11 +58,12 @@ def log_rover(rover_id):
     data = res.json() 
     # first = data['photos'][0]['img_src']
       
-    print ('*********************')
+    # print ('*********************')
 
-    print (data)
 
-    print ('******************')
+    print (data['photos'][0]['img_src'])
+
+    # print ('******************')
 
     # print (first)
 

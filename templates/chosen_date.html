@@ -13,27 +13,19 @@
 <h2>Rovername: {{r_name}}</h2>
 <h2>Mission date: {{rover_datetext}}</h2>
 
-<form action = '/new_date/{{r_id}}' method = 'POST'>
-  <p>
-    Select date: YYYY-MM-DD <input type = 'text' id = 'date' name = 'date'>
-  </p>
-
-  <p>
-    <button type= 'submit'>Submit Mission Date</button>
-  </p>
-</form>
 
 
 <div id = 'blog'>
 
   {% for post in rover_posts%} 
-      
+     
+         
         <p>
         
           
-          <img src = '{{post.photos[0].photo_path}}'>  
+            <img src="{{ data['photos'][0]['img_src'] }}">  
         </p>
-        <p>{{post.date}}</p>
+       
         <p>{{post.title}}</p>
         <p>{{post.text}}</p>
 

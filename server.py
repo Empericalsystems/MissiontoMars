@@ -56,11 +56,7 @@ def log_rover(rover_id):
     res = requests.get(url, params = payload)
 
     data = res.json() 
-    # first = data['photos'][0]['img_src']
-      
-    # print ('*********************')
-
-
+     
     print (data['photos'][0]['img_src'])
 
     # print ('******************')
@@ -74,6 +70,42 @@ def log_rover(rover_id):
                            r_id = rover_id,
                            rover_datetext = rover_date
                            )
+
+@app.route('/new_date/<rover_id>', methods = ['GET','POST'])
+def show_user_choice(rover_id):
+    """Post mission from date chosen by user"""
+
+    rover_date = request.form.get('date')
+
+    rover_posts = crud.get_posts_by_rover(rover_id)
+    name_var = crud.get_rover_name_by_id(rover_id)
+
+
+    url = f'https://api.nasa.gov/mars-photos/api/v1/rovers/{name_var.lower()}/photos?'
+    payload = {
+      'api_key' : 'HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE',
+      'earth_date': rover_date
+    }
+
+    res = requests.get(url, params = payload)
+
+    data = res.json() 
+     
+    print (data['photos'][0]['img_src'])
+
+    pics = data['photos'][0]['img_src']
+
+    return render_template('chosen_date.html',
+                           rover_posts = rover_posts,
+                           r_name = name_var,
+                           r_id = rover_id,
+                           rover_datetext = rover_date,
+                           pics = pics,
+                           data = data
+                           )
+
+
+
 
 
 @app.route('/users', methods = ['POST'])

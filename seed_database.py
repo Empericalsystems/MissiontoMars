@@ -40,7 +40,6 @@ for n in range(10):
     user = crud.create_user(email, password)
 
 
-
 with open ('data/missionpost.json') as f:
     missionpost_data = json.loads(f.read())
 

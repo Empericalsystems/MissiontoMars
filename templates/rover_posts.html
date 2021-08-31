@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
 {% block head %}
-<!-- </script>
-<script src = "/static/curiosity.js" defer></script> -->
 
   {{ super() }}
 {% endblock %}
@@ -13,7 +11,18 @@
 </h1>
 
 <h2>Rovername: {{r_name}}</h2>
-<!-- <p>id details: {{r_id}}</p> -->
+<h2>Mission date: {{rover_datetext}}</h2>
+
+<form action = '/rover/{{r_id}}' method = 'POST'>
+  <p>
+    Select date: YYYY-MM-DD <input type = 'text' id = 'date' name = 'date'>
+  </p>
+
+  <p>
+    <button type= 'submit'>Mission Date</button>
+  </p>
+</form>
+
 
 <div id = 'blog'>
 
@@ -27,9 +36,8 @@
         <p>{{post.date}}</p>
         <p>{{post.title}}</p>
         <p>{{post.text}}</p>
-        
 
-        <!-- <p> {{post.rover_id}}</p>        -->
+        
      
   {%endfor%}
 

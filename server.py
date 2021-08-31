@@ -27,29 +27,42 @@ def homepage():
 def log_rover(rover_id):
     """Each rover's Mission log"""
 
+    rover_date = request.form.get('date')
+
+    print ("THIS IS A TEST*************") 
+    print (rover_date)
+
 
 
     rover_posts = crud.get_posts_by_rover(rover_id)
     name_var = crud.get_rover_name_by_id(rover_id)
 
-    # print (rover_id)
+    url = f'https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?'
+    payload = {
+      'api_key' : 'HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE',
+      'earth_date': rover_date
+    }
+
+    res = requests.get(url, params = payload)
+
+    data = res.json() 
+    # first = data['photos'][0]['img_src']
+      
+    print ('*********************')
+
+    print (data)
+
+    print ('******************')
+
+    # print (first)
 
 
     return render_template('rover_posts.html',
                            rover_posts = rover_posts,
                            r_name = name_var,
                            r_id = rover_id,
+                           rover_datetext = rover_date
                            )
-
-
-
-@app.route("/users")
-def all_users():
-    """View all users."""
-
-    users = crud.get_users()
-
-    return render_template("users.html", users=users)
 
 
 @app.route('/users', methods = ['POST'])

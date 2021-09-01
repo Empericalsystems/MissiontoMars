@@ -1,7 +1,7 @@
 import re
 import random
 
-def twain_to_space():
+def spock_to_space():
  
 
     # with open('curiosity_log.txt') as mars:

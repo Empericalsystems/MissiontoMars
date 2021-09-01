@@ -4,6 +4,7 @@ from model import connect_to_db
 import crud
 import regex_spirit
 import regex_curiosity
+import random
 
 
 from jinja2 import StrictUndefined
@@ -47,17 +48,17 @@ def log_rover(rover_id):
     print (request.method)
     
 
-    url = f'https://api.nasa.gov/mars-photos/api/v1/rovers/{name_var.lower()}/photos?'
-    payload = {
-      'api_key' : 'HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE',
-      'earth_date': rover_date
-    }
+    # url = f'https://api.nasa.gov/mars-photos/api/v1/rovers/{name_var.lower()}/photos?'
+    # payload = {
+    #   'api_key' : 'HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE',
+    #   'earth_date': rover_date
+    # }
 
-    res = requests.get(url, params = payload)
+    # res = requests.get(url, params = payload)
 
-    data = res.json() 
+    # data = res.json() 
      
-    print (data['photos'][0]['img_src'])
+    # print (data['photos'][0]['img_src'])
 
     # print ('******************')
 
@@ -77,8 +78,21 @@ def show_user_choice(rover_id):
 
     rover_date = request.form.get('date')
 
-    rover_posts = crud.get_posts_by_rover(rover_id)
+    int_date = rover_date.split('-')
+    int_date = ''.join(int_date[0]).join(int_date[1]).join(int_date[2])
+
+    print ('££££££££££££££££')
+    print (int_date)
+
+    random.seed(int(int_date))  #turn this into a number and give it to seed and randomly pick from listof posts
+
+    rover_posts = [random.choice(crud.get_posts_by_rover(rover_id))] #this returns a list - call 
+   
     name_var = crud.get_rover_name_by_id(rover_id)
+
+    print (crud.get_posts_by_rover(rover_id))
+
+    
 
 
     url = f'https://api.nasa.gov/mars-photos/api/v1/rovers/{name_var.lower()}/photos?'
@@ -91,7 +105,7 @@ def show_user_choice(rover_id):
 
     data = res.json() 
      
-    print (data['photos'][0]['img_src'])
+    # print (data['photos'][0]['img_src'])
 
     pics = data['photos'][0]['img_src']
 

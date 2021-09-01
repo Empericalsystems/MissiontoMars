@@ -2,7 +2,7 @@ import re
 import random
 
 
-def opportunity_to_Mars():
+def captain_to_Mars():
 
 
     each_line = open('opportunity_log.txt').read().splitlines()

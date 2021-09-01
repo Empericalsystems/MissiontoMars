@@ -2,7 +2,7 @@ import re
 import random
 
 
-def twain_to_Mars():
+def troi_to_Mars():
  
     each_line = open('spirit_log.txt').read().splitlines()
     quote_line =random.choice(each_line)

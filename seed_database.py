@@ -51,11 +51,11 @@ for missionpost in missionpost_data:
     rover_id = missionpost["rover_id"]
 
     if rover_id == 1:
-        text = regex_curiosity.twain_to_space()
+        text = regex_curiosity.spock_to_space()
     elif rover_id == 2:
-        text = regex_spirit.twain_to_Mars()
+        text = regex_spirit.troi_to_Mars()
     elif rover_id == 3:
-        text = regext_opportunity.opportunity_to_Mars()
+        text = regext_opportunity.captain_to_Mars()
     else:
         print('sorry please come back later')
 

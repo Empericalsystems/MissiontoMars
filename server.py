@@ -17,6 +17,8 @@ import pprint
 app = Flask (__name__)
 app.secret_key = 'nosecret'
 app.jinja_env.undefined = StrictUndefined
+api_key = os.environ.get('NASA_API_KEY')
+
 
 @app.route('/')
 def homepage():
@@ -97,7 +99,7 @@ def show_user_choice(rover_id):
 
     url = f'https://api.nasa.gov/mars-photos/api/v1/rovers/{name_var.lower()}/photos?'
     payload = {
-      'api_key' : 'HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE',
+      'api_key' : api_key,
       'earth_date': rover_date
     }
 

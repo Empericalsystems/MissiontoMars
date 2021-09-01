@@ -13,7 +13,6 @@ def captain_to_Mars():
     mission_line =random.choice(mission_log)
     print(mission_line)
  
-
     return quote_line + mission_line
 
      

@@ -43,7 +43,6 @@ for n in range(10):
 with open ('data/missionpost.json') as f:
     missionpost_data = json.loads(f.read())
 
-
 missionpost_in_db = []
 for missionpost in missionpost_data:
     title = missionpost["title"]

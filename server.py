@@ -50,22 +50,6 @@ def log_rover(rover_id):
     print (request.method)
     
 
-    # url = f'https://api.nasa.gov/mars-photos/api/v1/rovers/{name_var.lower()}/photos?'
-    # payload = {
-    #   'api_key' : 'HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE',
-    #   'earth_date': rover_date
-    # }
-
-    # res = requests.get(url, params = payload)
-
-    # data = res.json() 
-     
-    # print (data['photos'][0]['img_src'])
-
-    # print ('******************')
-
-    # print (first)
-
 
     return render_template('rover_posts.html',
                            rover_posts = rover_posts,

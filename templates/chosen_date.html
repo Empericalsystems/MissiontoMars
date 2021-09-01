@@ -11,31 +11,24 @@
 </h1>
 
 <h2>Rovername: {{r_name}}</h2>
-<h2>Mission date: {{rover_datetext}}</h2>
 
 <div id = 'blog'>
 
   {% for post in rover_posts%} 
-     
-         
+  
         <p>
         
-          
-            <img src="{{ data['photos'][0]['img_src'] }}">  
+            {%if pics|length%}
+            <h2>Mission date: {{rover_datetext}}</h2>
+            <p><img src="{{ pics}}"></p>
+            <p>{{post.title}}</p>
+            <p>{{post.text}}</p>
+            {%endif%}
+
         </p>
-       
-        <p>{{post.title}}</p>
-        <p>{{post.text}}</p>
 
-        
-     
   {%endfor%}
-
-
-    
-  <p></p>
   
-
 </div>
 
 </body>

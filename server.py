@@ -78,8 +78,6 @@ def show_user_choice(rover_id):
 
     print (crud.get_posts_by_rover(rover_id))
 
-    
-
 
     url = f'https://api.nasa.gov/mars-photos/api/v1/rovers/{name_var.lower()}/photos?'
     payload = {
@@ -90,10 +88,17 @@ def show_user_choice(rover_id):
     res = requests.get(url, params = payload)
 
     data = res.json() 
-     
+
     # print (data['photos'][0]['img_src'])
 
-    pics = data['photos'][0]['img_src']
+    pics = data['photos']
+
+    if pics == []:
+        flash ('Sorry there is no image for this date. Please try again.')
+    else:
+        pics = data['photos'][0]['img_src']
+        
+
 
     return render_template('chosen_date.html',
                            rover_posts = rover_posts,

@@ -5,6 +5,8 @@ import crud
 import regex_spirit
 import regex_curiosity
 import random
+import titles_ran
+
 
 
 from jinja2 import StrictUndefined

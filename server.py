@@ -4,6 +4,8 @@ from model import connect_to_db
 import crud
 import regex_spirit
 import regex_curiosity
+import regext_opportunity
+
 import random
 import titles_ran
 

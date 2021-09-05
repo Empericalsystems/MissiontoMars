@@ -12,7 +12,13 @@ def captain_to_Mars():
     mission_log = open('mission_log.txt').read().splitlines()
     mission_line =random.choice(mission_log)
     print(mission_line)
+
+    each_line = open('titles.txt').read().splitlines()
+    title_line =random.choice(each_line)
+    print(title_line)
  
-    return quote_line + mission_line
+    return {'title': title_line,
+            'quote': quote_line,
+            'mission': mission_line}
 
      

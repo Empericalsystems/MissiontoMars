@@ -1,6 +1,7 @@
 from model import db, User, Rover, MissionPost, Photo, connect_to_db
 import random 
 from sqlalchemy import update
+from sqlalchemy import func
 
 
 def create_user(email, password):
@@ -157,6 +158,19 @@ def get_random_missionpost_id():
     """create random"""
     return random.choice(MissionPost.query.filter(MissionPost.rover_id == random.randint(1, 3)).all()).missionpost_id
 #getint ghte mission post id
+
+def get_max_missionpost_id():
+    """create random"""
+
+    print ("&&&&&&&&&JUST TESTING MAX MAXXXXXX @@@@@@@@@@@@@@@@")
+    max_mission_id= db.session.query(func.max(MissionPost.missionpost_id)).scalar()
+    print (max_mission_id)
+    return max_mission_id
+
+
+    # group_id = session.query(func.max(Article.group_id)).scalar()
+
+
 
 def get_post_by_id(missionpost_id):
     """Find a post by missionpost_id."""

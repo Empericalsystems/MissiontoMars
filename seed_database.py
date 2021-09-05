@@ -13,8 +13,8 @@ import crud
 import model
 import server
 
-os.system("dropdb marstest")
-os.system("createdb marstest")
+os.system("dropdb marsmission")
+os.system("createdb marsmission")
 
 model.connect_to_db(server.app)
 model.db.create_all()
@@ -61,8 +61,14 @@ for missionpost in missionpost_data:
     # #fix this for more posts later.
 
     date = datetime.strptime(missionpost["date"], "%Y-%m-%d")
+    title=text["title"]
+    text=text["quote"]+text["mission"]
 
     db_missionpost = crud.create_missionpost(rover_id, date, title, text)
+    # print ("MAXXXXXXX")
+    
+    
+    # print (max_post_id2)
 
     missionpost_in_db.append(db_missionpost)
 
@@ -85,6 +91,10 @@ for photo in photo_data['photos']:
     db_photo = crud.create_photos(photo_path, mission_id)
     #the expression gets called first taking random mission post and getting hte mission id from it
 
-    photo_in_db.append(db_photo)
+    # photo_in_db.append(db_photo)
+
+# print (max_post_id2)
+
+
 
  

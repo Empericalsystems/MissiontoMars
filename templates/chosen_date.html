@@ -14,20 +14,38 @@
 
 <div id = 'blog'>
 
-  {% for post in rover_posts%} 
+
+  <p>
+
+ 
+
+    {%if pics|length%}
+    <h2>Mission date: {{rover_datetext}}</h2>
+    <p><img src="{{ pics}}"></p>
+    <p>{{rover_posts_live.title}}</p>
+    <p>{{rover_posts_live.quote}}</p>
+    <p>{{rover_posts_live.mission}}</p>
+    {%endif%}
+
+  </p>
+
   
         <p>
-        
-            {%if pics|length%}
-            <h2>Mission date: {{rover_datetext}}</h2>
-            <p><img src="{{ pics}}"></p>
-            <p>{{post.title}}</p>
-            <p>{{post.text}}</p>
-            {%endif%}
+          {% for post in rover_posts%} 
+
+          {%if pics|length%}
+          <h2>Mission date: {{rover_datetext}}</h2>
+          <p><img src="{{ pics}}"></p>
+          <p>{{post.title}}</p>
+          <p>{{post.text}}</p>
+          {%endif%}
+
+           
+          {%endfor%}
 
         </p>
 
-  {%endfor%}
+
   
 </div>
 

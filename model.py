@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-def connect_to_db(flask_app, db_uri="postgresql:///marstest", echo=True):
+def connect_to_db(flask_app, db_uri="postgresql:///marsmission", echo=True):
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
     flask_app.config["SQLALCHEMY_ECHO"] = echo
     flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -93,7 +93,7 @@ class MissionPost(db.Model):
                                autoincrement=True, 
                                primary_key=True)
     
-    title = db.Column(db.String(60), unique = True)
+    title = db.Column(db.String(60), unique = False)
     text = db.Column(db.Text)
     date = db.Column (db.DateTime)
     rover_id = db.Column(db.Integer,

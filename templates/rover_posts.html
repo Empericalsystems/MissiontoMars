@@ -12,14 +12,29 @@
 
 <h2>Rovername: {{r_name}}</h2>
 <h2>Mission date: {{rover_datetext}}</h2>
+<script src="/static/calendar.js"></script>
 
 <form action = '/new_date/{{r_id}}' method = 'POST'>
   <p>
-    Select date: YYYY-MM-DD <input type = 'text' id = 'date' name = 'date'>
+    Select date 
   </p>
+  {%if r_id == "1" %}
+   <input type='date' id = 'mission_date1' name = 'date' onchange='this.form.submit()'>
+  {%endif%}
+
+  {%if r_id == "2" %}
+  <input type='date' id = 'mission_date2' name = 'date' onchange='this.form.submit()'> 
+     
+  {%endif%}
+
+  {%if r_id == "3" %}
+  <input type='date' id = 'mission_date3' name = 'date' onchange='this.form.submit()'>
+     
+  </p>
+  {%endif%}
 
   <p>
-    <button type= 'submit'>Submit Mission Date</button>
+    <!-- <button type= 'submit'>Submit Mission Date</button> -->
   </p>
 </form>
 
@@ -47,6 +62,7 @@
   
 
 </div>
+
 
 </body>
 </html>

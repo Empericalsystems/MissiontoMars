@@ -64,10 +64,9 @@ for missionpost in missionpost_data:
     title=text["title"]
     text=text["quote"]+text["mission"]
 
+
     db_missionpost = crud.create_missionpost(rover_id, date, title, text)
     # print ("MAXXXXXXX")
-    
-    
     # print (max_post_id2)
 
     missionpost_in_db.append(db_missionpost)

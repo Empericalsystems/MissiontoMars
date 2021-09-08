@@ -8,6 +8,7 @@ import regext_opportunity
 import mission_log
 import random
 import titles_ran
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 
@@ -96,13 +97,13 @@ def show_user_choice(rover_id):
 
     print ('££££££££££££££££')
     print (int_date)
-    
 
+   
     random.seed(int(int_date))  #turn this into a number and give it to seed and randomly pick from listof posts
 
     rover_blogpost = [random.choice(crud.get_posts_by_rover(rover_id))] #this returns a list - call 
     print(rover_blogpost, type(rover_blogpost))
-    
+
 
     if rover_id == "1":
         rover_blogpost_text = regex_curiosity.spock_to_space()
@@ -112,21 +113,26 @@ def show_user_choice(rover_id):
         rover_blogpost_text = regext_opportunity.captain_to_Mars()
     else:
         print('sorry please come back later')
-
-
-    print (type(rover_blogpost), rover_blogpost)
+     
+    
+    # date_database_check = crud.get_posts_by_date(rover_date) 
+    # if date_database_check == []:
+    #     date_database_check = MissionPost_live(rover_id, rover_blogpost_text['title'], rover_blogpost_text['quote'], rover_blogpost_text['mission'])
+    # # else: 
+        # rover_blogpost_missionlive == get_posts_by_date(rover_date)
+        
+#if conditional statment here to check if the date chosen by the user is alreayd in the database XXXX
+    # print (type(rover_blogpost), rover_blogpost)
 
     rover_blogpost_missionlive = MissionPost_live(rover_id, rover_blogpost_text['title'], rover_blogpost_text['quote'], rover_blogpost_text['mission'])
-
-
+    #packing info into a class   
+    
     print ('SECOND TESTS!!!!!!@@@@@@@@@@@@@@@')
     # print (rover_blogpost.rover_id)
     # print (rover_blogpost.title)
     # print (rover_blogpost.quote)
     # print (rover_blogpost.mission)
     # print (type(rover_blogpost))
-
-
 
     name_var = crud.get_rover_name_by_id(rover_id) #this can stay because we pull from database
 
@@ -145,8 +151,8 @@ def show_user_choice(rover_id):
     api_data = res.json() 
 
     # print (data['photos'][0]['img_src'])
-    print("$$$$$$$$$$$API DATA")
-    print(type(api_data),api_data)
+    # print("$$$$$$$$$$$API DATA")
+    # print(type(api_data),api_data)
 
     picture_path = api_data['photos']
 
@@ -164,15 +170,12 @@ def show_user_choice(rover_id):
     max_post_id2 = crud.get_max_missionpost_id()
     db_photo = crud.create_photos(picture_path, max_post_id2)
 
-
     print ("******&&&&&&&&&&&&&&&&&&&&&&**********")
-
     # print (crud.get_post_by_id(missionpost_id))
-
     print ("******&&&&&&&&&&&&&&&&&&&&&&**********")
 
-        
     return render_template('chosen_date.html',
+                           
                            rover_posts = rover_blogpost,
                            rover_posts_live = rover_blogpost_missionlive,
                            r_name = name_var,
@@ -213,18 +216,21 @@ def login():
     password = request.form.get("password")
 
     user = crud.get_user_by_email(email)
-    if not user or user.password != password:
+
+    if user:
+        if user.password == password:
+        # check_password_hash(user.password, pwhash, password):
+            session["user_email"] = user.email
+            flash(f"Welcome back, {user.email}!")
+    elif not user or user.password != password:
         flash("The email or password you entered was incorrect.")
     else:
+        flash("Sorry there appears to be an error with your login. Please try again later.")
+
         # Log in user by storing the user's email in session
-        session["user_email"] = user.email
-        flash(f"Welcome back, {user.email}!")
+        
 
     return redirect("/")
-
-
-
-
 
 if __name__ == '__main__':
     app.debug = True

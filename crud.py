@@ -2,12 +2,16 @@ from model import db, User, Rover, MissionPost, Photo, connect_to_db
 import random 
 from sqlalchemy import update
 from sqlalchemy import func
+from werkzeug.security import generate_password_hash, check_password_hash
+
+
 
 
 def create_user(email, password):
     """Creating a new user"""
 
-    user = User(email=email, password=password)
+    user = User(email=email, password= password)
+    # generate_password_hash(password, method = 'pbkdf2:sha256', salt_length=16))
 
     db.session.add(user)
     db.session.commit()
@@ -137,6 +141,7 @@ def delete_photo(photo_id):
     # return photo_delete
  
 
+
 def create_missionpost(rover_id, date, title, text):
     """Create and return a new missionpost."""
 
@@ -154,6 +159,13 @@ def create_missionpost(rover_id, date, title, text):
     return missionlog
 # working!
 
+
+
+def create_live_post():
+    """create a live missionpost from user input"""
+    return 
+
+
 def get_random_missionpost_id():
     """create random"""
     return random.choice(MissionPost.query.filter(MissionPost.rover_id == random.randint(1, 3)).all()).missionpost_id
@@ -161,16 +173,11 @@ def get_random_missionpost_id():
 
 def get_max_missionpost_id():
     """create random"""
-
-    print ("&&&&&&&&&JUST TESTING MAX MAXXXXXX @@@@@@@@@@@@@@@@")
     max_mission_id= db.session.query(func.max(MissionPost.missionpost_id)).scalar()
-    print (max_mission_id)
+
     return max_mission_id
 
-
     # group_id = session.query(func.max(Article.group_id)).scalar()
-
-
 
 def get_post_by_id(missionpost_id):
     """Find a post by missionpost_id."""

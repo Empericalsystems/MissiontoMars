@@ -6,6 +6,7 @@
 {% block body %}
 
 <body>
+  <p>Welcome back {{session['user_email']}}</p>
 <h1>
   Mission Log  
 </h1>
@@ -28,24 +29,6 @@
     {%endif%}
 
   </p>
-
-  
-        <p>
-          {% for post in rover_posts%} 
-
-          {%if pics|length%}
-          <h2>Mission date: {{rover_datetext}}</h2>
-          <p><img src="{{ pics}}"></p>
-          <p>{{post.title}}</p>
-          <p>{{post.text}}</p>
-          {%endif%}
-
-           
-          {%endfor%}
-
-        </p>
-
-
   
 </div>
 

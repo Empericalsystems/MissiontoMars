@@ -145,12 +145,20 @@ def delete_photo(photo_id):
 def create_missionpost(rover_id, date, title, text):
     """Create and return a new missionpost."""
 
+    duplicate = MissionPost.query.filter(MissionPost.rover_id == rover_id,
+                                        MissionPost.date == date,
+                                        MissionPost.title == title,
+                                        MissionPost.text == text
+    ).first()
+
+    if duplicate:
+        return duplicate
+    
     missionlog = MissionPost(
         rover_id = rover_id,
         date = date,
         title = title,
         text = text
-        
     )
 
     db.session.add(missionlog)
@@ -158,8 +166,6 @@ def create_missionpost(rover_id, date, title, text):
 
     return missionlog
 # working!
-
-
 
 def create_live_post():
     """create a live missionpost from user input"""

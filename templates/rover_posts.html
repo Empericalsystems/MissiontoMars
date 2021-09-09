@@ -6,6 +6,10 @@
 {% block body %}
 
 <body>
+  {% if 'user_email' in session%}
+  <p> Welcome back {{session['user_email']}}</p>
+  {%endif%}
+
 <h1>
   Mission Log  
 </h1>
@@ -16,18 +20,24 @@
 
 <form action = '/new_date/{{r_id}}' method = 'POST'>
   <p>
-    Select date 
+    
   </p>
   {%if r_id == "1" %}
+  <p> Select date from Curiosity's mission. </p>
+  <p>He landed on: 2012-08-06 and is currently still operational.</p>
    <input type='date' id = 'mission_date1' name = 'date' onchange='this.form.submit()'>
   {%endif%}
 
   {%if r_id == "2" %}
+  <p>Select date from Spirit's mission. </p>
+  <p>She landed on: 2004-01-04 and her last transmission was on 2010-03-22 </p>
   <input type='date' id = 'mission_date2' name = 'date' onchange='this.form.submit()'> 
      
   {%endif%}
 
   {%if r_id == "3" %}
+  <p>Select date Opportunity's mission. </p>
+  <p>He landed on: 2004-01-25 and his last transmission was 2018-06-10</p>
   <input type='date' id = 'mission_date3' name = 'date' onchange='this.form.submit()'>
      
   </p>

@@ -31,19 +31,6 @@ class MissionPost_live:
         self.quote = quote
         self.mission = mission
 
-        # if rover_id == "1":
-        #     rover_blogpost = regex_curiosity.spock_to_space()
-        # elif rover_id == "2":
-        #     rover_blogpost = regex_spirit.troi_to_Mars()
-        # elif rover_id == "3":
-        #     rover_blogpost = regext_opportunity.captain_to_Mars()
-        # else:
-        #     print('sorry please come back later')
-        # def __repr__(self):
-        # return f'<User: {self.rover_blogpost}>'
-        
-        # (rover_posts = rover_blogpost)
-
 
 @app.route('/')
 def homepage():
@@ -74,7 +61,6 @@ def log_rover(rover_id):
     print (name_var)
     print (request.method)
     print ('******************checking the photos&&&&&&&&&&&&&&&&&&&')
-  
 
 
     return render_template('rover_posts.html',
@@ -99,10 +85,10 @@ def show_user_choice(rover_id):
     print (int_date)
 
    
-    random.seed(int(int_date))  #turn this into a number and give it to seed and randomly pick from listof posts
+    # random.seed(int(int_date))  #turn this into a number and give it to seed and randomly pick from listof posts
 
-    rover_blogpost = [random.choice(crud.get_posts_by_rover(rover_id))] #this returns a list - call 
-    print(rover_blogpost, type(rover_blogpost))
+    # rover_blogpost = [random.choice(crud.get_posts_by_rover(rover_id))] #this returns a list - call 
+    # print(rover_blogpost, type(rover_blogpost))
 
 
     if rover_id == "1":
@@ -160,23 +146,20 @@ def show_user_choice(rover_id):
         flash ('Sorry there is no image for this date. Please try again.')
     else:
         picture_path = api_data['photos'][0]['img_src']
+        date = rover_date
+        title = rover_blogpost_text['title']
+        text = rover_blogpost_text['quote'] + rover_blogpost_text['mission']
+        db_missionpost = crud.create_missionpost(rover_id, date, title, text)
+        max_post_id2 = crud.get_max_missionpost_id()
+        db_photo = crud.create_photos(picture_path, max_post_id2)
 
-    date = rover_date
-    title = rover_blogpost_text['title']
-    text = rover_blogpost_text['quote'] + rover_blogpost_text['mission']
-
-
-    db_missionpost = crud.create_missionpost(rover_id, date, title, text)
-    max_post_id2 = crud.get_max_missionpost_id()
-    db_photo = crud.create_photos(picture_path, max_post_id2)
-
-    print ("******&&&&&&&&&&&&&&&&&&&&&&**********")
-    # print (crud.get_post_by_id(missionpost_id))
-    print ("******&&&&&&&&&&&&&&&&&&&&&&**********")
+    # print ("******&&&&&&&&&&&&&&&&&&&&&&**********")
+    # # print (crud.get_post_by_id(missionpost_id))
+    # print ("******&&&&&&&&&&&&&&&&&&&&&&**********")
 
     return render_template('chosen_date.html',
                            
-                           rover_posts = rover_blogpost,
+                        #    rover_posts = rover_blogpost,
                            rover_posts_live = rover_blogpost_missionlive,
                            r_name = name_var,
                            r_id = rover_id,
@@ -229,8 +212,14 @@ def login():
 
         # Log in user by storing the user's email in session
         
-
     return redirect("/")
+
+@app.route('/logout')
+def logout_user():
+    session.pop('user_email')
+    flash("Sorry to see you go.")
+    return redirect("/")
+    
 
 if __name__ == '__main__':
     app.debug = True

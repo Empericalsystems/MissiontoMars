@@ -14,7 +14,7 @@ $(document).ready (() =>
 $(document).ready (() =>
     $("#mission_date2").datepicker({
         minDate: "2004-01-04",       //spirit
-        maxDate: max="2010-03-22",
+        maxDate: "2010-03-22",
         showButtonPanel: true
     })
 )
@@ -22,7 +22,7 @@ $(document).ready (() =>
 $(document).ready (() =>
     $("#mission_date3").datepicker({
         minDate: "2004-01-25",          //opportunity
-        maxDate: max="2018-06-10",
+        maxDate: "2018-06-10",
         showButtonPanel: true
     })
 )

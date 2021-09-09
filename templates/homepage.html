@@ -5,13 +5,15 @@
 {% block body %}
   <header>
     <h1>Mission to Mars: 3 Rovers, 1 Hostile Planet</h1>
+     
   </header>
   <nav>
     
   
-    <p><a href="/rover/1">Last Rover Standing: Curiosity</a></p>
-    <p><a href="/rover/2">Spirit's Log</a></p>
-    <p><a href="/rover/3">Opportunity the Hero</a></p>
+    <p><a href="/rover/1"><button id = "cur_button">Last Rover Standing: Curiosity</button></a></p>
+    <p><a href="/rover/2"><button id = "spi_button">Spirit's Log</button></a></p>
+    <p><a href="/rover/3"><button id = "opp_button">Opportunity the Hero</button></a></p>
+    
   </nav>
 
   <h2>New Account</h2>
@@ -24,12 +26,12 @@
       Password <input type = 'password' name = 'password'>
     </p>
     <p>
-      <button type= 'submit'>Submit</button>
+      <button type= 'submit' id = 'register'>Submit</button>
     </p>
   </form>  
 
   <h2>Log In</h2>
-  <form action = '/login' method = 'POST'>
+  <form action = '/login' id= 'loginForm' method = 'POST'>
     <p>
       Email <input type = 'text' id = 'email' name = 'email'>
     </p>
@@ -39,7 +41,7 @@
     </p>
 
     <p>
-      <button type= 'submit'>Login</button>
+      <button type= 'submit' >Login</button>
     </p>
   </form>
 

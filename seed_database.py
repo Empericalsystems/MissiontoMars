@@ -13,8 +13,8 @@ import crud
 import model
 import server
 
-os.system("dropdb marsmission")
-os.system("createdb marsmission")
+os.system("dropdb marstest")
+os.system("createdb marstest")
 
 model.connect_to_db(server.app)
 model.db.create_all()

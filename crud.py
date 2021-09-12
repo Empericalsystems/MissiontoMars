@@ -167,9 +167,9 @@ def create_missionpost(rover_id, date, title, text):
     return missionlog
 # working!
 
-def create_live_post():
-    """create a live missionpost from user input"""
-    return 
+def search_missionpost_titles():
+    """searc a missionpost from user input"""
+    return MissionPost.query.filter(MissionPost.title.like('% Mars%'))
 
 
 def get_random_missionpost_id():
@@ -198,7 +198,7 @@ def get_missionposts():
  
 
 def get_posts_by_title(title):
-    """Find a photo by title."""
+    """Find a post by title."""
 
     return MissionPost.query.filter(MissionPost.title == title).all()
 

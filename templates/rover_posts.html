@@ -1,3 +1,5 @@
+
+  
 {% extends 'base.html' %}
 {% block head %}
 
@@ -7,7 +9,8 @@
 
 <body>
   {% if 'user_email' in session%}
-  <p> Welcome back {{session['user_email']}}</p>
+  <p> You are logged in as {{session['user_email']}}</p>
+  <p><a href="/logout"><button id = "button">Logout</button></a></p>
   {%endif%}
 
 <h1>
@@ -16,7 +19,8 @@
 
 <h2>Rovername: {{r_name}}</h2>
 <h2>Mission date: {{rover_datetext}}</h2>
-<script src="/static/calendar.js"></script>
+<script src="/static/rover.js"></script>
+
 
 <form action = '/new_date/{{r_id}}' method = 'POST'>
   <p>
@@ -43,8 +47,16 @@
   </p>
   {%endif%}
 
+</form>
+
+<form action = '/search' method = 'POST'>
+
   <p>
-    <!-- <button type= 'submit'>Submit Mission Date</button> -->
+    <input type = 'text' name = 'search_title'id = 'search_title' placeholder = 'Enter title'>
+   
+   </p>
+   <p>
+   <ul> </ul>
   </p>
 </form>
 
@@ -56,13 +68,11 @@
         <p>
         
           
-          <img src = ' {{post.photos[0].photo_path}}'>  
+          <img src = '{{post.photos[0].photo_path}}'>  
         </p>
         <p>{{post.date}}</p>
         <p>{{post.title}}</p>
         <p>{{post.text}}</p>
-
-        
      
   {%endfor%}
 
@@ -74,7 +84,9 @@
 </div>
 
 
+
 </body>
 </html>
 
 {% endblock %}
+ 

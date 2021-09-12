@@ -1,6 +1,6 @@
-
-from flask import Flask, render_template, request, flash, session, redirect
-from model import connect_to_db
+from flask import Flask, render_template, request, flash, session, redirect, jsonify 
+# from model import connect_to_db
+from model import db, User, Rover, MissionPost, Photo, connect_to_db
 import crud
 import regex_spirit
 import regex_curiosity
@@ -8,8 +8,6 @@ import regext_opportunity
 import mission_log
 import random
 import titles_ran
-from werkzeug.security import generate_password_hash, check_password_hash
-
 
 
 from jinja2 import StrictUndefined
@@ -17,7 +15,6 @@ from jinja2 import StrictUndefined
 import os
 import requests
 import pprint 
-
 
 app = Flask (__name__)
 app.secret_key = 'nosecret'
@@ -43,7 +40,7 @@ def log_rover(rover_id):
     """Each rover's Mission log"""
 
     rover_posts = crud.get_posts_by_rover(rover_id)
-    name_var = crud.get_rover_name_by_id(rover_id)
+    name_var = crud.get_rover_name_by_id(rover_id)    
 
     if request.method == 'POST':
         rover_date = request.form.get('date')
@@ -56,11 +53,11 @@ def log_rover(rover_id):
             rover_date = '2006-09-03'
 
 
-    print ("THIS IS A TEST*************") 
-    print (rover_date)
-    print (name_var)
-    print (request.method)
-    print ('******************checking the photos&&&&&&&&&&&&&&&&&&&')
+    print ("1. THIS IS A TEST*************") 
+    print ("1.2", rover_date)
+    print ("1.3", name_var)
+    print ("1.4", request.method)
+    print ('2. ******************checking the photos&&&&&&&&&&&&&&&&&&&')
 
 
     return render_template('rover_posts.html',
@@ -79,10 +76,10 @@ def show_user_choice(rover_id):
     rover_date = request.form.get('date')
     rover_blogpost_text=""
     int_date = rover_date.split('-')
-    int_date = ''.join(int_date[0]).join(int_date[1]).join(int_date[2])
+    # int_date = ''.join(int_date[0]).join(int_date[1]).join(int_date[2])
 
-    print ('££££££££££££££££')
-    print (int_date)
+    print ('3. ££££££££££££££££')
+    # print (int_date)
 
    
     # random.seed(int(int_date))  #turn this into a number and give it to seed and randomly pick from listof posts
@@ -98,7 +95,7 @@ def show_user_choice(rover_id):
     elif rover_id == "3":
         rover_blogpost_text = regext_opportunity.captain_to_Mars()
     else:
-        print('sorry please come back later')
+        print('4. sorry please come back later')
      
     
     # date_database_check = crud.get_posts_by_date(rover_date) 
@@ -113,7 +110,7 @@ def show_user_choice(rover_id):
     rover_blogpost_missionlive = MissionPost_live(rover_id, rover_blogpost_text['title'], rover_blogpost_text['quote'], rover_blogpost_text['mission'])
     #packing info into a class   
     
-    print ('SECOND TESTS!!!!!!@@@@@@@@@@@@@@@')
+    print ('5. SECOND TESTS!!!!!!@@@@@@@@@@@@@@@')
     # print (rover_blogpost.rover_id)
     # print (rover_blogpost.title)
     # print (rover_blogpost.quote)
@@ -136,14 +133,10 @@ def show_user_choice(rover_id):
 
     api_data = res.json() 
 
-    # print (data['photos'][0]['img_src'])
-    # print("$$$$$$$$$$$API DATA")
-    # print(type(api_data),api_data)
-
     picture_path = api_data['photos']
 
     if picture_path == []:
-        flash ('Sorry there is no image for this date. Please try again.')
+        flash ('6. Sorry there is no image for this date. Please try again.')
     else:
         picture_path = api_data['photos'][0]['img_src']
         date = rover_date
@@ -153,9 +146,6 @@ def show_user_choice(rover_id):
         max_post_id2 = crud.get_max_missionpost_id()
         db_photo = crud.create_photos(picture_path, max_post_id2)
 
-    # print ("******&&&&&&&&&&&&&&&&&&&&&&**********")
-    # # print (crud.get_post_by_id(missionpost_id))
-    # print ("******&&&&&&&&&&&&&&&&&&&&&&**********")
 
     return render_template('chosen_date.html',
                            
@@ -166,7 +156,7 @@ def show_user_choice(rover_id):
                            rover_datetext = rover_date,
                            pics = picture_path,
                            data = api_data
-                           )    #red matches html
+                           )    
 
 
 @app.route('/users', methods = ['POST'])
@@ -180,7 +170,7 @@ def register_new_user():
         flash('This email already exists. Please login.')
     else: 
         crud.create_user(email, password)
-        flash('Your account has been created! Please login.')
+        flash('Your account has been created!')
 
     return redirect ('/')
 
@@ -216,13 +206,30 @@ def login():
 
 @app.route('/logout')
 def logout_user():
-    session.pop('user_email')
+    session.mail = None
     flash("Sorry to see you go.")
     return redirect("/")
+    
+@app.route('/search', methods = ["POST", "GET"])
+def search():
+    print ("6. TRYING TO GET MISSION POST BY TITLE")
+    search_title = request.form.get('search_title')
+    print(search_title)
+   
+    missionposts_by_title = MissionPost.query.filter(MissionPost.title.like('%' + search_title+ '%')).all()
+    #MissionPost.execute("SELECT title FROM missionposts WHERE title LIKE ?", "%" + request.args.get("search_title") + "%")
+    print ("6.1",missionposts_by_title)
+    print (type(missionposts_by_title))
+    print(missionsposts_by_title.)
+    # finding_title = crud.get_post_by_id(missionpost_id)
+    # print (finding_title)
+
+    print ("7.(((((((9999999902££££££££££££$$$$$$$$$$$$$$$$$$$")
+    return (search_title + search_title)
     
 
 if __name__ == '__main__':
     app.debug = True
     connect_to_db(app)
     app.run(host='0.0.0.0')
-
+ 

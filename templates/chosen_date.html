@@ -6,7 +6,10 @@
 {% block body %}
 
 <body>
-  <p>Welcome back {{session['user_email']}}</p>
+  {% if 'user_email' in session%}
+  <p> You are logged in as {{session['user_email']}}</p>
+  <p><a href="/logout"><button id = "button">Logout</button></a></p>
+  {%endif%}
 <h1>
   Mission Log  
 </h1>

@@ -4,26 +4,27 @@
   
 {% block body %}
   <header>
+  
     <h1>Mission to Mars: 3 Rovers, 1 Hostile Planet</h1>
      
   </header>
   <nav>
     
   
-    <p><a href="/rover/1"><button id = "cur_button">Last Rover Standing: Curiosity</button></a></p>
-    <p><a href="/rover/2"><button id = "spi_button">Spirit's Log</button></a></p>
-    <p><a href="/rover/3"><button id = "opp_button">Opportunity the Hero</button></a></p>
-    
+    <p><a href="/rover/1"><button id = "button">Last Rover Standing: Curiosity</button></a></p>
+    <p><a href="/rover/2"><button id = "button">Spirit's Log</button></a></p>
+    <p><a href="/rover/3"><button id = "button">Opportunity the Hero</button></a></p>
+    <p><a href="/search"><button id = "button">Search</button></a></p>
   </nav>
 
   <h2>New Account</h2>
   <form action="/users" method = "POST">
     <p>
-      Email <input type = 'text' name = 'email'>
+      Email <input type = 'text' placeholder = 'Enter your email' name = 'email'>
 
     </p>
     <p>
-      Password <input type = 'password' name = 'password'>
+      Password <input type = 'password' placeholder = 'Enter a password' name = 'password'>
     </p>
     <p>
       <button type= 'submit' id = 'register'>Submit</button>
@@ -33,11 +34,11 @@
   <h2>Log In</h2>
   <form action = '/login' id= 'loginForm' method = 'POST'>
     <p>
-      Email <input type = 'text' id = 'email' name = 'email'>
+      Email <input type = 'text' id = 'email' placeholder = 'Enter your user email' name = 'email'>
     </p>
 
     <p>
-      Password <input type = 'password' id = 'password' name = 'password'>
+      Password <input type = 'password' placeholder = 'Enter your password' id = 'password' name = 'password'>
     </p>
 
     <p>
@@ -47,4 +48,3 @@
 
  
 {% endblock %}
-

@@ -7,4 +7,4 @@ def mars_missionblog():
     #     file = mars.read()
     each_line = open('Mission_log.txt').read().splitlines()
     quote_line =random.choice(each_line)
-    print(quote_line)
+    print("8", quote_line)

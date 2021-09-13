@@ -9,7 +9,6 @@ import mission_log
 import random
 import titles_ran
 
-
 from jinja2 import StrictUndefined
 
 import os
@@ -248,8 +247,11 @@ def search():
 
         missionposts = MissionPost.query.filter(MissionPost.title.like('%' + search_title + '%')).all()
 
-        return jsonify(missionposts)
+        mission_data = []
+        for posts in missionposts:
+            mission_data.append({"title": posts.title, "text":posts.text, "date":posts.date})
 
+        return jsonify(mission_data)
 
 # @app.route('/search_ajax', methods = ["POST"])
 # def search2nd():

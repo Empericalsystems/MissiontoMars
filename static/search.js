@@ -10,8 +10,11 @@ $('#form_search').on('submit', (evt) =>{
     };
 
     $.post('/search', formQuery, (res) =>{
-        console.log(res);
-        alert(res);
+    
+        res.json().forEach((item) =>{
+            console.log(item);
+            $('#blog').append(item);
+        });
     });
 });
 

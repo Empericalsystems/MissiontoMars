@@ -227,67 +227,28 @@ def get_to_know_user():
     return 'Thank you ' +user_nickname+ ' for telling us more about yourself. We will keep your information confidential'
 
      
-@app.route('/search', methods = ["POST", "GET"])
+@app.route('/search', methods = ["GET","POST"])
 def search():
-    # print ("6. TRYING TO GET MISSION POST BY TITLE")
+
 
     if request.method == "GET":
-        search_text = request.form.get('search_text')
-    # # print("6.0",search_title)
-   
-        missionposts_id_linked_title = MissionPost.query.filter(MissionPost.title.like('%' + search_text+ '%')).all()
+
+        search_title = request.args.get('search_title')
+
+        missionposts = MissionPost.query.filter(MissionPost.title.like('%' + search_title + '%')).all()
+
+        if not missionposts:
         
-        if not missionposts_id_linked_title:
-               missionpost_index_searched=missionposts_id_linked_title.__getitem__(0).missionpost_id
+            flash("No results")
 
-        else:
-            
-              flash("No results")
-
-
-            # MissionPost.execute("SELECT title FROM missionposts WHERE title LIKE ?", "%" + request.args.get("search_title") + "%")
-    # testindex=0
-    # print ("6.07",dir(missionposts_id_linked_title))
-    # print ("6.076",missionposts_id_linked_title)
-    # print ("6.08",missionposts_id_linked_title.__getitem__)
-    # print ("6.09",missionposts_id_linked_title.__getitem__(testindex))
-    # print ("6.10",type(missionposts_id_linked_title.__getitem__(testindex)))
-    # print ("6.11",missionposts_id_linked_title.__getitem__(testindex).missionpost_id)
-
-    # missionpost_index_searched=missionposts_id_linked_title.__getitem__(testindex).missionpost_id
-
-
-    # finding_title=MissionPost.query.filter(MissionPost==missionpost_index_searched)
-    #if finding_title == []:
-    #    flash ('Sorry this title does not exist')
-
-    #else:
-
-    # print ("6.44",finding_title)
-    # print ("6.16",dir(finding_title))
-    # print ("6.17",finding_title.__dict__)
-    # print ("6.18",finding_title.__dict__.keys())
-    # print ("6.19",finding_title.__dict__.values())
-    # print ("6.20",finding_title.__dict__["title"])
-    # print ("6.21",type(finding_title))
-
-
-
-        return render_template('search.html', finding_title=finding_title)
+        return render_template('search.html', missionposts = missionposts)
 
     else:
+        search_title = request.form.get('search_title')
 
-    if  missionposts_id_linked_title_ajax = []:
-        flash
+        missionposts = MissionPost.query.filter(MissionPost.title.like('%' + search_title + '%')).all()
 
-
-        missionpost_index_searched=missionposts_id_linked_title.__getitem__(0).missionpost_id
-    # finding_title2_ajax=MissionPost.query.filter(missionpost_index_searched_ajax).all()
-        finding_title2_ajax=MissionPost.query.filter(MissionPost.missionpost_id==missionpost_index_searched_ajax).all()
-        print("ajax info",finding_title2_ajax)
-        print(type (finding_title2_ajax))
-  
-    return jsonify( )
+        return jsonify(missionposts)
 
 
 # @app.route('/search_ajax', methods = ["POST"])

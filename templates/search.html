@@ -10,27 +10,21 @@
 
 <form id = 'form_search' >
   <p>
-    Search for a 2nd post title<input type = 'text' name = 'search_title' id = 'search_title' placeholder = 'Enter search '>
+    Search for a 2nd post title<input type='text' id='search_title'>
    
-   </p>
-   <button id = 'submit' type= 'submit'>Submit</button>
+  </p>
 </form>
+
 <div id = 'blog'>
 
-<p>
-  
-  {%for title in finding_title%}
-    <ul> 
-      <li>{{finding_title.title}}</li>
-      <li>{{finding_title.title}}</li>
-      <li>{{finding_title.title}}</li>
-    </ul>
+  <ul> 
+  {%for title in missionposts%}
+
+    <li>{{title}}</li>
    
   {%endfor%}
-  
+  </ul>
 
-  </p>
-  
 
 </div>
     

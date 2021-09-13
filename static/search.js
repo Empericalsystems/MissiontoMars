@@ -3,7 +3,6 @@
 
 $('#form_search').on('submit', (evt) =>{
     evt.preventDefault();
-    console.log('hello');
 
     const formQuery = {
         'search_title': $('#search_title').val()

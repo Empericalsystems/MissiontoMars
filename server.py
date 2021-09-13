@@ -15,6 +15,8 @@ from jinja2 import StrictUndefined
 import os
 import requests
 import pprint 
+import inspect
+
 
 app = Flask (__name__)
 app.secret_key = 'nosecret'
@@ -214,18 +216,32 @@ def logout_user():
 def search():
     print ("6. TRYING TO GET MISSION POST BY TITLE")
     search_title = request.form.get('search_title')
-    print(search_title)
+    print("6.0",search_title)
    
-    missionposts_by_title = MissionPost.query.filter(MissionPost.title.like('%' + search_title+ '%')).all()
+    missionposts_id_linked_title = MissionPost.query.filter(MissionPost.title.like('%' + search_title+ '%')).all()
     #MissionPost.execute("SELECT title FROM missionposts WHERE title LIKE ?", "%" + request.args.get("search_title") + "%")
-    print ("6.1",missionposts_by_title)
-    print (type(missionposts_by_title))
-    print(missionsposts_by_title.)
-    # finding_title = crud.get_post_by_id(missionpost_id)
-    # print (finding_title)
+    testindex=0
+    print ("6.07",dir(missionposts_id_linked_title))
+    print ("6.07",missionposts_id_linked_title)
+    print ("6.08",missionposts_id_linked_title.__getitem__)
+    print ("6.09",missionposts_id_linked_title.__getitem__(testindex))
+    print ("6.10",type(missionposts_id_linked_title.__getitem__(testindex)))
+    print ("6.11",missionposts_id_linked_title.__getitem__(testindex).missionpost_id)
+
+    missionpost_index_searched=missionposts_id_linked_title.__getitem__(testindex).missionpost_id
+
+
+    finding_title=MissionPost.query.get(missionpost_index_searched)
+    print ("6.16",dir(finding_title))
+    print ("6.17",finding_title.__dict__)
+    print ("6.18",finding_title.__dict__.keys())
+    print ("6.19",finding_title.__dict__.values())
+    print ("6.20",finding_title.__dict__["title"])
+    print ("6.21",type(finding_title))
+
 
     print ("7.(((((((9999999902££££££££££££$$$$$$$$$$$$$$$$$$$")
-    return (search_title + search_title)
+    return render_template('search.html', finding_title = finding_title)
     
 
 if __name__ == '__main__':

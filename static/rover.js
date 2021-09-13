@@ -2,23 +2,10 @@
 
 'use strict';
 
-
-
-    let input = $(document).getElementById('#search_title');
-    input.addEventListner('keyup', function(){
-        $get('/search?q=' + input.value, function (missionposts_by_title) {
-            let html = '';
-            // for (get_posts_by_title(title) in marstest)
-            for (let id in missionposts_by_title)
-            {
-                let title = missionposts_by_title[id].title;
-                html +='<li>' + title + '</li>';
-    
-            }
-            document.querySelector('ul').innerHTML = html;
-        });
-    });
+ 
   
+  
+ 
 
 // let input = $(document).querySelector('input');
 // input.adEventListner('keyup', function(){

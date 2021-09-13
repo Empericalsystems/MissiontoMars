@@ -6,21 +6,34 @@
 {% endblock %}
 {% block body %}
 
+
+
+<form id = 'form_search' >
+  <p>
+    Search for a 2nd post title<input type = 'text' name = 'search_title' id = 'search_title' placeholder = 'Enter search '>
+   
+   </p>
+   <button id = 'submit' type= 'submit'>Submit</button>
+</form>
 <div id = 'blog'>
 
+<p>
+  
+  {%for title in finding_title%}
+    <ul> 
+      <li>{{finding_title.title}}</li>
+      <li>{{finding_title.title}}</li>
+      <li>{{finding_title.title}}</li>
+    </ul>
    
-      
-        <p>{{finding_title.title}}</p>
-     
-     
- 
+  {%endfor%}
+  
 
-
-    
-  <p></p>
+  </p>
   
 
 </div>
     
+<script src="/static/search.js"></script>
  
 {% endblock %}

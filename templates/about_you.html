@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block head %}
+
+  {{ super() }}
+{% endblock %}
+{% block body %}
+
+<h1>Please tell us a little more about you</h1>
+<h2>Your input will help us tailor our content to your likes</h2>
+
+<form id = 'form_about' method = 'POST' action = '/about-user'>
+    <p>
+    <div class = 'form-user'> 
+        What is your nickname?<input type= 'text' name = 'nickname' id = 'name_details' placeholer ='What do you like to be called?'>
+    </div>
+    </p>
+
+    <p>
+
+
+    <div class = 'form-user'>
+        What are your hobbies?<input type = 'text' name = 'hobbies' id='hobbies'>
+    </div>
+    </p>
+
+    <p>
+    <div class = 'form-user'>
+        What is your age?<input type = 'number' name = 'age' id='age_year'>
+    </div>
+    </p>
+    <p>
+    <div class = 'form-user'>
+        What is your favourite movie?<input type = 'text' name = 'movie' id='fav_movie'>
+    </div>
+    </p>
+    <button type= 'submit'>Submit</button>
+
+
+</form>
+
+<script src = 'static/about_user.js'></script>
+
+
+{% endblock %}

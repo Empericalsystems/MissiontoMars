@@ -19,7 +19,7 @@
 
 <h2>Rovername: {{r_name}}</h2>
 <h2>Mission date: {{rover_datetext}}</h2>
-<script src="/static/rover.js"></script>
+
 
 
 <form action = '/new_date/{{r_id}}' method = 'POST'>
@@ -29,36 +29,38 @@
   {%if r_id == "1" %}
   <p> Select date from Curiosity's mission. </p>
   <p>He landed on: 2012-08-06 and is currently still operational.</p>
-   <input type='date' id = 'mission_date1' name = 'date' onchange='this.form.submit()'>
+   <input type='date' id = 'mission_date1' min= '2012-08-06'  name = 'date' onchange='this.form.submit()'>
   {%endif%}
 
   {%if r_id == "2" %}
   <p>Select date from Spirit's mission. </p>
   <p>She landed on: 2004-01-04 and her last transmission was on 2010-03-22 </p>
-  <input type='date' id = 'mission_date2' name = 'date' onchange='this.form.submit()'> 
+  <input type='date' id = 'mission_date2' min= '2004-01-04' max = '2010-03-22' name = 'date' onchange='this.form.submit()'> 
      
   {%endif%}
 
   {%if r_id == "3" %}
   <p>Select date Opportunity's mission. </p>
   <p>He landed on: 2004-01-25 and his last transmission was 2018-06-10</p>
-  <input type='date' id = 'mission_date3' name = 'date' onchange='this.form.submit()'>
+  <input type='date' id = 'mission_date3' min= '2004-01-25' max = '2018-06-10' name = 'date' onchange='this.form.submit()'>
      
   </p>
   {%endif%}
 
 </form>
 
-<form action = '/search' method = 'POST'>
+<form  action = '/search' method = 'GET'>
 
   <p>
-    <input type = 'text' name = 'search_title' id = 'search_title' placeholder = 'Enter title'>
+    Search for a post title<input type = 'text' name = 'search_title' id = 'search_title' placeholder = 'Enter search '>
    
    </p>
+
+   
    <p>
-   <ul> </ul>
-  </p>
+  
 </form>
+
 
 
 <div id = 'blog'>
@@ -84,7 +86,8 @@
 </div>
 
 
-
+<script src="/static/search.js"></script>
+ 
 </body>
 </html>
 

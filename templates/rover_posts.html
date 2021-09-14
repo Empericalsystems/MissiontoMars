@@ -1,11 +1,22 @@
 
   
 {% extends 'base.html' %}
-{% block head %}
 
-  {{ super() }}
-{% endblock %}
 {% block body %}
+
+
+<header class = "masthead">
+   
+  <img src="/static/image/rover_concept.jpg" class="img-fluid" alt="Responsive image">
+  <div class="card-img-overlay text-black d-flex justify-content-left align-items-center"> 
+    <h2 class="display-4 mb-0">Mission Logs </h2><br />
+    <h3>{{r_name}}</h3><br />
+    <h6>Mission date: {{rover_datetext}}</h6><br />
+  </div>
+
+
+  
+</header>
 
 <body>
   {% if 'user_email' in session%}
@@ -13,12 +24,8 @@
   <p><a href="/logout"><button id = "button">Logout</button></a></p>
   {%endif%}
 
-<h1>
-  Mission Log  
-</h1>
 
-<h2>Rovername: {{r_name}}</h2>
-<h2>Mission date: {{rover_datetext}}</h2>
+
 
 
 

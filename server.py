@@ -240,6 +240,12 @@ def search():
         if not missionposts:
         
             flash("No results")
+        
+        print("missionposts")
+        print("2.1",missionposts)
+        print("2.2",type(missionposts))
+        print("2.3",missionposts.__getitem__(0).missionpost_id)
+     
 
         return render_template('search.html', missionposts = missionposts)
 
@@ -248,11 +254,27 @@ def search():
 
         missionposts = MissionPost.query.filter(MissionPost.title.like('%' + search_title + '%')).all()
 
-        mission_data = []
-        for posts in missionposts:
-            mission_data.append({"title": posts.title, "text":posts.text, "date":posts.date})
+        # mission_data = []
+        # for posts in missionposts:
+        #     mission_data.append({"title": posts.title, "text":posts.text, "date":posts.date})
 
-        return jsonify(mission_data)
+        # print("mission_data")
+        # print("3.1",mission_data)
+        # print("3.2",type(mission_data))
+        # print("3.3",jsonify(mission_data))
+        # print("3.4",mission_data.__dir__())
+        # print("3.5",mission_data.__getitem__(0))
+
+        if not missionposts:
+        
+            flash("No results")
+        
+        print("missionposts")
+        print("3.1",missionposts)
+        print("3.2",type(missionposts))
+        print("4.3",missionposts.__getitem__(0).missionpost_id)
+        #return missionposts=mission_data
+        return render_template('search.html', missionposts = missionposts)
 
 # @app.route('/search_ajax', methods = ["POST"])
 # def search2nd():

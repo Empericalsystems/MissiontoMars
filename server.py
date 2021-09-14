@@ -9,6 +9,7 @@ import mission_log
 import random
 import titles_ran
 
+
 from jinja2 import StrictUndefined
 
 import os

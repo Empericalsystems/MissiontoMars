@@ -3,19 +3,89 @@
 
   
 {% block body %}
-  <header>
+
+ 
+ <header class = "masthead">
+   
+    <img src="static/image/mars.jpg" class="img-fluid" alt="Responsive image">
+    <div class="card-img-overlay text-white d-flex justify-content-left align-items-center"> 
+      <h2 class="display-4 mb-0">3 Rovers<br />
+        <span class="d-block font-weight-bold">1 Hostile Planet</span></h2>
+    
+    </div>
+</header>
+
+
+  <div class="container" style="height: 300px;">
+  <div class="row">
+<div class="col-sm-6 offset-sm-3 text-center pt-5" >
+<h2 class = "h1-responsive">They had a mission.</h2>
+</div>
+
+<div class="col-sm-6 offset-sm-3 text-center" >
+<p>It didn't matter how long it took - they were built for this. But no one expected them to surive this long.</p>
+<p>This is their story, of courage and determination. Of obsession. And humour.</p> 
+<p>To go boldy where no man has gone before.</p>
+</div>
+</div>
+  </div> 
+
+</div>
+
+<section class="vh-100" style="background-color: #eee;">
+  <div class="container py-2 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+
+            <div class="container" style="height: 200px;">
+              <div class="row">
+                <div class="col-4">
+                  <img src="static/image/opportunity_Mars_Rover.jpg" class="img-fluid img center" alt="Opportunity">
+                  <button type="button" class="btn btn-outline-secondary ">Opportunity</button>
+              
+                </div>
+              
+                <div class="col-4">
+                  <img src="static/image/spirit.jpg" class="img-fluid img center" alt="Spirit">
+                  <button type="button" class="btn btn-outline-secondary">Spirit</button>
+                </div>
+                <div class="col-4">
+                  <img src="static/image/curiosity.jpg" class="img-fluid img center" alt="Curiosity">
+                  <div class="img-overlay">
+                  <button type="button" class="btn btn-outline-secondary">Curiosity</button>
+                </div>
+              </div>
+               
+
+             
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+ 
+
+
+ 
+
   
-    <h1>Mission to Mars: 3 Rovers, 1 Hostile Planet</h1>
+    
      
-  </header>
-  <nav>
+   
+ 
+
+  
     
   
     <p><a href="/rover/1"><button id = "button">Last Rover Standing: Curiosity</button></a></p>
     <p><a href="/rover/2"><button id = "button">Spirit's Log</button></a></p>
     <p><a href="/rover/3"><button id = "button">Opportunity the Hero</button></a></p>
     <p><a href="/about_you"><button id = "button">About You</button></a></p>
-  </nav>
+  
 
   <h2>New Account</h2>
   <form action="/users" method = "POST">
@@ -45,6 +115,8 @@
       <button type= 'submit' >Login</button>
     </p>
   </form>
+
+  </div
 
  
 {% endblock %}

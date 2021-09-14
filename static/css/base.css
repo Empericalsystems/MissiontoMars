@@ -1,5 +1,6 @@
 body{
-    background: white
+    background: white;
+    font-family: "Helvetica Neue", Arial, sans-serif;
   }
 
   * { box-sizing: border-box; }

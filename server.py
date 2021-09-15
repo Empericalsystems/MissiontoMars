@@ -166,12 +166,13 @@ def register_new_user():
     
     user = crud.get_user_by_email(email)
     if user:
-        flash('This email already exists. Please login.')
+        return 'This email already exists. Please login.'
     else: 
-        crud.create_user(email, password)
-        flash('Your account has been created!')
+        new_user = crud.create_user(email, password)
+        session["user_email"] = new_user.email
+        return 'Your account has been created!'
 
-    return redirect ('/')
+    # return redirect ('/')
 
 @app.route("/users/<user_id>")
 def show_user(user_id):
@@ -180,7 +181,7 @@ def show_user(user_id):
     user = crud.get_user_by_id(user_id)
     return render_template("user_details.html", user=user)
 
-@app.route('/login', methods = ['GET', 'POST'])
+@app.route('/login', methods = ['POST'])
 def login():
     """User login."""
     
@@ -190,19 +191,21 @@ def login():
     user = crud.get_user_by_email(email)
 
     if user:
-        if user.password == password:
+        if user.password == password and user.email == email:
         
             session["user_email"] = user.email
-            flash(f"Welcome back, {user.email}!")
-    elif not user or user.password != password:
-        flash("The email or password you entered was incorrect.")
+            return f"Welcome back, {user.email}!"
+        else:
+            return "The email or password you entered was incorrect."
     else:
-        flash("Sorry there appears to be an error with your login. Please try again later.")
+        return "Sorry there appears to be an error with your login. Please try again later."
 
         # Log in user by storing the user's email in session
     # print (session["user_email"])
+    #have a homepage.js that handles the routes for the sign up - can responsd with JSON or string to be
+    #rendered. 
         
-    return redirect("/")
+    # return redirect("/")
 
 @app.route('/logout')
 def logout_user():

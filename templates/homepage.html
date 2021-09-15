@@ -119,7 +119,7 @@
             <h5>Log In</h5>
           </span>
 
-          <form action='/login' id='loginForm' method='POST'>
+          <form id='loginForm' >
             <p>
               <input type='text' id='email' placeholder='Enter your user email' name='email'>
             </p>
@@ -145,7 +145,7 @@
           <h5>Register</h5>
         </span>
 
-        <form action="/users" method="POST">
+        <form id = "register">
 
           <p>
             <input type='text' placeholder='Enter your email' name='email'>
@@ -163,23 +163,16 @@
   </div>
 </section>
 
+<!-- The Modal -->
+<div id="myModal" class="modal">
 
-<!-- 
-  <div class="container" style="height: 300px;">
-  <div class="row">
-<div class="col-sm-6 offset-sm-3 text-center pt-5" ></div> -->
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p id= "modal_text">...</p>
+  </div>
 
-<!-- About our story -->
+</div>
 
-<!-- <h2 class = "h1-responsive pt-5">About <span style = color:#FFC700>MissiontoMars</span></h2> -->
-
-<!-- Row -->
-<!-- <div class = "row d-flex justify-content-center pt-5"> 
-    <div class = "col-md-8">
-      <p>
-      This is a (fictionalised) account, of what life would be like for our great Martian explorers, Spirit, Curiosity and Opportunity. 
-      You can explore their stories with real photos the rover's have taken during their time on Mars.</p>
-    </div>
-  </div> -->
-
+<script src="/static/alert.js"></script>
 {% endblock %}

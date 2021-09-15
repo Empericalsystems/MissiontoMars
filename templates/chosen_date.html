@@ -5,35 +5,65 @@
 {% endblock %}
 {% block body %}
 
-<body>
-  {% if 'user_email' in session%}
-  <p> You are logged in as {{session['user_email']}}</p>
-  <p><a href="/logout"><button id = "button">Logout</button></a></p>
-  {%endif%}
-<h1>
-  Mission Log  
-</h1>
-
-<h2>Rovername: {{r_name}}</h2>
-
-<div id = 'blog'>
-
-
-  <p>
-
  
+<div class = "container py-5"></div>
+<div class = "container py-2"></div>
 
-    {%if pics|length%}
-    <h2>Mission date: {{rover_datetext}}</h2>
+
+<body>
+  <div class = "container py-5">
+    <div class= "text-left mb-5">
+      <h3>MISSION SEARCH<span style=color:#ffcc00> | {{rover_datetext}} </span></h3>
+    </div>
+    <div class = "row text-center mb-5">
+      <div class = "col-8 mx-auto">
+        <h1>Mission Log:<span style=color:#fff5cc> {{r_name}} </span></h1>
+
+
+      </div>
+    </div>
+
+<div class = "row">
+  <div class = "col-8 mx-auto align-items-center">
+    <div class= "container">
+      <div class = "content">
+        {%if pics|length%} 
+        <div class = "pt-5"><h3>{{rover_posts_live.title}}</h3></div>
+        <!-- <p>Mission date: {{rover_datetext}}</p> -->
+
+        <p>
+          <img src="{{ pics}}">
+        </p>
+        
+        <p>{{rover_posts_live.quote}}</p>
+        <p>{{rover_posts_live.mission}}</p>
+        <div class = "under-bar pt-5"></div>
+        {%endif%}
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+    <!-- {%if pics|length%} 
+    <h3>{{rover_posts_live.title}}</h3>
     <p><img src="{{ pics}}"></p>
-    <p>{{rover_posts_live.title}}</p>
+    <p>Mission date: {{rover_datetext}}</p>
     <p>{{rover_posts_live.quote}}</p>
     <p>{{rover_posts_live.mission}}</p>
-    {%endif%}
+    <div class = "under-bar pt-5"></div>
+    {%endif%} -->
 
-  </p>
+  
   
 </div>
+</section>
+
+{% if 'user_email' in session%}
+<p> You are logged in as {{session['user_email']}}</p>
+<p><a href="/logout"><button id = "button">Logout</button></a></p>
+{%endif%}
 
 </body>
 </html>

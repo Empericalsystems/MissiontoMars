@@ -1,9 +1,17 @@
 body{
     background: white;
     font-family: 'GeoEditMedium', 'Franklin Gothic Medium', 'Franklin Gothic', 'ITC Franklin Gothic', Helvetica, Arial, sans-serif;
-    font-size: 18px;
+    font-size: 20px;
+    
   }
 
+.hline{
+  font-family: 'GeoEditMedium', 'Franklin Gothic Medium', 'Franklin Gothic', 'ITC Franklin Gothic', Helvetica, Arial, sans-serif;
+  font-size: 32px;
+  line-height:1.25;
+  font-weight:400;
+  /* text-transform:uppercase */
+}
  
 
 html, body {
@@ -17,29 +25,33 @@ html, body {
   object-fit: cover;
 }
 .uni_text{
-  color:rgb(255, 204, 0);
+  color:#ffcc00;
 }
 
 .btn-primary {
-  color:rgb(255, 204, 0);
-  background-color: rgb(255, 204, 0);
-  border-color: rgb(255, 204, 0);
+  color:rgb#ffcc00;
+  background-color: #ffcc00;
+  border-color: #ffcc00;
   width: 180px;
 }
 
 .btn-rover {
-  color:rgb(255, 204, 0);
-  background-color:rgb(255, 204, 0);
-  border-color:rgb(255, 204, 0);
+  color:#ffcc00;
+  background-color:#ffcc00;
+  border-color:#ffcc00;
   width: 180px;
 }
 
 .img-responsive {
-  width: 100%;
+  width: 900px;
   height: 900px;
 }
 
-
+.img-trans {
+  background-image: url("static/image/rover_concept.jpg");
+  opacity: 0.4;
+  filter: alpha(opacity=20);
+}
 
 .bar-image {
   background-image: url("/static/image/viking.jpg");
@@ -61,9 +73,22 @@ html, body {
 .small-icon {
   height: 30;
 }
+ 
+.under-bar {
+  text-decoration: None;
+  border-bottom:8px solid #ffcc00;
+}
+
+.back {
+  background: black;
+
+}
+
+.navbar-trans {
+  background-color: transparent;
+}
 
  
-
 /* body {
   font-family: 'Source Sans Pro', sans-serif;
 } */

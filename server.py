@@ -187,17 +187,11 @@ def login():
     email = request.form.get("email")
     password = request.form.get("password")
 
-    print (email)
-    print(password)
-
     user = crud.get_user_by_email(email)
-
-    print (user)
 
     if user:
         if user.password == password:
         
-        # check_password_hash(user.password, pwhash, password):
             session["user_email"] = user.email
             flash(f"Welcome back, {user.email}!")
     elif not user or user.password != password:
@@ -212,7 +206,7 @@ def login():
 
 @app.route('/logout')
 def logout_user():
-    session.mail = None
+    session.email = None
     flash("Sorry to see you go.")
     return redirect("/")
 
@@ -258,7 +252,6 @@ def search():
 
     else:
         search_title = request.form.get('search_title')
-
         missionposts = MissionPost.query.filter(MissionPost.title.like('%' + search_title + '%')).all()
 
         # mission_data = []

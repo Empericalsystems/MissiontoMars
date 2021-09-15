@@ -5,21 +5,28 @@
 {% endblock %}
 {% block body %}
 
-<header class="masthead">
-
-    <img src="/static/image/marscraters.jpg" class="img-fluid" alt="Responsive image">
+<header class="masthead back">
+    <div class = "container-fluid">
+    <img src="/static/image/marsland.jpg" class="img-fluid" alt="Responsive image">
     <div class = row>
     <div class="card-img-overlay text-white d-flex img-responsive justify-content-left align-items-center">
       <h2 class="display-4 auto-ml mb-0"><br />
         <span class="d-block font-weight-bold">Tell us about you</span>
       </h2>
+      
       <div class="img-overlay">
        </div>
     
-<div class="col-4 offset-2 form-group justify-content-right">
+<div class="col-6 offset-2 form-group justify-content-right">
 
- <h4>It will help us tailor our content to you</h4>
+
+ <div class="row justify-content-center pt-5">
  
+
+<div class="col-8  form-group">
+      <div class="card-header"><span class="d-block text-white">
+        </span>
+
 <form id = 'form_about' method = 'POST' action = '/about-user'>
     <p>
     <div class = 'form-user'> 
@@ -36,22 +43,23 @@
 
     <p>
     <div class = 'form-user'>
-        What is your age?<input type = 'number' name = 'age' id='age_year'>
+        How old are you?<input type = 'number' name = 'age' id='age_year'>
     </div>
     </p>
     <p>
     <div class = 'form-user'>
-        What is your favourite movie?<input type = 'text' name = 'movie' id='fav_movie'>
+        Your favourite movie?<input type = 'text' name = 'movie' id='fav_movie'>
     </div>
     </p>
-    <button type= 'submit'>Submit</button>
-
+    <button type='submit' class="btn btn-primary btn-block mb-4 text-black visible">Submit</button>
 
 </form>
 </div>
 </div>
 </div>
+<!-- </div> -->
 </div>
+
 </header>
 
 <script src = 'static/about_user.js'></script>

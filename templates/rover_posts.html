@@ -5,95 +5,100 @@
 {% block body %}
 
 
-<header class = "masthead">
+<header class = "masthead" >
    
   <img src="/static/image/rover_concept.jpg" class="img-fluid" alt="Responsive image">
   <div class="card-img-overlay text-black d-flex justify-content-left align-items-center"> 
-    <h2 class="display-4 mb-0">Mission Logs </h2><br />
-    <h3>{{r_name}}</h3><br />
-    <h6>Mission date: {{rover_datetext}}</h6><br />
-  </div>
+    <span><h2> Mission Logs</h2></span>
+  <span class="d-block"><h3>{{r_name}}</h3></span>
+<h6>Mission date: {{rover_datetext}}</h6><br />
+</div>
 
-
-  
 </header>
 
 <body>
+
+
+  
+  <section id = "Description" class = "text-center">
+
+
+    <h2 class = "h1-responsive pt-5">Select a <span style = color:rgb(255,204,0)>Date</span></h2>
+  
+      <form action = '/new_date/{{r_id}}' method = 'POST'>
+      
+       
+        {%if r_id == "1" %}
+        <p> Select date from Curiosity's mission. </p>
+        <p>He landed on: 2012-08-06 and is currently still operational.</p>
+        <input type='date' id = 'mission_date1' min= '2012-08-06'  name = 'date' onchange='this.form.submit()'>
+        {%endif%}
+
+        {%if r_id == "2" %}
+        <p>Select date from Spirit's mission. </p>
+        <p>She landed on: 2004-01-04 and her last transmission was on 2010-03-22 </p>
+       <input type='date' id = 'mission_date2' min= '2004-01-04' max = '2010-03-22' name = 'date' onchange='this.form.submit()'> 
+          
+        {%endif%}
+
+        {%if r_id == "3" %}
+        <p>Select date Opportunity's mission. </p>
+        <p>He landed on: 2004-01-25 and his last transmission was 2018-06-10</p>
+        <input type='date' id = 'mission_date3' min= '2004-01-25' max = '2018-06-10' name = 'date' onchange='this.form.submit()'>
+      </div>
+        </p>
+        {%endif%}
+      </form>
+    </section>
+
+  <form  action = '/search' method = 'GET'>
+    <p>
+      Search for a post title 
+      <input type = 'text' name = 'search_title'>  
+    </p>
+  </form>
+
+  
+  
+  <div class = "row show-grid" id = 'blog'>
+
+    {% for post in rover_posts%} 
+        
+    <p>
+    
+      
+      <img src = '{{post.photos[0].photo_path}}'>  
+    </p>
+    <p>{{post.date}}</p>
+    <p>{{post.title}}</p>
+    <p>{{post.text}}</p>
+
+{%endfor%}
+
+    <div class = "col-6">
+      <div class = "equal-size">
+
+      </div>
+
+    </div>
+    
+    <div class = "col-6">
+      <div class = "equal-size">
+        
+      </div>
+
+    </div>
+
+   
+  </div>
+
   {% if 'user_email' in session%}
   <p> You are logged in as {{session['user_email']}}</p>
   <p><a href="/logout"><button id = "button">Logout</button></a></p>
   {%endif%}
-
-
-
-
-
-
-<form action = '/new_date/{{r_id}}' method = 'POST'>
-  <p>
-    
-  </p>
-  {%if r_id == "1" %}
-  <p> Select date from Curiosity's mission. </p>
-  <p>He landed on: 2012-08-06 and is currently still operational.</p>
-   <input type='date' id = 'mission_date1' min= '2012-08-06'  name = 'date' onchange='this.form.submit()'>
-  {%endif%}
-
-  {%if r_id == "2" %}
-  <p>Select date from Spirit's mission. </p>
-  <p>She landed on: 2004-01-04 and her last transmission was on 2010-03-22 </p>
-  <input type='date' id = 'mission_date2' min= '2004-01-04' max = '2010-03-22' name = 'date' onchange='this.form.submit()'> 
-     
-  {%endif%}
-
-  {%if r_id == "3" %}
-  <p>Select date Opportunity's mission. </p>
-  <p>He landed on: 2004-01-25 and his last transmission was 2018-06-10</p>
-  <input type='date' id = 'mission_date3' min= '2004-01-25' max = '2018-06-10' name = 'date' onchange='this.form.submit()'>
-     
-  </p>
-  {%endif%}
-
-</form>
-
-<form  action = '/search' method = 'GET'>
-
-  <p>
-    Search for a post title 
-    <input type = 'text' name = 'search_title'>
-   
-   </p>
-
   
-  
-</form>
-
-
-
-<div id = 'blog'>
-
-  {% for post in rover_posts%} 
-      
-        <p>
-        
-          
-          <img src = '{{post.photos[0].photo_path}}'>  
-        </p>
-        <p>{{post.date}}</p>
-        <p>{{post.title}}</p>
-        <p>{{post.text}}</p>
-     
-  {%endfor%}
-
-
-    
-  <p></p>
-  
-
-</div>
+  </body>
  
-</body>
-</html>
 
 {% endblock %}
  

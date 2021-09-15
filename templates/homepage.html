@@ -1,180 +1,167 @@
 {% extends 'base.html' %}
 
 
-  
+
 {% block body %}
 
- 
- <header class = "masthead">
-   
-    <img src="/static/image/mars.jpg" class="img-fluid" alt="Responsive image">
-    <div class="card-img-overlay text-white d-flex justify-content-left align-items-center"> 
-      <h2 class="display-4 mb-0">3 Rovers<br />
-      <span class="d-block font-weight-bold">1 Hostile Planet</span></h2>
-    
-    <div class = "img-overlay">
-      <button type = "button" class = "btn btn-primary text-black align-items-center" >Explore</button>
-    </div>
-    </div>
 
-    
+<header class="masthead">
+
+  <img src="/static/image/mars.jpg" class="img-fluid" alt="Responsive image">
+  <div class="card-img-overlay text-white d-flex justify-content-left align-items-center">
+    <h2 class="display-4 mb-0">3 Rovers<br />
+      <span class="d-block font-weight-bold">1 Hostile Planet</span>
+    </h2>
+
+    <div class="img-overlay">
+      <button type="button" class="btn btn-primary text-black align-items-center">Explore</button>
+    </div>
+  </div>
 </header>
 
-<section id = "Description" class = "text-center">
+<section id="Description" class="text-center">
 
-
-  <h2 class = "h1-responsive pt-5">About <span style = color:rgb(255,204,0)>MissiontoMars</span></h2>
-
+  <h2 class="h1-responsive pt-5">About <span style=color:rgb(255,204,0)>MissiontoMars</span></h2>
   <!-- Row -->
-  <div class = "row d-flex justify-content-center pt-5"> 
-    <div class = "col-md-8">
-      <p>It doesn't matter how long it takes - they were built for this mission. But no one expected them to survive out here this long.
-      This is a (fictionalised) story, of what life would be like for our great Martian explorers, Spirit, Opportunity and Curiosity. Filled with courage, determination, obsession - and a little humour.</p> 
+  <div class="row d-flex justify-content-center pt-5">
+    <div class="col-md-8">
+      <p>It doesn't matter how long it takes - they were built for this mission. But no one expected them to survive out
+        here this long.
+        This is a (fictionalised) story, of what life would be like for our great Martian explorers, Spirit, Opportunity
+        and Curiosity. Filled with courage, determination, obsession - and a little humour.</p>
       <p>To go boldy where no wo/man has gone before.</p>
     </div>
   </div>
 </section>
-
 
 <!-- Images -->
-<section>
+<section id="Description" class="text-center">
+  <!-- <h2 class="h1-responsive pt-5"> <span style=color:rgb(255,204,0)>Meet </span> the Explorers</h2> -->
 
-<div class = "container">
-<div class="row justify-content-center align-top pt-5">
-  <div class="col-md-4 mb-4">
-  
-    <img src="static/image/curiosity.jpg" class="img-fluid img center image-resize" alt="Curiosity">
-    <h4 class = my-4>Curiosity</h4>
-    <p>Curiosity arrived late to the team. Not subject to irrationality or emotional turmoil, he sometimes steps on a few toes...uh hum... maybe a few wheels.</p>
-    <p><b>"Picturesque descriptions will not mend broken circuits."</b></p>   
-    <p><a href="/rover/1"><button class="btn btn-primary btn-block mb-4 text-black" id = "button">More</button></a></p>
-  
-  </div>
-  
+  <div class="container">
+    <div class="row justify-content-center align-top pt-5">
 
-  <div class="col-md-4 mb-4">
-    <img src="static/image/spirit.jpg" class="img-fluid img center image-resize" alt="Spirit">
-    <h4 class = my-4>Spirit</h4>
-    <p>She beat her twin, Opportunity, to Mars by a few days. But Spirit's not the competitive type. She's serious about her life on Mars ...just as serious as she is about chocolate.</p>
-    <p><b>"This rover's favorite chocolate is a mars bar."</b></p>
-    <p><a href="/rover/2"><button class="btn btn-primary btn-block mb-4 text-black" id = "button">More</button></a></p>
-    
-  </div>
+      <div class="col-md-4 mb-4">
+        <img src="static/image/curiosity.jpg" class="img-fluid img center image-resize" alt="Curiosity">
+        <h4 class=my-4>Curiosity</h4>
+        <p>Curiosity arrived late to the team. Not subject to irrationality or emotional turmoil, he sometimes steps on
+          a few toes...uh hum... maybe a few wheels.</p>
+        <p><b>"Picturesque descriptions will not mend broken circuits."</b></p>
+        <p><a href="/rover/1"><button class="btn btn-primary btn-block mb-4 text-black" id="button">More</button></a>
+        </p>
+      </div>
 
-  <div class="col-md-4 mb-4"> 
-            
-    <img src="static/image/opportunity_Mars_Rover.jpg" class="img-fluid img center image-resize" alt="Opportunity">
-    <h4 class = my-4>Opportunity</h4>
-    <p>One of the geologist twins. He arrived on Mars after his sister, Spirit. He lasted much longer than anyone, even his creators, expected.</p>
-    <p><b>"I have encountered 1,754 non-Human races during my tenure in NASA."</b></p>
-    <p><a href="/rover/3"><button class="btn btn-primary btn-block mb-4 text-black" id = "button">More</button></a></p>
-    
-  
+
+      <div class="col-md-4 mb-4">
+        <img src="static/image/spirit.jpg" class="img-fluid img center image-resize" alt="Spirit">
+        <h4 class=my-4>Spirit</h4>
+        <p>She beat her twin, Opportunity, to Mars by a few days. But Spirit's not the competitive type. She's serious
+          about her life on Mars ...just as serious as she is about chocolate.</p>
+        <p><b>"This rover's favorite chocolate is a mars bar."</b></p>
+        <p><a href="/rover/2"><button class="btn btn-primary btn-block mb-4 text-black" id="button">More</button></a>
+        </p>
+
+      </div>
+
+      <div class="col-md-4 mb-4">
+
+        <img src="static/image/opportunity_Mars_Rover.jpg" class="img-fluid img center image-resize" alt="Opportunity">
+        <h4 class=my-4>Opportunity</h4>
+        <p>One of the geologist twins. He arrived on Mars after his sister, Spirit. He lasted much longer than anyone,
+          even his creators, expected.</p>
+        <p><b>"I have encountered 1,754 non-Human races during my tenure in NASA."</b></p>
+        <p><a href="/rover/3"><button class="btn btn-primary btn-block mb-4 text-black" id="button">More</button></a>
+        </p>
+
+
+      </div>
+
+    </div>
   </div>
-  
-</div>  
-</div>
 
 </section>
-<div class = "container">
-
-</div>
 
 
-<section>
-
-
-</header>
-
-<section id = "Description" class = "text-center">
-
-
-  <h2 class = "h1-responsive pt-5"> <span style = color:rgb(255,204,0)>MissiontoMars</span></h2>
+<section id="Description" class="text-center" style="background-color: #eee">
+  <h2 class="h1-responsive pt-5"> <span style=color:rgb(255,204,0)>Quote </span>of the Day</h2>
 
   <!-- Row -->
-  <div class = "row d-flex justify-content-center pt-5"> 
-    <div class = "col-md-8">
-      <p>To go boldy where no wo/man has gone before.</p>
+  <div class="row d-flex justify-content-center pt-5">
+    <div class="col-md-6">
+      
+      <div class="card pt-5 text-center mb-4">
+        <div class = "align-left small-icon">
+        <img src = /static/image/quote.png >  
+        </div>
+        <blockquote class="blockquote">
+          <p>To go boldy where no wo/man has gone before.</p>
+        </blockquote>
+      </div>
     </div>
   </div>
-</section>
- 
-  <header class = "masthead">
-  <img src="static/image/mars_water.png" class="img-responsive" alt="Responsive image">
-  <div class="card-img-overlay text-white d-flex justify-content-left align-items-center"> 
+  <div class=pt-5>
 
-    
-    </div>
   </div>
-  </header>
-
-
-
-
 </section>
-  
-  
 
+
+
+<section class="bar-image">
 
 
   <!--Login to your account  -->
 
-<div class= "container">  
-  <div class = "d-flex justify-content-center">
-    <div class = "card ">
-      <div class = "card-header"><span class="d-block"><h5>Log In</h5> </span>
-        
-          <form action = '/login' id= 'loginForm' method = 'POST'>
-    <p>
-      <input type = 'text' id = 'email' placeholder = 'Enter your user email' name = 'email'>
-    </p>
+  <div class="row justify-content-center pt-5">
+ 
 
-    <p>
-       <input type = 'password' placeholder = 'Enter your password' id = 'password' name = 'password'>
-    </p>
+      <div class="col-2  form-group">
+        <div class="card-header"><span class="d-block text-white">
+            <h5>Log In</h5>
+          </span>
 
-    <p>
-      <button type= 'submit' class = "btn btn-primary btn-block mb-4 text-black">Login</button>
-    </p>
-  </form>
-      </div>
-    </div>
-  </div>
-</div>  
+          <form action='/login' id='loginForm' method='POST'>
+            <p>
+              <input type='text' id='email' placeholder='Enter your user email' name='email'>
+            </p>
 
+            <p>
+              <input type='password' placeholder='Enter your password' id='password' name='password'>
+            </p>
 
-<!-- Register for a new Account -->
-<div class= "container">  
-  <div class = "d-flex justify-content-center">
-    <div class = "card ">
-      <div class = "card-header"><span class="d-block"><h5>Register</h5> </span>
-        
-        <form action="/users" method = "POST">
-
-        <div class = "form-outline mb-4 justify-content-center" >
-          <p>
-          <input type = 'text' placeholder = 'Enter your email' name = 'email'>
-          </p>
-
-          <p>
-          <input type = 'password' placeholder = 'Enter a password' name = 'password'>
-          </p>
-          <p>
-            <button type= 'submit' class = "btn btn-primary btn-block mb-4 text-black">Register</button>
-          </p>
+            <p>
+              <button type='submit' class="btn btn-primary btn-block mb-4 text-black visible">Login</button>
+            </p>
+          </form>
         </div>
       </div>
-        </form> 
+
+
+
+
+    <!-- Register for a new Account -->
+
+    <div class="col-6 form-group">
+      <div class="card-header"><span class="d-block text-white">
+          <h5>Register</h5>
+        </span>
+
+        <form action="/users" method="POST">
+
+          <p>
+            <input type='text' placeholder='Enter your email' name='email'>
+          </p>
+
+          <p>
+            <input type='password' placeholder='Enter a password' name='password'>
+          </p>
+          <p>
+            <button type='submit' class="btn btn-primary btn-block mb-4 text-black">Register</button>
+          </p>
+        </form>
       </div>
     </div>
   </div>
-</div> 
-
-
-<p><a href="/rover/1"><button id = "button">Last Rover Standing: Curiosity</button></a></p>
-<p><a href="/rover/2"><button id = "button">Spirit's Log</button></a></p>
-<p><a href="/rover/3"><button id = "button">Opportunity the Hero</button></a></p>
-<p><a href="/about_you"><button id = "button">About You</button></a></p>
+</section>
 
 
 <!-- 
@@ -182,17 +169,17 @@
   <div class="row">
 <div class="col-sm-6 offset-sm-3 text-center pt-5" ></div> -->
 
-  <!-- About our story -->
+<!-- About our story -->
 
-  <!-- <h2 class = "h1-responsive pt-5">About <span style = color:#FFC700>MissiontoMars</span></h2> -->
+<!-- <h2 class = "h1-responsive pt-5">About <span style = color:#FFC700>MissiontoMars</span></h2> -->
 
-  <!-- Row -->
-  <!-- <div class = "row d-flex justify-content-center pt-5"> 
+<!-- Row -->
+<!-- <div class = "row d-flex justify-content-center pt-5"> 
     <div class = "col-md-8">
       <p>
       This is a (fictionalised) account, of what life would be like for our great Martian explorers, Spirit, Curiosity and Opportunity. 
       You can explore their stories with real photos the rover's have taken during their time on Mars.</p>
     </div>
   </div> -->
- 
+
 {% endblock %}

@@ -36,19 +36,33 @@ html, body {
 
 .img-responsive {
   width: 100%;
-  height: 600px;
+  height: 900px;
 }
 
-.transparent {
-  opacity: 0.5;
-  background-color:#000;
-  /* background: linear-gradient(
-    rgba(0,0,0,10),
-    rgba(0,0,0,10) */
-    
-  );
-  
+
+
+.bar-image {
+  background-image: url("/static/image/viking.jpg");
+  background-repeat: no-repeat;
+
 }
+
+.post-image{
+  background-image: url("/static/image/rover_concept.jpg");
+  background-repeat: no-repeat;
+
+}
+
+.inc-date {
+  Height: 300px;
+  width: 300px
+}
+
+.small-icon {
+  height: 30;
+}
+
+ 
 
 /* body {
   font-family: 'Source Sans Pro', sans-serif;

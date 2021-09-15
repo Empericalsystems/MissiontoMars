@@ -187,10 +187,16 @@ def login():
     email = request.form.get("email")
     password = request.form.get("password")
 
+    print (email)
+    print(password)
+
     user = crud.get_user_by_email(email)
+
+    print (user)
 
     if user:
         if user.password == password:
+        
         # check_password_hash(user.password, pwhash, password):
             session["user_email"] = user.email
             flash(f"Welcome back, {user.email}!")
@@ -200,6 +206,7 @@ def login():
         flash("Sorry there appears to be an error with your login. Please try again later.")
 
         # Log in user by storing the user's email in session
+    # print (session["user_email"])
         
     return redirect("/")
 
@@ -272,7 +279,7 @@ def search():
         print("missionposts")
         print("3.1",missionposts)
         print("3.2",type(missionposts))
-        print("4.3",missionposts.__getitem__(0).missionpost_id)
+        print("3.4",missionposts.__getitem__(0).missionpost_id)
         #return missionposts=mission_data
         return render_template('search.html', missionposts = missionposts)
 

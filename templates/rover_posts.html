@@ -6,9 +6,11 @@
 
 
 <header class = "masthead" >
- 
+
+
   <img src="/static/image/rover_concept.jpg" class="img-trans img-fluid" alt="Responsive image">
-  <div class="card-img-overlay col-4 offset-4  text-black d-flex justify-content-left align-items-center">
+  <div class="card-img-overlay col-4 offset-4  text-black d-flex justify-content-left align-items-center" style="
+  margin-top: 200px;">
  
 
 <section id="Description" class="text-center align-items-center">
@@ -20,24 +22,24 @@
     
      
       {%if r_id == "1" %}
-      <p> Generate a new mission log from Curiosity's mission. </p>
+      <p> Click the calendar below </p>
       <p>He landed on: 2012-08-06 and is currently still operational.</p>
       <input type='date' id = 'mission_date1' min= '2012-08-06'  name = 'date' onchange='this.form.submit()'>
       {%endif%}
 
       {%if r_id == "2" %}
-      <p>Generate a new mission log from Spirit's mission. </p>
+      <p>Click the calendar below </p>
       <p>She landed on: 2004-01-04 and her last transmission was on 2010-03-22 </p>
      <input type='date' id = 'mission_date2' min= '2004-01-04' max = '2010-03-22' name = 'date' onchange='this.form.submit()'> 
         
       {%endif%}
 
       {%if r_id == "3" %}
-      <p>Generate a new mission log from Opportunity's mission. </p>
+      <p>Click the calendar below </p>
       <p>He landed on: 2004-01-25 and his last transmission was 2018-06-10</p>
       <input type='date' id = 'mission_date3' min= '2004-01-25' max = '2018-06-10' name = 'date' onchange='this.form.submit()'>
-    </div>
-      </p>
+    
+     
       {%endif%}
     </form>
 
@@ -51,18 +53,20 @@
           <form  action = '/search' method = 'GET'> 
             
             <input type= "search" class = 'mw-100 search col-lg-8' type = 'text' name = 'search_title' placeholder = 'Search title'>  
-          </form>
+          
            
         </div>  
         <div class=pt-5></div>
-        <div class=pt-2></div>
-<!-- 
-        <div class="img-overlay">
-          <a href: "" role= "button" class = "btn btn-primary px-5">More</a>  </div>
-      </div> -->
+       
 
+        <div class="img-overlay">
+          <a href= "#archive" role= "button" class = "btn btn-primary text-black px-5">Mission Archive ⬇</a>  </div>
+      </div>
+    </div>
+  </form>
   </section>
 </header>
+
 <body>
 
     
@@ -70,52 +74,49 @@
       
         <!-- </div>    -->
        
-      <div class=pt-5>
+      <div class=pt-5 id = "archive">
     
 <section>
-  <div class = "container py-5">
+  <div class = "container py-5" >
     <div class= "text-left mb-5">
       <h3>MISSION ARCHIVE<span style=color:#ffcc00> | {{r_name}} </span></h3>
     </div>
     <div class = "row text-center mb-5">
       <div class = "col-8 mx-auto">
-        <!-- <h2>Archive:<span style=color:#ffcc00> {{r_name}} </span></h2> -->
-
+ 
 
       </div>
     </div>
 
-    <div class = "row">
-      <div class = "col-8 mx-auto align-items-center">
-      <div class = "container">
-        <div class="content">
-          {% for post in rover_posts%} 
-        
-          <div class = "pt-5"><h3>{{post.title}}</h3></div>
-          <p>
-            <img src = '{{post.photos[0].photo_path}}'>  
-          </p>
+    <div class = "container">
+      {% for post in rover_posts%} 
+      <h3 class="my-4 pt-5">{{post.title}}</h3>
+      <div class = "row">
+        <div class ="col-md-8">
+          <img class= "img-fluid" src = '{{post.photos[0].photo_path}}'> 
+          <div class = "under-bar pt-5"></div>
+          
+        </div>
+
+        <div class="col-md-4 pt-4">
           <p>{{post.date}}</p> 
           <p>{{post.text}}</p>
-          <div class = "under-bar pt-5"></div>
-      
-        {%endfor%}
-
-
+          
+          
+          
         </div>
       </div>
+      <div class = "pt-5"></div>
+    
+      {%endfor%}
+
     </div>
-    </div>
-
-
-
-  </div>
   
 </section>
 
   {% if 'user_email' in session%}
   <p> You are logged in as {{session['user_email']}}</p>
-  <p><a href="/logout"><button id = "button">Logout</button></a></p>
+  <p><a href="/logout"><button id = "button" class = "btn btn-primary text-black px-5">Logout</button></a></p>
   {%endif%}
   
   </body>

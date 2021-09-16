@@ -1,12 +1,7 @@
   
 {% extends 'base.html' %}
-{% block head %}
 
-  {{ super() }}
-{% endblock %}
 {% block body %}
-
- 
 
  
 <div class = "container py-5"></div>
@@ -25,6 +20,7 @@
 
       </div>
     </div>
+   </div> 
 
 <!-- <form id = 'form_search' >
   <p>
@@ -33,7 +29,7 @@
   </p>
 </form> -->
 <h1> These are your results:</h1>
-<div id = 'blog'>
+<div id = 'blog'class = "pt-5">
 
   <ul> 
   {%for title in missionposts%}
@@ -42,10 +38,10 @@
    
   {%endfor%}
   </ul>
-
-
+<div class = "pt-5"></div>
 </div>
 </body>
+
     
 <script src="/static/search.js"></script>
  

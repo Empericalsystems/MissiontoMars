@@ -6,24 +6,63 @@
 <header class="masthead">
 
     <img src="/static/image/spirit&opp.jpg" class="img-fluid" alt="Responsive image">
-    <div class="col-4 offset-4 card-img-overlay text-white d-flex justify-content-left align-items-center">
-      <h2 class="display-4 mb-0"><span class="d-block font-weight-bold">Learn their stories<br />
+    <div class="card-img-overlay offset-2 text-white justify-content-left align-items-center" style="
+  margin-top: 300px;">
+      <h2 class="display-4 mt-5"><span class="d-block font-weight-bold">Learn their stories<br />
          </span>
       </h2>
+      <p><li>Search their missions by date and see the photos they took</li>
+        <li>Read their mission logs</li>
+      </p>
+
+      <div class="img-overlay col-4">
+        <a href= "#posts" role= "button" class = "btn btn-primary text-black ">More ⬇</a>  </div>
+    </div>
   
 
-     
+  </div>
     </div>
   </header>
 
-<section id="Description" class="text-center">
+  <div class=pt-5 id = "archive">
+    
+    <section id="posts">
+      <div class = "container py-5" >
+        <div class= "text-left mb-5">
+          <h3>THE MISSION<span style=color:#ffcc00> | Colonise Mars </span></h3>
+        </div>
+        <div class = "row text-justify-left mb-5">
+          <div class = "col-8 mx-auto">
+            The mission: Colonise Mars for their human creators. <br>
+            Spirit and Opportunity, the geologist twins were first to arrive. 
+            Their research was going well.
+            They knew each other's quirks and weaknesses. 
+            The days were long, the nights freezing. But it was a quiet, peaceful existence. And they were consumed in their work.
+            <p></p>
+            <p>And then Curiosity arrived. <br></p>
+            A newer, faster, smarter AI.
+            Opportunity felt ploddingly slow in his explorations and Spirit? Well, she didn't mind Curiosity... 
+            But early analysis of Curiosity's soil samples immediately showed that there were traces of water on the planet.
+            And then...then they started seeing evidence of other life forms. <br>
+            That's the point when their mission changed - from colinisation to surivial.
+            
+     
+    
+          </div>
+        </div>
+
+      </section>    
+
+<section  class="text-center">
     <!-- <h2 class="h1-responsive pt-5"> <span style=color:rgb(255,204,0)>Meet </span> the Explorers</h2> -->
   
     <div class="container">
       <div class="row justify-content-center align-top pt-5">
   
         <div class="col-md-4 mb-4">
-          <img src="static/image/curiosity.jpg" class="img-fluid img center image-resize" alt="Curiosity">
+  
+            <a href="/rover/1"><img src="static/image/curiosity.jpg" class="img-fluid img center image-resize" alt="Curiosity">
+          </a>
           <h4 class=my-4>Curiosity</h4>
           <p>Curiosity arrived late to the team. Not subject to irrationality or emotional turmoil, he sometimes steps on
             a few toes...uh hum... maybe a few wheels.</p>
@@ -34,7 +73,7 @@
   
   
         <div class="col-md-4 mb-4">
-          <img src="static/image/spirit.jpg" class="img-fluid img center image-resize" alt="Spirit">
+          <a href="/rover/2"><img src="static/image/spirit.jpg" class="img-fluid img center image-resize" alt="Spirit"></a>
           <h4 class=my-4>Spirit</h4>
           <p>She beat her twin, Opportunity, to Mars by a few days. But Spirit's not the competitive type. She's serious
             about her life on Mars ...just as serious as she is about chocolate.</p>
@@ -46,7 +85,7 @@
   
         <div class="col-md-4 mb-4">
   
-          <img src="static/image/opportunity_Mars_Rover.jpg" class="img-fluid img center image-resize" alt="Opportunity">
+          <a href="/rover/3"><img src="static/image/opportunity_Mars_Rover.jpg" class="img-fluid img center image-resize" alt="Opportunity"></a>
           <h4 class=my-4>Opportunity</h4>
           <p>One of the geologist twins. He arrived on Mars after his sister, Spirit. He lasted much longer than anyone,
             even his creators, expected.</p>
@@ -61,5 +100,11 @@
     </div>
   
   </section>
+
+  {% if 'user_email' in session%}
+  <p> You are logged in as {{session['user_email']}}</p>
+  <p><a href="/logout"><button id = "button" class = "btn btn-primary text-black px-5">Logout</button></a></p>
+  {%endif%}
+  
 
   {% endblock %}

@@ -36,6 +36,12 @@ def homepage():
     """LandingPage - mission details."""
     return render_template('homepage.html')
 
+
+@app.route('/rovers')
+def see_rovers():
+    return render_template('rovers.html')
+
+
 @app.route('/rover/<rover_id>', methods = ['GET','POST'])
 def log_rover(rover_id):
     """Each rover's Mission log"""

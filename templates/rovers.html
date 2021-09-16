@@ -1,0 +1,65 @@
+  
+{% extends 'base.html' %}
+
+{% block body %}
+
+<header class="masthead">
+
+    <img src="/static/image/spirit&opp.jpg" class="img-fluid" alt="Responsive image">
+    <div class="col-4 offset-4 card-img-overlay text-white d-flex justify-content-left align-items-center">
+      <h2 class="display-4 mb-0"><span class="d-block font-weight-bold">Learn their stories<br />
+         </span>
+      </h2>
+  
+
+     
+    </div>
+  </header>
+
+<section id="Description" class="text-center">
+    <!-- <h2 class="h1-responsive pt-5"> <span style=color:rgb(255,204,0)>Meet </span> the Explorers</h2> -->
+  
+    <div class="container">
+      <div class="row justify-content-center align-top pt-5">
+  
+        <div class="col-md-4 mb-4">
+          <img src="static/image/curiosity.jpg" class="img-fluid img center image-resize" alt="Curiosity">
+          <h4 class=my-4>Curiosity</h4>
+          <p>Curiosity arrived late to the team. Not subject to irrationality or emotional turmoil, he sometimes steps on
+            a few toes...uh hum... maybe a few wheels.</p>
+          <p><b>"Picturesque descriptions will not mend broken circuits."</b></p>
+          <p><a href="/rover/1"><button class="btn btn-primary btn-block mb-4 text-black" id="button">More</button></a>
+          </p>
+        </div>
+  
+  
+        <div class="col-md-4 mb-4">
+          <img src="static/image/spirit.jpg" class="img-fluid img center image-resize" alt="Spirit">
+          <h4 class=my-4>Spirit</h4>
+          <p>She beat her twin, Opportunity, to Mars by a few days. But Spirit's not the competitive type. She's serious
+            about her life on Mars ...just as serious as she is about chocolate.</p>
+          <p><b>"This rover's favorite chocolate is a mars bar."</b></p>
+          <p><a href="/rover/2"><button class="btn btn-primary btn-block mb-4 text-black" id="button">More</button></a>
+          </p>
+  
+        </div>
+  
+        <div class="col-md-4 mb-4">
+  
+          <img src="static/image/opportunity_Mars_Rover.jpg" class="img-fluid img center image-resize" alt="Opportunity">
+          <h4 class=my-4>Opportunity</h4>
+          <p>One of the geologist twins. He arrived on Mars after his sister, Spirit. He lasted much longer than anyone,
+            even his creators, expected.</p>
+          <p><b>"I have encountered 1,754 non-Human races during my tenure in NASA."</b></p>
+          <p><a href="/rover/3"><button class="btn btn-primary btn-block mb-4 text-black" id="button">More</button></a>
+          </p>
+  
+  
+        </div>
+  
+      </div>
+    </div>
+  
+  </section>
+
+  {% endblock %}

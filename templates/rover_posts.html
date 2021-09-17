@@ -9,34 +9,38 @@
 
 
   <img src="/static/image/rover_concept.jpg" class="img-trans img-fluid" alt="Responsive image">
-  <div class="card-img-overlay col-4 offset-4  text-black d-flex justify-content-left align-items-center" style="
+
+  <div class="card-img-overlay trans-box justify-center col-8 offset-4  text-white d-flex justify-content-center align-items-center" style="
   margin-top: 200px;">
  
 
-<section id="Description" class="text-center align-items-center">
+<section id="Description" class="text-center align-items-center ">
  
 
-  <h1 class = "h1-responsive pt-5">Generate {{r_name}}'s New Mission Log </span></h1>
+  <h1 class = "hline h1-responsive pt-5 ">Generate {{r_name}}'s New Mission Log </span></h1>
 
     <form action = '/new_date/{{r_id}}' method = 'POST'>
     
      
       {%if r_id == "1" %}
-      <p> Click the calendar below </p>
+     
       <p>He landed on: 2012-08-06 and is currently still operational.</p>
+      <p>SEARCH with the calendar below ⬇</p>
       <input type='date' id = 'mission_date1' min= '2012-08-06'  name = 'date' onchange='this.form.submit()'>
       {%endif%}
 
       {%if r_id == "2" %}
-      <p>Click the calendar below </p>
+       
       <p>She landed on: 2004-01-04 and her last transmission was on 2010-03-22 </p>
+      <p>Click the calendar below ⬇</p>
      <input type='date' id = 'mission_date2' min= '2004-01-04' max = '2010-03-22' name = 'date' onchange='this.form.submit()'> 
         
       {%endif%}
 
       {%if r_id == "3" %}
-      <p>Click the calendar below </p>
+      
       <p>He landed on: 2004-01-25 and his last transmission was 2018-06-10</p>
+      <p>SEARCH with the calendar below ⬇</p>
       <input type='date' id = 'mission_date3' min= '2004-01-25' max = '2018-06-10' name = 'date' onchange='this.form.submit()'>
     
      
@@ -45,7 +49,7 @@
 
     <h2 class="h1-responsive pt-5"> Search </span>Mission Logs</h2> 
        
-    <div class="row d-flex justify-content-center pt-5">
+    <div class="row d-flex justify-content-center pt-3">
         
         <!-- <div class = "input-group"> -->
         <div class="col-md-6" class = "form-group">

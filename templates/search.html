@@ -28,18 +28,32 @@
   
   </p>
 </form> -->
-<h1> These are your results:</h1>
-<div id = 'blog'class = "pt-5">
 
-  <ul> 
-  {%for title in missionposts%}
+<div class = "row">
+  <div class = "col-8 mx-auto align-items-center">
+    <div class= "container">
+      <div class = "content">
+        <h1> These are your results:</h1>
+        <div id = 'blog'class = "pt-5">
 
-    <li>{{title.missionpost_id}} {{title.title}}</li>
-   
-  {%endfor%}
-  </ul>
-<div class = "pt-5"></div>
+          <ul> 
+          {%for title in missionposts%}
+
+            <li>{{title.missionpost_id}} {{title.title}}</li>
+          
+          {%endfor%}
+          </ul>
+        <div class = "pt-5"></div>
+        <div class = "under-bar pt-5"></div>
+        <div class = "pt-5"></div>
+
+        </div>
+        </div>
+        </div>
+        </div>
 </div>
+
+
 </body>
 
     

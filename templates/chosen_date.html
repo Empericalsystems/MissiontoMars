@@ -12,6 +12,13 @@
     <div class= "text-left mb-5">
       <h3>MISSION SEARCH<span style=color:#ffcc00> | {{rover_datetext}} </span></h3>
     </div>
+    <div class= "text-left mb-5" >
+      <!-- <audio id = "marsSounds">
+        <source src="/static/sounds/mars_sound.mp3">
+      </audio>
+      <h3> <button onclick="playAudio()"> ▶️ </button> PLAY SOUND</span></h3>
+    </div>
+   -->
     <div class = "row text-center mb-5">
       <div class = "col-8 mx-auto">
         <h1>Mission Log:<span style=color:#ffcc00> {{r_name}} </span></h1>
@@ -26,10 +33,12 @@
       <div class = "content">
         {%if pics|length%} 
         <div class = "pt-5"><h3>{{rover_posts_live.title}}</h3></div>
+
+      
         <!-- <p>Mission date: {{rover_datetext}}</p> -->
 
         <p>
-          <img src="{{ pics}}">
+          <img class = "pt-3" src="{{ pics}}">
         </p>
         
         <p>{{rover_posts_live.quote}}</p>
@@ -65,4 +74,5 @@
 </body>
 </html>
 
+ 
 {% endblock %}

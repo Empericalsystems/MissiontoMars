@@ -7,7 +7,8 @@ body{
 
 .hline{
   font-family: 'GeoEditMedium', 'Franklin Gothic Medium', 'Franklin Gothic', 'ITC Franklin Gothic', Helvetica, Arial, sans-serif;
-  font-size: 32px;
+  font-size: 42px;
+  letter-spacing:2.0px;
   line-height:1.25;
   font-weight:400;
   /* text-transform:uppercase */
@@ -49,8 +50,14 @@ html, body {
 
 .img-trans {
   background-image: url("static/image/rover_concept.jpg");
-  opacity: 0.4;
-  filter: alpha(opacity=20);
+}
+
+.trans-box {
+  background: rgba(0,0,0,.7);
+  max-width: 1000px;
+  padding: 5em;
+  margin: 4em 3em -4em 14em;
+
 }
 
 .bar-image {

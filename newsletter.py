@@ -28,9 +28,9 @@ if set_date == set_date:
 
   my_email = os.environ.get('EMAIL_ADDR')
   email_password = os.environ.get('EMAIL_PASS')
-  # recipient = os.environ.get('RECEIVE')
+  recipient = os.environ.get('RECEIVE')
 
-  recipient = list_to_send
+  # recipient = email_list.newsletter_emails() #not working
 
   email_message = EmailMessage()
   email_message['Subject'] = 'The Rover Broke'

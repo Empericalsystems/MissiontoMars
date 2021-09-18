@@ -27,10 +27,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
+
+def newsletter_emails():
     email_list=crud.get_users()
     #email_list=crud.get_user_by_id(0)
-    print(type(email_list))
-    print(email_list)
+    # print(type(email_list))
+    # print(email_list)
     for email_item in email_list:
         print(email_item,email_item.user_id,email_item.email,type(email_item))
 
@@ -43,3 +45,5 @@ if __name__ == '__main__':
     print("Final List to Send is : ", list_to_send)
     for email2 in list_to_send:
         print(email2)
+
+    return (list_to_send)

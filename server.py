@@ -144,7 +144,7 @@ def register_new_user():
     else: 
         new_user = crud.create_user(email, password)
         session["user_email"] = new_user.email
-        return 'Your account has been created!'
+        return 'Your account has been created! You are automatically subscribed to our newsletter.'
 
 @app.route("/users/<user_id>")
 def show_user(user_id):

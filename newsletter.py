@@ -5,6 +5,10 @@ from datetime import *
 import time
 from dateutil.relativedelta import *
 import calendar
+import crud
+import model
+import server
+# from seed_database import email
 
 
 # https://dateutil.readthedocs.io/en/stable/index.html
@@ -23,7 +27,10 @@ if set_date == set_date:
 
   my_email = os.environ.get('EMAIL_ADDR')
   email_password = os.environ.get('EMAIL_PASS')
-  recipient = os.environ.get('RECEIVE')
+  # recipient = os.environ.get('RECEIVE')
+
+
+  recipient = crud.get_user_by_email(email)
 
   email_message = EmailMessage()
   email_message['Subject'] = 'The Rover Broke'

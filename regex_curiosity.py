@@ -13,11 +13,11 @@ def spock_to_space():
 
     mission_log = open('mission_log.txt').read().splitlines()
     mission_line =random.choice(mission_log)
-    print("regex_cur10",mission_line)
+    print("regex_cur10", mission_line)
  
     each_line = open('titles.txt').read().splitlines()
     title_line =random.choice(each_line)
-    print("regex_cur11",title_line)
+    print("regex_cur11", title_line)
  
     return {'title': title_line,
             'quote': quote_line,

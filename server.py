@@ -60,13 +60,6 @@ def log_rover(rover_id):
             rover_date = '2006-09-03'
 
 
-    print ("1. THIS IS A TEST*************") 
-    print ("1.2", rover_date)
-    print ("1.3", name_var)
-    print ("1.4", request.method)
-    print ('2. ******************checking the photos&&&&&&&&&&&&&&&&&&&')
-
-
     return render_template('rover_posts.html',
                            rover_posts = rover_posts,
                            r_name = name_var,
@@ -83,16 +76,6 @@ def show_user_choice(rover_id):
     int_date = rover_date.split('-')
     # int_date = ''.join(int_date[0]).join(int_date[1]).join(int_date[2])
 
-    print ('3. ££££££££££££££££')
-    # print (int_date)
-
-   
-    # random.seed(int(int_date))  #turn this into a number and give it to seed and randomly pick from listof posts
-
-    # rover_blogpost = [random.choice(crud.get_posts_by_rover(rover_id))] #this returns a list - call 
-    # print(rover_blogpost, type(rover_blogpost))
-
-
     if rover_id == "1":
         rover_blogpost_text = regex_curiosity.spock_to_space()
     elif rover_id == "2":
@@ -100,33 +83,15 @@ def show_user_choice(rover_id):
     elif rover_id == "3":
         rover_blogpost_text = regext_opportunity.captain_to_Mars()
     else:
-        print('4. sorry please come back later')
-     
-    
-    # date_database_check = crud.get_posts_by_date(rover_date) 
-    # if date_database_check == []:
-    #     date_database_check = MissionPost_live(rover_id, rover_blogpost_text['title'], rover_blogpost_text['quote'], rover_blogpost_text['mission'])
-    # # else: 
-        # rover_blogpost_missionlive == get_posts_by_date(rover_date)
-        
+        print('sorry please come back later')
+
 #if conditional statment here to check if the date chosen by the user is alreayd in the database XXXX
     # print (type(rover_blogpost), rover_blogpost)
 
     rover_blogpost_missionlive = MissionPost_live(rover_id, rover_blogpost_text['title'], rover_blogpost_text['quote'], rover_blogpost_text['mission'])
     #packing info into a class   
     
-    print ('5. SECOND TESTS!!!!!!@@@@@@@@@@@@@@@')
-    # print (rover_blogpost.rover_id)
-    # print (rover_blogpost.title)
-    # print (rover_blogpost.quote)
-    # print (rover_blogpost.mission)
-    # print (type(rover_blogpost))
-
     name_var = crud.get_rover_name_by_id(rover_id) #this can stay because we pull from database
-
-
-    # print (crud.get_posts_by_rover(rover_id))
-
 
     url = f'https://api.nasa.gov/mars-photos/api/v1/rovers/{name_var.lower()}/photos?'
     payload = {
@@ -178,8 +143,6 @@ def register_new_user():
         session["user_email"] = new_user.email
         return 'Your account has been created!'
 
-    # return redirect ('/')
-
 @app.route("/users/<user_id>")
 def show_user(user_id):
     """Show details of a  user."""
@@ -207,11 +170,9 @@ def login():
         return "Sorry there appears to be an error with your login. Please try again later."
 
         # Log in user by storing the user's email in session
-    # print (session["user_email"])
     #have a homepage.js that handles the routes for the sign up - can responsd with JSON or string to be
     #rendered. 
-        
-    # return redirect("/")
+
 
 @app.route('/logout')
 def logout_user():
@@ -231,9 +192,6 @@ def get_to_know_user():
     user_hobbies = request.form.get('hobbies')
     user_movie = request.form.get('movie')
 
-    # print('1', user_nickname)
-    # print ('R$$$$$$$$$$$%%%%%%%%%%%%%')
-
     return 'Thank you ' +user_nickname+ ' for telling us more about yourself. We will keep your information confidential'
 
      
@@ -245,34 +203,29 @@ def search():
 
         search_title = request.args.get('search_title')
 
-        missionposts = MissionPost.query.filter(MissionPost.title.like('%' + search_title + '%')).all()
+        if search_title == None:
+            flash ("Please enter a title")
 
-        if not missionposts:
-        
-            flash("No results")
-        
-        print("missionposts")
-        print("2.1",missionposts)
-        print("2.2",type(missionposts))
-        print("2.3",missionposts.__getitem__(0).missionpost_id)
-     
+        else:
 
-        return render_template('search.html', missionposts = missionposts)
+
+            missionposts = MissionPost.query.filter(MissionPost.title.ilike('%' + search_title + '%')).all()
+
+            if not missionposts:
+            
+                flash("No results")
+            
+            print("missionposts")
+            print("2.1",missionposts)
+            print("2.2",type(missionposts))
+            print("2.3",missionposts.__getitem__(0).missionpost_id)
+        
+
+            return render_template('search.html', missionposts = missionposts)
 
     else:
         search_title = request.form.get('search_title')
         missionposts = MissionPost.query.filter(MissionPost.title.like('%' + search_title + '%')).all()
-
-        # mission_data = []
-        # for posts in missionposts:
-        #     mission_data.append({"title": posts.title, "text":posts.text, "date":posts.date})
-
-        # print("mission_data")
-        # print("3.1",mission_data)
-        # print("3.2",type(mission_data))
-        # print("3.3",jsonify(mission_data))
-        # print("3.4",mission_data.__dir__())
-        # print("3.5",mission_data.__getitem__(0))
 
         if not missionposts:
         
@@ -285,25 +238,6 @@ def search():
         #return missionposts=mission_data
         return render_template('search.html', missionposts = missionposts)
 
-# @app.route('/search_ajax', methods = ["POST"])
-# def search2nd():
-
-#     search_title2_ajax = request.form.get('search_title')
-
-#     testindex=0
-#     missionposts_id_linked_title_ajax = MissionPost.query.filter(MissionPost.title.like('%' + search_title2_ajax+ '%')).all()
-#     if  missionposts_id_linked_title_ajax == []:
-#         flash
-
-
-#         missionpost_index_searched_ajax=missionposts_id_linked_title_ajax.__getitem__(testindex).missionpost_id
-#     # finding_title2_ajax=MissionPost.query.filter(missionpost_index_searched_ajax).all()
-#         finding_title2_ajax=MissionPost.query.filter(MissionPost.missionpost_id==missionpost_index_searched_ajax).all()
-#         print("ajax info",finding_title2_ajax)
-#         print(type (finding_title2_ajax))
-  
-#     return jsonify( )
-    
 
 
 if __name__ == '__main__':

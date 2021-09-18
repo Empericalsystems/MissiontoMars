@@ -35,7 +35,7 @@ def get_user_by_id(user_id):
 def get_user_by_email(email):
     """Find a user by email address."""
 
-    return User.query.filter(User.email == email).first()
+    return User.query.filter(User.email == email).all()
     
 # get_user_by_email('e@t') working
 

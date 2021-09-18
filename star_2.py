@@ -70,3 +70,7 @@ for quote_item in Riker_quotes:
 Riker_file.write(Riker_quotes_str)
 Riker_file.close()
 
+combined_file = open ("riker_piccard.txt", "w")
+combined_file.write(Picard_quotes_str + Riker_quotes_str)
+combined_file.close()
+

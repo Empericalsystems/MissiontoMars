@@ -8,6 +8,7 @@ import regext_opportunity
 import mission_log
 import random
 import titles_ran
+import quote_day
 
 
 from jinja2 import StrictUndefined
@@ -34,7 +35,9 @@ class MissionPost_live:
 @app.route('/')
 def homepage():
     """LandingPage - mission details."""
-    return render_template('homepage.html')
+    quote = quote_day.quote_of_day()
+    return render_template('homepage.html',
+                            quote = quote)
 
 
 @app.route('/rovers')

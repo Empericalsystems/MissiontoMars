@@ -8,6 +8,7 @@ import calendar
 import crud
 import model
 import server
+import email_list
 # from seed_database import email
 
 
@@ -29,8 +30,7 @@ if set_date == set_date:
   email_password = os.environ.get('EMAIL_PASS')
   # recipient = os.environ.get('RECEIVE')
 
-
-  recipient = crud.get_user_by_email(email)
+  recipient = list_to_send
 
   email_message = EmailMessage()
   email_message['Subject'] = 'The Rover Broke'

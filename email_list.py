@@ -40,6 +40,6 @@ if __name__ == '__main__':
         list_to_send.append(email_item.email)
         print("adding email to send list: ",email_item.email)
     
-    print("Final List to Send is : ",list_to_send)
+    print("Final List to Send is : ", list_to_send)
     for email2 in list_to_send:
         print(email2)

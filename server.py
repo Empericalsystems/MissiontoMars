@@ -234,10 +234,10 @@ def search():
         
             flash("No results")
         
-        print("missionposts")
-        print("3.1",missionposts)
-        print("3.2",type(missionposts))
-        print("3.4",missionposts.__getitem__(0).missionpost_id)
+        # print("missionposts")
+        # print("3.1",missionposts)
+        # print("3.2",type(missionposts))
+        # print("3.4",missionposts.__getitem__(0).missionpost_id)
         #return missionposts=mission_data
         return render_template('search.html', missionposts = missionposts)
 

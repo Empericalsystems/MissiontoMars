@@ -8,19 +8,12 @@ import json
 
 
 URL = "http://chakoteya.net/NextGen/106.htm"
-class_list=set()
+# class_list=set()
 page = requests.get(URL)
-
-
-
 
 soup0 = BeautifulSoup(page.text, "html.parser")
 soup = soup0.get_text()  #this gets back a text file with no characters but can't filter it?
-
-
-
 Picard_file = open ("Picard_quotes.txt", "w")
-
 
 c=0
 Picard_quotes=[]
@@ -45,8 +38,6 @@ Picard_file.close()
 
 
 Riker_file = open ("Riker_quotes.txt", "w")
-
-
 
 c=0
 Riker_quotes=[]

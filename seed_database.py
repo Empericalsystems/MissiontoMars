@@ -83,16 +83,11 @@ for photo in photo_data['photos']:
    
     photo_path  = photo ["img_src"]
     mission_id = crud.get_random_missionpost_id()
-        # photo ["photo_name"],   
-    
-        # photo ["missionpost_id"]
-    # print (photo_path, mission_id)
+      
     db_photo = crud.create_photos(photo_path, mission_id)
     #the expression gets called first taking random mission post and getting hte mission id from it
 
-    # photo_in_db.append(db_photo)
-
-# print (max_post_id2)
+ 
 
 
 

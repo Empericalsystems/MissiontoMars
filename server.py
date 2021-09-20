@@ -88,8 +88,7 @@ def show_user_choice(rover_id):
     else:
         print('sorry please come back later')
 
-#if conditional statment here to check if the date chosen by the user is alreayd in the database XXXX
-    # print (type(rover_blogpost), rover_blogpost)
+#if conditional statment here to check if the date chosen by the user is alreayd in the database  
 
     rover_blogpost_missionlive = MissionPost_live(rover_id, rover_blogpost_text['title'], rover_blogpost_text['quote'], rover_blogpost_text['mission'])
     #packing info into a class   
@@ -234,11 +233,7 @@ def search():
         
             flash("No results")
         
-        # print("missionposts")
-        # print("3.1",missionposts)
-        # print("3.2",type(missionposts))
-        # print("3.4",missionposts.__getitem__(0).missionpost_id)
-        #return missionposts=mission_data
+    
         return render_template('search.html', missionposts = missionposts)
 
 

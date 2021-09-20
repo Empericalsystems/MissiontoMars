@@ -165,10 +165,6 @@ def create_missionpost(rover_id, date, title, text):
     return missionlog
 # working!
 
-# def search_missionpost_titles():
-#     """searc a missionpost from user input"""
-#     return MissionPost.query.filter(MissionPost.title.like('% Mars%'))
-
 
 def get_random_missionpost_id():
     """create random"""
@@ -180,8 +176,6 @@ def get_max_missionpost_id():
     max_mission_id= db.session.query(func.max(MissionPost.missionpost_id)).scalar()
 
     return max_mission_id
-
-    # group_id = session.query(func.max(Article.group_id)).scalar()
 
 def get_post_by_id(missionpost_id):
     """Find a post by missionpost_id."""
@@ -207,8 +201,8 @@ def get_posts_by_date(date):
 def get_posts_by_rover(rover_id):
     """Find a missionpost by rover_id"""
 
-    return MissionPost.query.filter(MissionPost.rover_id == rover_id).options(db.joinedload(MissionPost.photos)).all() #when have all missionpost objects can do .photos - 
-    #will preload the photos attribute - wiill return the mission post objects - with the rover. 
+    return MissionPost.query.filter(MissionPost.rover_id == rover_id).options(db.joinedload(MissionPost.photos)).all() #when have all missionpost objects - 
+    #will preload the photos attribute - will return the mission post objects - with the rover. 
 
 def delete_missionpost(missionpost_id):
     posts_delete = MissionPost.query.all()

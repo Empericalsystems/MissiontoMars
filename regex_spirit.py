@@ -1,7 +1,6 @@
 import re
 import random
 
-
 def troi_to_Mars():
  
     each_line = open('spirit_log.txt').read().splitlines()

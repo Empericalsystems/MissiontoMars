@@ -16,10 +16,10 @@ if __name__ == '__main__':
     from server import app
     connect_to_db(app)
     
-    email_list=crud.get_users()
+    email_list=crud.get_users() #list of users from crud
     
-    list_to_send=[]
-    for email_item in email_list:
+    list_to_send=[] #need to create a list because the send function requires list for multiple users
+    for email_item in email_list: #iterating through the class object iterating through and add to a list
       list_to_send.append(email_item.email)
       print("adding email to send list: ",email_item.email)
 

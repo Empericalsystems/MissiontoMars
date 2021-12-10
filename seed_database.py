@@ -60,7 +60,8 @@ for missionpost in missionpost_data:
 
     # #fix this for more posts later.
 
-    date = datetime.strptime(missionpost["date"], "%Y-%m-%d")
+    date = datetime.now
+    # date = datetime.strptime(missionpost["date"], "%Y-%m-%d", now)
     title=text["title"]
     text=text["quote"]+text["mission"]
 

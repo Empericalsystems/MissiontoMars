@@ -1,6 +1,9 @@
 """Models for Mars Mission app."""
 
 from flask_sqlalchemy import SQLAlchemy 
+from sqlalchemy.sql import func
+from datetime import datetime
+
 
 db = SQLAlchemy()
 
@@ -27,25 +30,37 @@ class User(db.Model):
                         autoincrement=True, 
                         primary_key=True)
     email = db.Column(db.String, unique=True, nullable = False)  
-    password = db.Column(db.String(25), nullable = False)
+    # password = db.Column(db.String, nullable = False)
+    password = db.Column(db.String(500), nullable=False)
 
   
 
     def __repr__(self):
         return f'<User user_id = {self.user_id} email = {self.email} password = {self.password}>'
 
-class User_Mission(db.Model):
-    """Linking the many users to many missionposts"""
+class User_Mission_Comment(db.Model):
+    """Reviews linking the many users to many missionposts"""
 
-    __tablename__ = 'user_mission'
+    __tablename__ = 'user_comment'
 
-    user_mission_id = db.Column(db.Integer, 
+    user_comment_id = db.Column(db.Integer, 
                         autoincrement=True, 
                         primary_key=True)
     user_id = db.Column(db.Integer, 
                                db.ForeignKey('users.user_id'))
     missionpost_id = db.Column(db.Integer, 
                                db.ForeignKey('missionposts.missionpost_id'))
+    missionpost_comment = db.Column(db.Text, nullable=True)
+
+
+    # Relationships
+    # missionpost = db.relationship("User_Mission_Comment", backref=db.backref("user_comment"))
+    # user = db.relationship("User", backref=db.backref("user_comment"))
+
+    def __repr__(self):
+
+        return f"<missionpost_id={self.user_comment_id}, user_id = {self.user_id}, user_comment_id ={self.user_comment_id}>"
+
 
 
 class Rover(db.Model):
@@ -77,6 +92,7 @@ class Photo(db.Model):
     missionpost_id = db.Column(db.Integer, 
                                db.ForeignKey('missionposts.missionpost_id'))
     
+    # Relationships
     missionpost = db.relationship('MissionPost', backref = 'photos')
 
     def __repr__(self):
@@ -95,12 +111,18 @@ class MissionPost(db.Model):
     
     title = db.Column(db.String(60), unique = False)
     text = db.Column(db.Text)
-    date = db.Column (db.DateTime)
+    # date = db.Column (db.DateTime(timezone=True), default=func.now())
+    # date = db.Column (db.DateTime, default=datetime.utcnow)
+    date = db.Column (db.Date)
+
     rover_id = db.Column(db.Integer,
                          db.ForeignKey ('rovers.rover_id'),
                          nullable=False)
 
-    users = db.relationship('User', secondary = 'user_mission',
+
+
+    # Relationships
+    users = db.relationship('User', secondary = 'user_comment',
                                     backref = 'missionposts')
  
     rover = db.relationship('Rover', backref = 'missionposts') #rover&missionpost = one-to-many
@@ -113,63 +135,6 @@ class MissionPost(db.Model):
 if __name__ == "__main__":
     from server import app
 
-
-    connect_to_db(app) #should i connect to missiontest db?
+    connect_to_db(app)  
     
-
-
-    #dbmissiontest - name of db
-    #git put to 'first' not 'origin' - 'git push -u first main'
-
-    #making tables:
-# ethan = User(email = 'ethan@mars.base', password = 'kerbals')
-# >>> db.session.add(ethan)
-# >>> db.session.commit()
-
-# jeb = User (email = 'jeb@kerbals.space' , password = 'planet_elu')
-# >>> db.session.add(jeb)
-# >>> db.session.commit()
-
-# bob = User(email = 'bob@kerbals.space', password = 'I_love_Rockets')
-# >>> db.session.add(bob)
-# >>> db.session.commit()
-
-# spirit = Rover(rovername = 'Spirit')
-# >>> db.session.add(spirit)
-# >>> db.session.commit()
-
-#  p = Rover.query.first()
-#   p.missionposts
-
-#  opportunity = Rover (rovername = 'Opportunity')
-# >>> db.session.add(opportunity)
-# >>> db.session.commit()
-
-#jeb.missionposts.append(day1)
-
-# mars1 = Photo(photo_name = 'edr_rcam', photo_path = 'https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01004/opgs/edr/rcam/RLB_486615482EDR_F0481570RHAZ00323M_.JPG')
-# >>> db.session.add(mars1)
-# >>> db.session.commit()
-#day1.photos
-
-
-# day1 = MissionPost (title = 'The endless night', text = 'The planet Mars is a hostile place...', date='2021-08-19', rover_id = 2)
-# >>> db.session.add(day1)>>> db.session.commit()
-# mars1.missionpost
-
-#  day590 = MissionPost(title='The dust storm', text='It wiped out our connection to earth...', date='2045-09-29', rover_id=3)
-# >>> db.session.add(day590)>>> db.session.commit()
-
-# photo1 = Photo (photo_name = 'A good start', photo_path = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key= HdOBSFe1XClbPB2aK0CkdKaYXT3pORABCdKDG6aE', missionpost_id = 1)
-# >>> db.session.add(photo1)
-# >>> db.session.commit()
-# users.password
-
-    #for crud from modelpy import User, Rover, MissionPost, Photo, association
-#db.session.rollback()
-#R= Rover.query.all()[0]
-#R.missionposts  [<missionpost_id=2>, <missionpost_id=3>]
-
-
-#m= MissionPost.query.first()
-#  m.users
+ 

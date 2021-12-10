@@ -2,14 +2,13 @@ from model import db, User, Rover, MissionPost, Photo, connect_to_db
 import random 
 from sqlalchemy import update
 from sqlalchemy import func
-from werkzeug.security import generate_password_hash, check_password_hash
+
 
 
 def create_user(email, password):
     """Creating a new user"""
 
     user = User(email=email, password= password)
-    # generate_password_hash(password, method = 'pbkdf2:sha256', salt_length=16))
 
     db.session.add(user)
     db.session.commit()
@@ -33,9 +32,10 @@ def get_user_by_id(user_id):
 def get_user_by_email(email):
     """Find a user by email address."""
 
-    return User.query.filter(User.email == email).all()
+    return User.query.filter(User.email == email).first()
     
 # get_user_by_email('e@t') working
+
 
 def delete_user(user_id):
     user_delete = User.query.get(user_id)
@@ -163,7 +163,7 @@ def create_missionpost(rover_id, date, title, text):
     db.session.commit()
 
     return missionlog
-# working!
+ 
 
 
 def get_random_missionpost_id():
@@ -181,7 +181,7 @@ def get_post_by_id(missionpost_id):
     """Find a post by missionpost_id."""
 
     return MissionPost.query.get(missionpost_id)
-#working
+ 
 
 def get_missionposts():
     """Get a list all missionposts."""

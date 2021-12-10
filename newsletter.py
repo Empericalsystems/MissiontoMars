@@ -45,7 +45,7 @@ if __name__ == '__main__':
       recipient = list_to_send
 
       email_message = EmailMessage()
-      email_message['Subject'] = 'Suddenly Human'
+      email_message['Subject'] = 'The Ensigns of Command'
 
       email_message['From'] = my_email
       email_message['To'] = recipient
@@ -61,7 +61,7 @@ if __name__ == '__main__':
 
         <h1> Mars Day 342: </h1>
 
-        <h2>"The Day the Rover Broke" </h2>
+        <h2>"Operation Fearless" </h2>
         <img src="https://mars.nasa.gov/mer/gallery/all/2/f/562/2F176268749EFFAD92P1214R0M1-BR.JPG" />
 
 

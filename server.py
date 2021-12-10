@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request, flash, session, redirect, jsonify 
-# from model import connect_to_db
+from flask import (Flask, render_template, request, 
+                   flash, session, redirect, jsonify) 
 from model import db, User, Rover, MissionPost, Photo, connect_to_db
 import crud
+import bcrypt
+
 import regex_spirit
 import regex_curiosity
 import regext_opportunity
@@ -9,6 +11,8 @@ import mission_log
 import random
 import titles_ran
 import quote_day
+ 
+
 
 
 from jinja2 import StrictUndefined
@@ -87,10 +91,11 @@ def show_user_choice(rover_id):
         rover_blogpost_text = regext_opportunity.captain_to_Mars()
     else:
         print('sorry please come back later')
+        
+    #if conditional statment here to check if the date chosen by the user is alreayd in the database  
 
-#if conditional statment here to check if the date chosen by the user is alreayd in the database  
-
-    rover_blogpost_missionlive = MissionPost_live(rover_id, rover_blogpost_text['title'], rover_blogpost_text['quote'], rover_blogpost_text['mission'])
+    rover_blogpost_missionlive = MissionPost_live(rover_id, rover_blogpost_text['title'],
+                                 rover_blogpost_text['quote'], rover_blogpost_text['mission'])
     #packing info into a class   
     
     name_var = crud.get_rover_name_by_id(rover_id) #this can stay because we pull from database
@@ -108,7 +113,7 @@ def show_user_choice(rover_id):
     picture_path = api_data['photos']
 
     if picture_path == []:
-        flash ('6. Sorry there is no image for this date. Please try again.')
+        return ('Sorry there is no image for this date. Please try again.')
     else:
         picture_path = api_data['photos'][0]['img_src']
         date = rover_date
@@ -117,9 +122,8 @@ def show_user_choice(rover_id):
         db_missionpost = crud.create_missionpost(rover_id, date, title, text)
         max_post_id2 = crud.get_max_missionpost_id()
         db_photo = crud.create_photos(picture_path, max_post_id2)
-
-
-    return render_template('chosen_date.html',
+        
+        return render_template('chosen_date.html',
                            
                         #    rover_posts = rover_blogpost,
                            rover_posts_live = rover_blogpost_missionlive,
@@ -138,12 +142,22 @@ def register_new_user():
     password = request.form.get('password')
     
     user = crud.get_user_by_email(email)
+
     if user:
-        return 'This email already exists. Please login.'
-    else: 
-        new_user = crud.create_user(email, password)
+        return('This email already exists. Please login.')
+
+    else:
+        salt = bcrypt.gensalt()
+        hash_pwd = bcrypt.hashpw(password.encode('utf-8'), salt)
+        #Unicode-objects must be encoded before hashing
+        password = hash_pwd.decode('utf-8')
+        #Unicode-objects must be decoded before saving to the database else SQLAlchemy doesn't save it
+        #in a recognisable format
+
+        new_user = crud.create_user(email=email, password=password)
         session["user_email"] = new_user.email
         return 'Your account has been created! You are automatically subscribed to our newsletter.'
+
 
 @app.route("/users/<user_id>")
 def show_user(user_id):
@@ -158,44 +172,32 @@ def login():
     
     email = request.form.get("email")
     password = request.form.get("password")
+ 
+    user = crud.get_user_by_email(email) 
 
-    user = crud.get_user_by_email(email)
+    #check to see if the email already exists
+    if user is None:
+        return "The email doesn\'t exist. Please enter correct email or register for an account"
 
-    if user:
-        if user.password == password and user.email == email:
-        
-            session["user_email"] = user.email
-            return f"Welcome back, {user.email}!"
-        else:
-            return "The email or password you entered was incorrect."
+    elif bcrypt.checkpw(password.encode('utf8'), user.password.encode('utf-8')):
+            # check the email and matching password.
+            
+        session["user_email"] = user.email
+        return f"Welcome back, {user.email}!"
     else:
-        return "Sorry there appears to be an error with your login. Please try again later."
 
-        # Log in user by storing the user's email in session
-    #have a homepage.js that handles the routes for the sign up - can responsd with JSON or string to be
-    #rendered. 
+        return "Your password is not correct"
 
 
 @app.route('/logout')
+"""Logout user"""
+
+    
 def logout_user():
-    session.email = None
+  
+    session.clear()
     flash("Sorry to see you go.")
     return redirect("/")
-
-@app.route ('/about_you')
-def find_out_more():
-
-    return render_template('about_you.html')
-
-@app.route ('/about-user', methods = ["POST"])
-def get_to_know_user():
-    user_nickname = request.form.get('nickname')
-    user_age = request.form.get('age')
-    user_hobbies = request.form.get('hobbies')
-    user_movie = request.form.get('movie')
-
-    return 'Thank you ' +user_nickname+ ' for telling us more about yourself. We will keep your information confidential'
-
      
 @app.route('/search', methods = ["GET","POST"])
 def search():
@@ -211,27 +213,27 @@ def search():
         else:
 
 
-            missionposts = MissionPost.query.filter(MissionPost.title.ilike('%' + search_title + '%')).all()
+            missionposts = MissionPost.query.filter(MissionPost.title.ilike
+                           ('%' + search_title + '%')).all()
 
             if not missionposts:
             
-                flash("No results")
+                return "Sorry your search has no results"
             
-            print("missionposts")
-            print("2.1",missionposts)
-            print("2.2",type(missionposts))
-            print("2.3",missionposts.__getitem__(0).missionpost_id)
+            # print("2.3",missionposts.__getitem__(0).missionpost_id)
+            #note: __getitem__ a way of accessing the object
         
 
             return render_template('search.html', missionposts = missionposts)
 
     else:
         search_title = request.form.get('search_title')
-        missionposts = MissionPost.query.filter(MissionPost.title.like('%' + search_title + '%')).all()
+        missionposts = MissionPost.query.filter(MissionPost.title.like
+                       ('%' + search_title + '%')).all()
 
         if not missionposts:
         
-            flash("No results")
+            return "No results"
         
     
         return render_template('search.html', missionposts = missionposts)
@@ -244,4 +246,3 @@ if __name__ == '__main__':
     app.debug = True
     connect_to_db(app)
     app.run(host='0.0.0.0')
- 

@@ -54,8 +54,8 @@ class User_Mission_Comment(db.Model):
 
 
     # Relationships
-    # missionpost = db.relationship("User_Mission_Comment", backref=db.backref("user_comment"))
-    # user = db.relationship("User", backref=db.backref("user_comment"))
+    missionpost = db.relationship("MissionPost", backref=db.backref("user_comment"))
+    user = db.relationship("User", backref=db.backref("user_comment"))
 
     def __repr__(self):
 
@@ -118,9 +118,6 @@ class MissionPost(db.Model):
     rover_id = db.Column(db.Integer,
                          db.ForeignKey ('rovers.rover_id'),
                          nullable=False)
-
-
-
     # Relationships
     users = db.relationship('User', secondary = 'user_comment',
                                     backref = 'missionposts')

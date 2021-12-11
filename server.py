@@ -13,8 +13,6 @@ import titles_ran
 import quote_day
  
 
-
-
 from jinja2 import StrictUndefined
 
 import os
@@ -189,11 +187,9 @@ def login():
         return "Your password is not correct"
 
 
-@app.route('/logout')
-"""Logout user"""
-
-    
+@app.route('/logout')    
 def logout_user():
+    """User logout."""
   
     session.clear()
     flash("Sorry to see you go.")

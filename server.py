@@ -77,7 +77,7 @@ def show_user_choice(rover_id):
     """Post mission from date chosen by user"""
 
     rover_date = request.form.get('date')
-    rover_blogpost_text=""
+    rover_blogpost_text=" "
     int_date = rover_date.split('-')
     # int_date = ''.join(int_date[0]).join(int_date[1]).join(int_date[2])
 
@@ -194,7 +194,25 @@ def logout_user():
     session.clear()
     flash("Sorry to see you go.")
     return redirect("/")
-     
+
+
+@app.route('/user-comment')
+def user_comment_page():
+    """User creates a review"""
+    user = session.get("user_email")
+
+    if not user:
+    flash("Please login.")
+    return redirect("/")
+    
+    # missionpost = request.args.get("missionpost")
+  
+
+    return render_template("user-comment.html")#,
+                            #missionpost=missionpost)
+
+
+
 @app.route('/search', methods = ["GET","POST"])
 def search():
 

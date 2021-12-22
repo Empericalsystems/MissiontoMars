@@ -202,7 +202,7 @@ def user_comment_page():
     user = session.get("user_email")
 
     if not user:
-    flash("Please login.")
+        flash("Please login.")
     return redirect("/")
     
     # missionpost = request.args.get("missionpost")

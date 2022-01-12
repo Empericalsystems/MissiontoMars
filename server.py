@@ -4,12 +4,11 @@ from model import db, User, Rover, MissionPost, Photo, connect_to_db
 import crud
 import bcrypt
 
-import regex_spirit
-import regex_curiosity
-import regext_opportunity
+from data import quote_spirit
+from data import quote_curiosity
+from data import quote_opportunity
 import mission_log
 import random
-import titles_ran
 import quote_day
  
 
@@ -147,11 +146,11 @@ def show_user_choice(rover_id):
     # int_date = ''.join(int_date[0]).join(int_date[1]).join(int_date[2])
 
     if rover_id == "1":
-        rover_blogpost_text = regex_curiosity.spock_to_space()
+        rover_blogpost_text = quote_curiosity.spock_to_space()
     elif rover_id == "2":
-        rover_blogpost_text = regex_spirit.troi_to_Mars()
+        rover_blogpost_text = quote_spirit.troi_to_Mars()
     elif rover_id == "3":
-        rover_blogpost_text = regext_opportunity.captain_to_Mars()
+        rover_blogpost_text = quote_opportunity.captain_to_Mars()
     else:
         print('sorry please come back later')
         

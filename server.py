@@ -4,12 +4,9 @@ from model import db, User, Rover, MissionPost, Photo, connect_to_db
 import crud
 import bcrypt
 
-from data import quote_spirit
-from data import quote_curiosity
-from data import quote_opportunity
-import mission_log
+from data import quote_curiosity, quote_day, quote_opportunity, quote_spirit, mission_log
 import random
-import quote_day
+ 
  
 
 from jinja2 import StrictUndefined

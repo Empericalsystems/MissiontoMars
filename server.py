@@ -33,11 +33,12 @@ class MissionPost_live:
         self.quote = quote
         self.mission = mission
 
-@app.route('/index')
+@app.route('/')
 def index():
     """Login page/Register New user"""
     return render_template ('index.html')
 
+ 
 @app.route('/users', methods = ['POST'])
 def register_new_user():
     """Create a new user"""
@@ -61,28 +62,53 @@ def register_new_user():
         session["user_email"] = new_user.email
         return 'Your account has been created! You are automatically subscribed to our newsletter.'
 
-@app.route('/login', methods = ['POST'])
+@app.route('/login', methods = ['GET', 'POST'])
 def login():
-    """User login."""
-    
-    email = request.form.get("email")
-    password = request.form.get("password")
- 
-    user = crud.get_user_by_email(email) 
+    """Show form for user login."""
+    if request.method == 'GET':
+        return render_template('login_users.html')
+    else:
+        email = request.form.get("email")
+        password = request.form.get("password")
+        user = crud.get_user_by_email(email) 
 
-    #check to see if the email already exists
-    if user is None:
-        return "The email doesn\'t exist. Please enter correct email or register for an account"
+        #check to see if the email already exists
+        if user is None:
+            return ("The email doesn\'t exist. Please enter correct email or register for an account")
 
-    elif bcrypt.checkpw(password.encode('utf8'), user.password.encode('utf-8')):
+        if bcrypt.checkpw(password.encode('utf8'), user.password.encode('utf-8')):
             # check the email and matching password.
             
-        session["user_email"] = user.email
-        return f"Welcome back, {user.email}!"
-    else:
+            session["user_email"] = user.email
+            return render_template ('homepage.html')
+            #f"Welcome back, {user.email}!"
+        else:
 
-        return "Your password is not correct"
+            flash("Your password is not correct")
+            return render_template('login_users.html')
 
+    
+# @app.route('/login', methods = ['POST']) ## WHY IS THIS POSTING DETAILS on URL??
+# def verify_login():
+    
+#     email = request.form.get("email")
+#     password = request.form.get("password")
+ 
+#     user = crud.get_user_by_email(email) 
+
+#     #check to see if the email already exists
+#     if user is None:
+#         return ("The email doesn\'t exist. Please enter correct email or register for an account")
+
+#     if bcrypt.checkpw(password.encode('utf8'), user.password.encode('utf-8')):
+#             # check the email and matching password.
+            
+#         session["user_email"] = user.email
+#         return f"Welcome back, {user.email}!"
+#     else:
+
+#         flash("Your password is not correct")
+#         return render_template('login_users.html')
 
 @app.route('/logout')    
 def logout_user():
@@ -92,12 +118,12 @@ def logout_user():
     flash("Sorry to see you go.")
     return redirect("/")
 
-@app.route('/')
-def homepage():
-    """LandingPage - mission details."""
-    quote = quote_day.quote_of_day()
-    return render_template('homepage.html',
-                            quote = quote)
+# @app.route('/')
+# def homepage():
+#     """LandingPage - mission details."""
+#     quote = quote_day.quote_of_day()
+#     return render_template('homepage.html',
+#                             quote = quote)
 
 
 

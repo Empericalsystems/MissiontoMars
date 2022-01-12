@@ -33,6 +33,64 @@ class MissionPost_live:
         self.quote = quote
         self.mission = mission
 
+@app.route('/index')
+def index():
+    """Login page/Register New user"""
+    return render_template ('index.html')
+
+@app.route('/users', methods = ['POST'])
+def register_new_user():
+    """Create a new user"""
+    email = request.form.get('email')
+    password = request.form.get('password')
+    
+    user = crud.get_user_by_email(email)
+
+    if user:
+        return('This email already exists. Please login.')
+
+    else:
+        salt = bcrypt.gensalt()
+        hash_pwd = bcrypt.hashpw(password.encode('utf-8'), salt)
+        #Unicode-objects must be encoded before hashing
+        password = hash_pwd.decode('utf-8')
+        #Unicode-objects must be decoded before saving to the database else SQLAlchemy doesn't save it
+        #in a recognisable format
+
+        new_user = crud.create_user(email=email, password=password)
+        session["user_email"] = new_user.email
+        return 'Your account has been created! You are automatically subscribed to our newsletter.'
+
+@app.route('/login', methods = ['POST'])
+def login():
+    """User login."""
+    
+    email = request.form.get("email")
+    password = request.form.get("password")
+ 
+    user = crud.get_user_by_email(email) 
+
+    #check to see if the email already exists
+    if user is None:
+        return "The email doesn\'t exist. Please enter correct email or register for an account"
+
+    elif bcrypt.checkpw(password.encode('utf8'), user.password.encode('utf-8')):
+            # check the email and matching password.
+            
+        session["user_email"] = user.email
+        return f"Welcome back, {user.email}!"
+    else:
+
+        return "Your password is not correct"
+
+
+@app.route('/logout')    
+def logout_user():
+    """User logout."""
+  
+    session.clear()
+    flash("Sorry to see you go.")
+    return redirect("/")
 
 @app.route('/')
 def homepage():
@@ -40,6 +98,7 @@ def homepage():
     quote = quote_day.quote_of_day()
     return render_template('homepage.html',
                             quote = quote)
+
 
 
 @app.route('/rovers')
@@ -133,69 +192,13 @@ def show_user_choice(rover_id):
                            )    
 
 
-@app.route('/users', methods = ['POST'])
-def register_new_user():
-    """Create a new user"""
-    email = request.form.get('email')
-    password = request.form.get('password')
-    
-    user = crud.get_user_by_email(email)
-
-    if user:
-        return('This email already exists. Please login.')
-
-    else:
-        salt = bcrypt.gensalt()
-        hash_pwd = bcrypt.hashpw(password.encode('utf-8'), salt)
-        #Unicode-objects must be encoded before hashing
-        password = hash_pwd.decode('utf-8')
-        #Unicode-objects must be decoded before saving to the database else SQLAlchemy doesn't save it
-        #in a recognisable format
-
-        new_user = crud.create_user(email=email, password=password)
-        session["user_email"] = new_user.email
-        return 'Your account has been created! You are automatically subscribed to our newsletter.'
-
-
 @app.route("/users/<user_id>")
 def show_user(user_id):
     """Show details of a  user."""
 
     user = crud.get_user_by_id(user_id)
     return render_template("user_details.html", user=user)
-
-@app.route('/login', methods = ['POST'])
-def login():
-    """User login."""
-    
-    email = request.form.get("email")
-    password = request.form.get("password")
- 
-    user = crud.get_user_by_email(email) 
-
-    #check to see if the email already exists
-    if user is None:
-        return "The email doesn\'t exist. Please enter correct email or register for an account"
-
-    elif bcrypt.checkpw(password.encode('utf8'), user.password.encode('utf-8')):
-            # check the email and matching password.
-            
-        session["user_email"] = user.email
-        return f"Welcome back, {user.email}!"
-    else:
-
-        return "Your password is not correct"
-
-
-@app.route('/logout')    
-def logout_user():
-    """User logout."""
-  
-    session.clear()
-    flash("Sorry to see you go.")
-    return redirect("/")
-
-
+                          
 @app.route('/user-comment')
 def user_comment_page():
     """User creates a review"""
@@ -209,7 +212,7 @@ def user_comment_page():
   
 
     return render_template("user-comment.html")#,
-                            #missionpost=missionpost)
+                            #missionpost=missionpost/roverpost?)
 
 
 

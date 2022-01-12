@@ -69,7 +69,7 @@ def login_form():
 
 @app.route('/login', methods = ['POST'])
 def login():
-    """SVerify user login."""
+    """Verify user login."""
     
     #get email and password from the form
     email = request.form.get("email")
@@ -77,22 +77,19 @@ def login():
 
     user = crud.get_user_by_email(email) 
     #check to see if the email already exists
-
-    if user in None:
+           
+    if user is None:
         return "The email doesn\'t exist. Please enter correct email or register for an account"
     
-    else:
-        if bcrypt.checkpw(password.encode('utf8'), user.password.encode('utf-8')):
+    elif bcrypt.checkpw(password.encode('utf8'), user.password.encode('utf-8')):
             # check the email and matching password.        
             session["user_email"] = user.email
-            return render_template ('homepage.html')
-            #f"Welcome back, {user.email}!"
-        else:
-            flash("Your password is not correct")
-            return redirect('/login')
+            return f"Welcome back, {user.email}!" #can't redirct to homepage if have this?
+           
+    else:
+        flash("Your password is not correct")
+        return redirect('/login')
  
-     
-
 @app.route('/logout')    
 def logout_user():
     """User logout."""

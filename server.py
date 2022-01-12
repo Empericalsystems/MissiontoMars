@@ -60,55 +60,38 @@ def register_new_user():
 
         new_user = crud.create_user(email=email, password=password)
         session["user_email"] = new_user.email
-        return 'Your account has been created! You are automatically subscribed to our newsletter.'
+        return 'Your account has been created! Please login. You are automatically subscribed to our newsletter.'
 
-@app.route('/login', methods = ['GET', 'POST'])
-def login():
+@app.route('/login', methods = ['GET'])
+def login_form():
     """Show form for user login."""
-    if request.method == 'GET':
-        return render_template('login_users.html')
+    return render_template('login_users.html')
+
+@app.route('/login', methods = ['POST'])
+def login():
+    """SVerify user login."""
+    
+    #get email and password from the form
+    email = request.form.get("email")
+    password = request.form.get("password")
+
+    user = crud.get_user_by_email(email) 
+    #check to see if the email already exists
+
+    if user in None:
+        return "The email doesn\'t exist. Please enter correct email or register for an account"
+    
     else:
-        email = request.form.get("email")
-        password = request.form.get("password")
-        user = crud.get_user_by_email(email) 
-
-        #check to see if the email already exists
-        if user is None:
-            return ("The email doesn\'t exist. Please enter correct email or register for an account")
-
         if bcrypt.checkpw(password.encode('utf8'), user.password.encode('utf-8')):
-            # check the email and matching password.
-            
+            # check the email and matching password.        
             session["user_email"] = user.email
             return render_template ('homepage.html')
             #f"Welcome back, {user.email}!"
         else:
-
             flash("Your password is not correct")
-            return render_template('login_users.html')
-
-    
-# @app.route('/login', methods = ['POST']) ## WHY IS THIS POSTING DETAILS on URL??
-# def verify_login():
-    
-#     email = request.form.get("email")
-#     password = request.form.get("password")
+            return redirect('/login')
  
-#     user = crud.get_user_by_email(email) 
-
-#     #check to see if the email already exists
-#     if user is None:
-#         return ("The email doesn\'t exist. Please enter correct email or register for an account")
-
-#     if bcrypt.checkpw(password.encode('utf8'), user.password.encode('utf-8')):
-#             # check the email and matching password.
-            
-#         session["user_email"] = user.email
-#         return f"Welcome back, {user.email}!"
-#     else:
-
-#         flash("Your password is not correct")
-#         return render_template('login_users.html')
+     
 
 @app.route('/logout')    
 def logout_user():
@@ -118,12 +101,12 @@ def logout_user():
     flash("Sorry to see you go.")
     return redirect("/")
 
-# @app.route('/')
-# def homepage():
-#     """LandingPage - mission details."""
-#     quote = quote_day.quote_of_day()
-#     return render_template('homepage.html',
-#                             quote = quote)
+@app.route('/home')
+def homepage():
+    """LandingPage - mission details."""
+    quote = quote_day.quote_of_day()
+    return render_template('homepage.html',
+                            quote = quote)
 
 
 

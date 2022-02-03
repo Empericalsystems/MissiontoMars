@@ -43,21 +43,30 @@ def register_new_user():
     user = crud.get_user_by_email(email)
 
     if user:
-        flash('This email already exists. Please login.')
-       
-    else:
-        salt = bcrypt.gensalt()
-        hash_pwd = bcrypt.hashpw(password.encode('utf-8'), salt)
-        #Unicode-objects must be encoded before hashing
-        password = hash_pwd.decode('utf-8')
-        #Unicode-objects must be decoded before saving to the database else SQLAlchemy doesn't save it
-        #in a recognisable format
-
-        new_user = crud.create_user(email=email, password=password)
+        return 'This email already exists. Please login.'
+    else: 
+        new_user = crud.create_user(email, password)
         session["user_email"] = new_user.email
-        flash ('Your account has been created! You are automatically subscribed to our newsletter.')
+        return 'Your account has been created! You are automatically subscribed to our newsletter.'
+
+
+    # ENCRYPTION BELOW###
+    # if user:
+    #     flash('This email already exists. Please login.')
+       
+    # else:
+    #     salt = bcrypt.gensalt()
+    #     hash_pwd = bcrypt.hashpw(password.encode('utf-8'), salt)
+    #     #Unicode-objects must be encoded before hashing
+    #     password = hash_pwd.decode('utf-8')
+    #     #Unicode-objects must be decoded before saving to the database else SQLAlchemy doesn't save it
+    #     #in a recognisable format
+
+    #     new_user = crud.create_user(email=email, password=password)
+    #     session["user_email"] = new_user.email
+    #     flash ('Your account has been created! You are automatically subscribed to our newsletter.')
     
-    return redirect('/')
+    # return redirect('/')
 
 @app.route('/login', methods = ['POST'])
 def login():
@@ -70,21 +79,32 @@ def login():
     user = crud.get_user_by_email(email) 
     #check to see if the email already exists
 
-    print (user)
-           
-    if not user:
-        flash("The email you entered was incorrect or you are not registered.")
-        return redirect("/")
-     
-    elif bcrypt.checkpw(password.encode('utf8'), user.password.encode('utf-8')):
-            # check the email and matching password.        
+    if user:
+        if user.password == password and user.email == email:
+
             session["user_email"] = user.email
-            flash(f"Welcome back, {user.email}!")
-            print (user.email)
-            return redirect ('/home')
+            return f"Welcome back, {user.email}!"
+        else:
+            return "The email or password you entered was incorrect."
     else:
-        flash("Your details are not correct")
-        return redirect('/')
+        return "Sorry there appears to be an error with your login. Please try again later."
+
+
+    # ENCRYPTION BELOW###
+           
+    # if not user:
+    #     flash("The email you entered was incorrect or you are not registered.")
+    #     return redirect("/")
+     
+    # elif bcrypt.checkpw(password.encode('utf8'), user.password.encode('utf-8')):
+    #         # check the email and matching password.        
+    #         session["user_email"] = user.email
+    #         flash(f"Welcome back, {user.email}!")
+    #         print (user.email)
+    #         return redirect ('/home')
+    # else:
+    #     flash("Your details are not correct")
+    #     return redirect('/')
 
     
  
@@ -95,8 +115,6 @@ def logout_user():
     session.clear()
     flash("Sorry to see you go.")
     return redirect("/")
-
-
 
 
 
@@ -199,22 +217,6 @@ def show_user(user_id):
     user = crud.get_user_by_id(user_id)
     return render_template("user_details.html", user=user)
                           
-@app.route('/user-comment')
-def user_comment_page():
-    """User creates a review"""
-    user = session.get("user_email")
-
-    if not user:
-        flash("Please login.")
-    return redirect("/")
-    
-    # missionpost = request.args.get("missionpost")
-  
-
-    return render_template("user-comment.html")#,
-                            #missionpost=missionpost/roverpost?)
-
-
 
 @app.route('/search', methods = ["GET","POST"])
 def search():

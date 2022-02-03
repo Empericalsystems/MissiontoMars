@@ -38,12 +38,12 @@ class User(db.Model):
     def __repr__(self):
         return f'<User user_id = {self.user_id} email = {self.email} password = {self.password}>'
 
-class User_Mission_Comment(db.Model):
-    """Reviews linking the many users to many missionposts"""
+class User_Mission_Links(db.Model):
+    """Linking the many users to many missionposts"""
 
-    __tablename__ = 'user_comment'
+    __tablename__ = 'user_mission'
 
-    user_comment_id = db.Column(db.Integer, 
+    user_mission_id = db.Column(db.Integer, 
                         autoincrement=True, 
                         primary_key=True)
     user_id = db.Column(db.Integer, 
@@ -54,12 +54,12 @@ class User_Mission_Comment(db.Model):
 
 
     # Relationships
-    missionpost = db.relationship("MissionPost", backref=db.backref("user_comment"))
-    user = db.relationship("User", backref=db.backref("user_comment"))
+    missionpost = db.relationship("MissionPost", backref=db.backref("user_mission"))
+    user = db.relationship("User", backref=db.backref("user_mission"))
 
     def __repr__(self):
 
-        return f"<missionpost_id={self.user_comment_id}, user_id = {self.user_id}, user_comment_id ={self.user_comment_id}>"
+        return f"<missionpost_id={self.user_comment_id}, user_id = {self.user_id}, user_mission_id ={self.user_mission_id}>"
 
 
 
@@ -119,7 +119,7 @@ class MissionPost(db.Model):
                          db.ForeignKey ('rovers.rover_id'),
                          nullable=False)
     # Relationships
-    users = db.relationship('User', secondary = 'user_comment',
+    users = db.relationship('User', secondary = 'user_mission',
                                     backref = 'missionposts')
  
     rover = db.relationship('Rover', backref = 'missionposts') #rover&missionpost = one-to-many

@@ -5,9 +5,9 @@ import os
 import json
 from random import choice, randint
 from datetime import datetime
-import regex_curiosity
-import regex_spirit
-import regext_opportunity
+from data import quote_curiosity
+from data import quote_spirit
+from data import quote_opportunity
 
 import crud
 import model
@@ -50,11 +50,11 @@ for missionpost in missionpost_data:
     rover_id = missionpost["rover_id"]
 
     if rover_id == 1:
-        text = regex_curiosity.spock_to_space()
+        text = quote_curiosity.spock_to_space()
     elif rover_id == 2:
-        text = regex_spirit.troi_to_Mars()
+        text = quote_spirit.troi_to_Mars()
     elif rover_id == 3:
-        text = regext_opportunity.captain_to_Mars()
+        text = quote_opportunity.captain_to_Mars()
     else:
         print('sorry please come back later')
 

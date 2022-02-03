@@ -1,13 +1,10 @@
-from flask import (Flask, render_template, request, 
-                   flash, session, redirect, jsonify) 
+from flask import Flask, render_template, request, flash, session, redirect, jsonify 
 from model import db, User, Rover, MissionPost, Photo, connect_to_db
 import crud
 import bcrypt
-
-from data import quote_curiosity, quote_day, quote_opportunity, quote_spirit, mission_log
+from data import quote_curiosity, quote_day, quote_opportunity, quote_spirit 
 import random
- 
- 
+
 
 from jinja2 import StrictUndefined
 
@@ -30,9 +27,11 @@ class MissionPost_live:
         self.mission = mission
 
 @app.route('/')
-def index():
-    """Login page/Register New user"""
-    return render_template ('index.html')
+def homepage():
+    """LandingPage - mission details."""
+    quote = quote_day.quote_of_day()
+    return render_template('homepage.html',
+                            quote = quote)
 
  
 @app.route('/users', methods = ['POST'])
@@ -44,8 +43,8 @@ def register_new_user():
     user = crud.get_user_by_email(email)
 
     if user:
-        return('This email already exists. Please login.')
-
+        flash('This email already exists. Please login.')
+       
     else:
         salt = bcrypt.gensalt()
         hash_pwd = bcrypt.hashpw(password.encode('utf-8'), salt)
@@ -56,12 +55,9 @@ def register_new_user():
 
         new_user = crud.create_user(email=email, password=password)
         session["user_email"] = new_user.email
-        return 'Your account has been created! Please login. You are automatically subscribed to our newsletter.'
-
-@app.route('/login', methods = ['GET'])
-def login_form():
-    """Show form for user login."""
-    return render_template('login_users.html')
+        flash ('Your account has been created! You are automatically subscribed to our newsletter.')
+    
+    return redirect('/')
 
 @app.route('/login', methods = ['POST'])
 def login():
@@ -73,18 +69,24 @@ def login():
 
     user = crud.get_user_by_email(email) 
     #check to see if the email already exists
+
+    print (user)
            
-    if user is None:
-        return "The email doesn\'t exist. Please enter correct email or register for an account"
-    
+    if not user:
+        flash("The email you entered was incorrect or you are not registered.")
+        return redirect("/")
+     
     elif bcrypt.checkpw(password.encode('utf8'), user.password.encode('utf-8')):
             # check the email and matching password.        
             session["user_email"] = user.email
-            return f"Welcome back, {user.email}!" #can't redirct to homepage if have this?
-           
+            flash(f"Welcome back, {user.email}!")
+            print (user.email)
+            return redirect ('/home')
     else:
-        flash("Your password is not correct")
-        return redirect('/login')
+        flash("Your details are not correct")
+        return redirect('/')
+
+    
  
 @app.route('/logout')    
 def logout_user():
@@ -94,17 +96,13 @@ def logout_user():
     flash("Sorry to see you go.")
     return redirect("/")
 
-@app.route('/home')
-def homepage():
-    """LandingPage - mission details."""
-    quote = quote_day.quote_of_day()
-    return render_template('homepage.html',
-                            quote = quote)
+
 
 
 
 @app.route('/rovers')
 def see_rovers():
+
     return render_template('rovers.html')
 
 
@@ -264,4 +262,4 @@ if __name__ == '__main__':
     doctest.testmod()
     app.debug = True
     connect_to_db(app)
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port = 5000)

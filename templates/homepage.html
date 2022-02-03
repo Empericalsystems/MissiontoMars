@@ -1,83 +1,33 @@
 {% extends 'base.html' %}
-
-
-
 {% block body %}
 <header>
   <video class="img-fluid" width = "1850" height = "800" autoplay loop muted>
-    <source src="/static/image/movie.mp4" type="video/mp4">
+    <source src="/static/image/Mars.jpg" type="video/mp4">
   </video>   
-  
+  <!-- <iframe width="640" height="360" src="https://www.youtube.com/embed/NYEs1vOHS30" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
   <div class="card-img-overlay offset-2 hline text-white justify-content-left align-items-center" style="
   margin-top: 300px;">
   <h1 class="display-4 mb-0 mt-5 main"><span style=color:#ffcc00>Mission</span>toMars</h1>
- 
- 
+    <h2 class="display-4 mb-0 mt-5">3 Rovers<br />
+      <span class="font-weight-bold">1 Hostile Planet</span>
+    </h2>
+    <!-- <h2 class="display-4 mb-0 mt-5">3 Rovers<br />
+      <span class="font-weight-bold">1 Hostile Planet</span> -->
+    <!-- </h2> -->
+
     <section>
 
 
       <!--Login to your account  -->
-    
-      <!-- <div class="row justify-content-center pt-5">
-     
-    
-          <div class="col-6 form-group">
-            <div class="card-header"><span class="d-block text-white">
-                <h5>Log In</h5>
-              </span>
-    
-              <form id='loginForm' >
-                <p>
-                  <input type='text' id='email' placeholder='Enter your user email' name='email'>
-                </p>
-    
-                <p>
-                  <input type='password' placeholder='Enter your password' id='password' name='password'>
-                </p>
-    
-                <p>
-                  <button type='submit' class="btn btn-primary btn-block mb-4 text-black visible">Login</button>
-                </p>
-              </form>
-            </div>
-          </div> -->
-    
-    
-    
-    
-        <!-- Register for a new Account -->
-<!--     
-        <div class="col-6 form-group">
-          <div class="card-header"><span class="d-block text-white">
-              <h5>Register</h5>
-            </span>
-    
-            <form id = "register" method = "POST">
-    
-              <p>
-                <input type='text' placeholder='Enter your email' name='email'>
-              </p>
-    
-              <p>
-                <input type='password' placeholder='Enter a password' name='password'>
-              </p>
-              <p>
-                <button type='submit' class="btn btn-primary btn-block mb-4 text-black">Sign up</button>
-              </p>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
+
+      <div class="row justify-content-center pt-5">
 
      <div class="img-overlay col-4 mb-5 offset-mb-2"> 
       <a href= "#description" role= "button" class = "btn btn-primary text-black mt-5">Explore ⬇</a> </div>
   </div>
 </header>
-  -->
-
+ 
 <section id="Description" class="text-center">
-
   <h2 class="h1-responsive pt-5 hline">About <span style=color:#ffcc00>MissiontoMars</span></h2>
   <!-- Row -->
   <div class="row d-flex justify-content-center pt-5">
@@ -90,15 +40,11 @@
     </div>
   </div>
 </section>
-
 <!-- Images -->
 <section id="description" class="text-center">
   <!-- <h2 class="h1-responsive pt-5"> <span style=color:rgb(255,204,0)>Meet </span> the Explorers</h2> -->
-
   <div class="container">
-
     <h2 class="h1-responsive pt-5 hline">The <span style=color:#ffcc00>Mission</span></h2>
-
             Explore Mars for their human creators. <br>
             Spirit and Opportunity, the geologist twins were first to arrive. 
             Their research was going well.
@@ -113,10 +59,8 @@
             That's the point when their mission changed - from colonisation to surivial.
             
     <h2 class="h1-responsive pt-5 hline">Meet the <span style=color:#ffcc00>Rovers</span></h2>
-
   
     <div class="row justify-content-center align-top pt-5">
-
       <div class="col-md-4 mb-4">
   
         <a href="/rover/1"><img src="static/image/curiosity.jpg" class="img-fluid img center image-resize" alt="Curiosity">
@@ -128,8 +72,6 @@
       <p><a href="/rover/1"><button class="btn btn-primary btn-block mb-4 text-black" id="button">More</button></a>
       </p>
     </div>
-
-
     <div class="col-md-4 mb-4">
       <a href="/rover/2"><img src="static/image/spirit.jpg" class="img-fluid img center image-resize" alt="Spirit"></a>
       <h4 class=my-4>Spirit</h4>
@@ -138,11 +80,8 @@
       <p><b>"This rover's favorite chocolate is a mars bar."</b></p>
       <p><a href="/rover/2"><button class="btn btn-primary btn-block mb-4 text-black" id="button">More</button></a>
       </p>
-
     </div>
-
     <div class="col-md-4 mb-4">
-
       <a href="/rover/3"><img src="static/image/opportunity_Mars_Rover.jpg" class="img-fluid img center image-resize" alt="Opportunity"></a>
       <h4 class=my-4>Opportunity</h4>
       <p>One of the geologist twins. He arrived on Mars after his sister, Spirit. He lasted much longer than anyone,
@@ -150,20 +89,13 @@
       <p><b>"I have encountered 1,754 non-Human races during my tenure in NASA."</b></p>
       <p><a href="/rover/3"><button class="btn btn-primary btn-block mb-4 text-black" id="button">More</button></a>
       </p>
-
-
     </div>
-
     </div>
   </div>
-
 </section>
-
-
 <section id="Description" class="text-center" style="background-color: #eee">
   
   <h2 class="h1-responsive pt-5 hline"> <span style=color:#ffcc00>Quote </span>of the Day</h2>
-
   <!-- Row -->
   <div class="row d-flex justify-content-center pt-5">
     <div class="col-md-6">
@@ -174,29 +106,71 @@
         </div>
         <blockquote class="blockquote">
           <p>{{quote}}</p>
-         
+          <!-- <p>If you had an off switch, would you not keep it secret?</p> -->
+
         </blockquote>
       </div>
     </div>
   </div>
   <div class=pt-5>
-
   </div>
 </section>
 
 
+
+<section class="bar-image">
+<!-- <section class="bar-image">
+  Login to your account  -->
+  Login to your account  
+  <div class="row justify-content-center pt-5">
  
+      <div class="col-2  form-group">
+        <div class="card-header"><span class="d-block text-white">
+            <h5>Log In</h5>
+          </span>
+          <form id='loginForm' >
+            <p>
+              <input type='text' id='email' placeholder='Enter your user email' name='email'>
+            </p>
+            <p>
+              <input type='password' placeholder='Enter your password' id='password' name='password'>
+            </p>
+            <p>
+              <button type='submit' class="btn btn-primary btn-block mb-4 text-black visible">Login</button>
+            </p>
+          </form>
+        </div>
+      </div>
+    <!-- Register for a new Account -->
+    Register for a new Account 
+    <div class="col-6 form-group">
+      <div class="card-header"><span class="d-block text-white">
+          <h5>Register</h5>
+        </span>
+        <form id = "register">
+          <p>
+            <input type='text' placeholder='Enter your email' name='email'>
+          </p>
+          <p>
+            <input type='password' placeholder='Enter a password' name='password'>
+          </p>
+          <p>
+            <button type='submit' class="btn btn-primary btn-block mb-4 text-black">Sign up</button>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</section> 
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
-
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
     <p id= "modal_text">...</p>
   </div>
-
 </div>
-
 <script src="/static/alert.js"></script>
 {% endblock %}
